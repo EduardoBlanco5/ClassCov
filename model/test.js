@@ -16,6 +16,7 @@ app.use(express.json())
 app.use('/', router);
 
 
+
 try {
     await db.authenticate()
     console.log('Conexion exitosa a la base de datos')
