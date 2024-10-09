@@ -1,7 +1,6 @@
 import express from "express";
 import multer from 'multer';
 
-
 import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
 import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId } from "../../controller/students.controller.js";
@@ -11,19 +10,9 @@ import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "..
 import { createClass, updateClass, deleteClass, getAllClass, getClass } from "../../controller/class.controller.js";
 import {createUpTask} from "../../controller/upTask.controller.js"
 
-// Configuración de Multer para almacenar archivos en una carpeta "uploads"
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_${file.originalname}`);
-    }
-});
+
 
 const router = express.Router();
-
-const upload = multer({ storage: storage });
 
 //Tareas
 router.post('/task', createTask);//C
@@ -78,11 +67,35 @@ router.get('/class/:id', getClass);
 router.put('/class/:id', updateClass);
 router.delete('/class/:id', deleteClass);
 
-
 // Subir archivo
+const Task = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/Tasks');
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
+
+const ImageAdmin = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/Admins');
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
 
 
-router.post('/upload', upload.single('file'), createUpTask);
+const uploadT = multer({ storage: Task })
+
+const uploadA = multer({ storage: ImageAdmin })
+
+
+router.post('/upload/Task', uploadT.single('file'), createUpTask);
+
+//router.post('/upload/Task', uploadA.single('file'), createUpTask); 
+
 
 
 

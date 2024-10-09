@@ -1,42 +1,86 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const URI = 'http://localhost:4000/upload/Task'
+
 const UpTasks = () => {
+  const [taskId, setTaskId] = useState('');
+  const [student_id, setStudent_id] = useState('');
   const [file, setFile] = useState(null);
-  const [taskId, setTaskId] = useState(''); // Estado para guardar el taskId
+  const [message, setMessage] = useState('');
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  const onFileChange = (e) => {
+    setFile(e.target.files[0]); // Captura el archivo
   };
 
-  const handleTaskIdChange = (event) => {
-    setTaskId(event.target.value); // Captura el taskId del input
+  const onTaskIdChange = (e) => {
+    setTaskId(e.target.value); // Captura el ID de la tarea
   };
 
-  const handleUpload = async () => {
+  const onStudent_idChange = (e) => {
+    setStudent_id(e.target.value)
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validar que el archivo y el task_id existen
+    if (!file || !taskId) {
+      setMessage('Por favor selecciona un archivo e ingresa un ID de tarea');
+      return;
+    }
+
+    // Crear un objeto FormData para enviar el archivo
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('taskId', taskId); // Agrega taskId al FormData
+    formData.append('task_id', taskId);
+    formData.append('student_id', student_id);
 
     try {
-      const response = await axios.post('http://localhost:4000/upload', formData, {
+      const res = await axios.post(URI, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert(response.data.message);
-    } catch (error) {
-      console.error('Error al subir el archivo:', error);
-      alert('Error al subir el archivo');
+
+      setMessage('Archivo subido exitosamente');
+    } catch (err) {
+      console.error(err);
+      setMessage('Error al subir el archivo');
     }
   };
 
   return (
     <div>
-      <h2>Subir archivo</h2>
-      <input type="text" placeholder="ID de la tarea" value={taskId} onChange={handleTaskIdChange} />
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Subir</button>
+      <h1>Subir Archivo</h1>
+      <form onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="task_id">ID de la tarea:</label>
+          <input
+            type="number"
+            id="task_id"
+            value={taskId}
+            onChange={onTaskIdChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="student_id">ID del estudiante:</label>
+          <input
+            type="number"
+            id="student_id"
+            value={student_id}
+            onChange={onStudent_idChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="file">Selecciona un archivo:</label>
+          <input type="file" id="file" onChange={onFileChange} required />
+        </div>
+        <button type="submit">Subir archivo</button>
+      </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };
