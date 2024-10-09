@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import {useForm} from 'react-hook-form'
 import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const URI = 'http://localhost:4000/upload/Task'
 
@@ -9,19 +11,7 @@ const UpTasks = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
 
-  const onFileChange = (e) => {
-    setFile(e.target.files[0]); // Captura el archivo
-  };
-
-  const onTaskIdChange = (e) => {
-    setTaskId(e.target.value); // Captura el ID de la tarea
-  };
-
-  const onStudent_idChange = (e) => {
-    setStudent_id(e.target.value)
-  }
-
-  const onSubmit = async (e) => {
+  const create = async (e) => {
     e.preventDefault();
 
     // Validar que el archivo y el task_id existen
@@ -53,14 +43,14 @@ const UpTasks = () => {
   return (
     <div>
       <h1>Subir Archivo</h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={create}>
         <div>
           <label htmlFor="task_id">ID de la tarea:</label>
           <input
             type="number"
             id="task_id"
             value={taskId}
-            onChange={onTaskIdChange}
+            onChange={(e) => setTaskId(e.target.value)}
             required
           />
         </div>
@@ -70,13 +60,13 @@ const UpTasks = () => {
             type="number"
             id="student_id"
             value={student_id}
-            onChange={onStudent_idChange}
+            onChange={(e) => setStudent_id(e.target.value)}
             required
           />
         </div>
         <div>
           <label htmlFor="file">Selecciona un archivo:</label>
-          <input type="file" id="file" onChange={onFileChange} required />
+          <input type="file" id="file" onChange={(e) => setFile(e-target.value)} required />
         </div>
         <button type="submit">Subir archivo</button>
       </form>
