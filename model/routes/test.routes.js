@@ -1,6 +1,6 @@
 import express from "express";
 import multer from 'multer';
-import { db } from "../db.js";
+
 
 import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
@@ -9,10 +9,21 @@ import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGua
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass } from "../../controller/class.controller.js";
-import { createUpTask, getAllUpTasks, getUpTask, updateUpTask, deleteUpTask } from "../../controller/upTask.controller.js";
+import {createUpTask} from "../../controller/upTask.controller.js"
+
+// Configuración de Multer para almacenar archivos en una carpeta "uploads"
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+
+const upload = multer({ storage: storage });
 
 //Tareas
 router.post('/task', createTask);//C
@@ -68,26 +79,11 @@ router.put('/class/:id', updateClass);
 router.delete('/class/:id', deleteClass);
 
 
-//Subir tareas
-router.post('/upload', upload.single('file'), async (req, res) => {
-    const file = req.file;
+// Subir archivo
 
-    if (!file) {
-        return res.status(400).send('No se ha subido ningún archivo.');
-    }
 
-    try {
-        await Archivo.create({
-            nombre: file.originalname,
-            ruta: file.path,
-            tipo: file.mimetype,
-            tamano: file.size,
-        });
-        res.send('Archivo subido y guardado en la base de datos.');
-    } catch (error) {
-        console.error('Error al guardar en la base de datos:', error);
-        res.status(500).send('Error al guardar en la base de datos: ' + error.message);
-    }
-});
+router.post('/upload', upload.single('file'), createUpTask);
+
+
 
 export default router;

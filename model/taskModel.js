@@ -73,27 +73,7 @@ export const classModel = db.define("classes", {
 
 export const upTasksModel = db.define("uptasks", {
   title: { type: DataTypes.STRING },
-  file: { type: DataTypes.STRING },
+  file_path: { type: DataTypes.STRING },
   student_id: { type: DataTypes.INTEGER },
   task_id: { type: DataTypes.INTEGER },
-});
-
-export const Archivo = db.define('archivos', {
-    nombre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    ruta: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    tipo: {
-        type: DataTypes.STRING,
-    },
-    tamano: {
-        type: DataTypes.INTEGER,
-    },
-}, {
-    tableName: 'archivos', // Especifica el nombre de la tabla
-    timestamps: true, // Si deseas que se manejen automáticamente createdAt y updatedAt
 });
