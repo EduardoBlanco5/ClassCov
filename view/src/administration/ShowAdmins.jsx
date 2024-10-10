@@ -22,6 +22,7 @@ function ShowAdmins() {
             setAdmins([]);
         }
    
+        
     }
 
     if (admins.length === 0) {
@@ -38,7 +39,7 @@ function ShowAdmins() {
   return (
     <>
 
-        <Link to={'/Admin'}>
+        <Link to={'/CreateAdmin'}>
             <button className='bg-blue-600 text-black font-bold rounded-md hover:bg-blue-800 px-3'>Crear Administrador</button>
         </Link>
         <div className=" max-w-md rounded-md my-2 px-4 py-2 flex justify-center mx-[40%]">
@@ -58,6 +59,10 @@ function ShowAdmins() {
                             <h1>{admin.date_of_birth}</h1>   
                             <h1>{admin.role}</h1>   
                             <h1>{admin.status}</h1>   
+                            {/* Mostrar la imagen si existe */}
+                                {admin.file && (
+                                    <img src={admin.file} className="w-20 h-20 object-cover rounded-full my-2" />
+                                )}
                             <p className="text-black font-semibold"> {admin.shift}</p>
                         
                                 <Link to={`/UpdatedAdmin/${admin.id}`}>

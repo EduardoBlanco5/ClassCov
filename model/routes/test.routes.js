@@ -1,5 +1,6 @@
 import express from "express";
 import multer from 'multer';
+import path from 'path';
 
 import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
@@ -54,7 +55,20 @@ router.put('/teacher/:id', updateTeacher);
 router.delete('/teacher/:id', deleteTeacher);
 
 //Administracion
-router.post('/admin', createAdmin);
+const ImageAdmin = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/Admins');
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
+
+
+const uploadA = multer({ storage: ImageAdmin })
+
+
+router.post('/admin', uploadA.single('file'), createAdmin);
 router.get('/admins', getAllAdmin);
 router.get('/admin/:id', getAdmin);
 router.put('/admin/:id', updateAdmin);
@@ -77,24 +91,14 @@ const Task = multer.diskStorage({
     }
 });
 
-const ImageAdmin = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/Admins');
-    },
-    filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_${file.originalname}`);
-    }
-});
+
 
 
 const uploadT = multer({ storage: Task })
 
-const uploadA = multer({ storage: ImageAdmin })
-
-
 router.post('/upload/Task', uploadT.single('file'), createUpTask);
 
-//router.post('/upload/Task', uploadA.single('file'), createUpTask); 
+//router.post('/upload/Admins', uploadA.single('file'), createUpImage); 
 
 
 

@@ -11,15 +11,23 @@ const UpTasks = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
 
-  const create = async (e) => {
-    e.preventDefault();
 
+  const onFileChange = (e) => {
+    setFile(e.target.files[0]); // Captura el archivo
+  };
+  const onTaskIdChange = (e) => {
+    setTaskId(e.target.value); // Captura el ID de la tarea
+  };
+  const onStudent_idChange = (e) => {
+    setStudent_id(e.target.value)
+  }
+  const onSubmit = async (e) => {
+    e.preventDefault();
     // Validar que el archivo y el task_id existen
     if (!file || !taskId) {
       setMessage('Por favor selecciona un archivo e ingresa un ID de tarea');
       return;
     }
-
     // Crear un objeto FormData para enviar el archivo
     const formData = new FormData();
     formData.append('file', file);
@@ -40,17 +48,18 @@ const UpTasks = () => {
     }
   };
 
+
   return (
     <div>
-      <h1>Subir Archivo</h1>
-      <form onSubmit={create}>
+       <h1>Subir Archivo</h1>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="task_id">ID de la tarea:</label>
           <input
             type="number"
             id="task_id"
             value={taskId}
-            onChange={(e) => setTaskId(e.target.value)}
+            onChange={onTaskIdChange}
             required
           />
         </div>
@@ -60,13 +69,13 @@ const UpTasks = () => {
             type="number"
             id="student_id"
             value={student_id}
-            onChange={(e) => setStudent_id(e.target.value)}
+            onChange={onStudent_idChange}
             required
           />
         </div>
         <div>
           <label htmlFor="file">Selecciona un archivo:</label>
-          <input type="file" id="file" onChange={(e) => setFile(e-target.value)} required />
+          <input type="file" id="file" onChange={onFileChange} required />
         </div>
         <button type="submit">Subir archivo</button>
       </form>

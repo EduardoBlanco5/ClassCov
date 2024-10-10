@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const URI = 'http://localhost:4000/admin'
-
 function CreateAdmin() {
 
     const navigate =useNavigate()
@@ -17,6 +16,8 @@ function CreateAdmin() {
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('')
+    const [file, setFile] = useState(null);
+    const [message, setMessage] = useState('');
 
 
     const onSubmit = handleSubmit((data) => {
@@ -25,10 +26,33 @@ function CreateAdmin() {
 
     const create = async (e) => {
         e.preventDefault() 
-        await axios.post(URI,  {name: name, email: email, password: password, role: role,
-                            phone: phone, date_of_birth: date_of_birth, 
-        })
-        navigate('/ShowAdmins')
+        const formData = new FormData();
+
+    // Agregar los campos del formulario al FormData
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phone', phone);
+    formData.append('date_of_birth', date_of_birth);
+    formData.append('role', role);
+
+    // Agregar el archivo al FormData
+    formData.append('file', file);
+
+    try {
+        // Enviar el FormData con una solicitud POST
+        await axios.post(URI, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        // Navegar a la página de lista de administradores después de guardar
+        navigate('/ShowAdmins');
+      } catch (error) {
+        console.error('Error al crear el administrador:', error);
+      }
+
     }
 
   return (
@@ -92,6 +116,9 @@ function CreateAdmin() {
             className='w-full px-4 py-2 rounded-md my-2'
             >
             </input>
+
+            <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>

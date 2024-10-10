@@ -1,6 +1,10 @@
 import { where } from 'sequelize'
 import {administrationModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
+import multer from 'multer';
+import path from 'path';
+
+
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -52,20 +56,33 @@ export const createAdmin = [
     validateTask,
     async (req, res) => {
         try {
-            await administrationModel.create(req.body);
+            const filePath = req.file ? `/uploads/${req.file.filename}` : null;
+            const adminData = {
+                ...req.body,
+                file: filePath // Agregar la ruta del archivo
+            };
+            await administrationModel.create(adminData);
             res.json({ 'message': 'Administrador creado correctamente' });
         } catch (error) {
             console.error('Database Error:', error);
             res.json({ message: error.message });
         }
     }
-];
-
+    ];
+    
 //Mostrar todos R
 export const getAllAdmin = async (req, res) => {
     try {
-        const tasks = await administrationModel.findAll()
-        res.json(tasks)
+        const admins = await administrationModel.findAll();
+
+        // Modificar la respuesta para incluir la URL completa de la imagen
+        const adminsWithImages = admins.map(admin => ({
+            ...admin.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: admin.file ? `${req.protocol}://${req.get('host')}${admin.file}` : null // URL completa
+        }));
+
+        res.json(adminsWithImages);
+
     } catch (error) {
         res.json({message: error.message})
     }
