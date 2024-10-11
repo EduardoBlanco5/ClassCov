@@ -32,6 +32,8 @@ function ProfileAdmin() {
       setDate_of_birth(res.data.date_of_birth)
       setRole(res.data.role)
       setStatus(res.data.status)  
+
+      console.log(res.data.file)
       
     }
 

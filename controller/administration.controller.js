@@ -56,10 +56,10 @@ export const createAdmin = [
     validateTask,
     async (req, res) => {
         try {
-            const filePath = req.file ? `/uploads/${req.file.filename}` : null;
+            const filePath = req.file ? `/uploads/Admins/${req.file.filename}` : null;
             const adminData = {
                 ...req.body,
-                file: filePath // Agregar la ruta del archivo
+                file: filePath 
             };
             await administrationModel.create(adminData);
             res.json({ 'message': 'Administrador creado correctamente' });
@@ -79,12 +79,14 @@ export const getAllAdmin = async (req, res) => {
         const adminsWithImages = admins.map(admin => ({
             ...admin.dataValues,  // Usar dataValues para obtener los datos del modelo
             file: admin.file ? `${req.protocol}://${req.get('host')}${admin.file}` : null // URL completa
+
+            
         }));
 
         res.json(adminsWithImages);
 
     } catch (error) {
-        res.json({message: error.message})
+        res.json({ message: error.message });
     }
 }
 
