@@ -3,7 +3,11 @@ import {administrationModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Lista de palabras reservadas y caracteres sospechosos
@@ -56,7 +60,7 @@ export const createAdmin = [
     validateTask,
     async (req, res) => {
         try {
-            const filePath = req.file ? `/uploads/Admins/${req.file.filename}` : null;
+            const filePath = req.file ? `/${req.file.filename}` : null;
             const adminData = {
                 ...req.body,
                 file: filePath 
@@ -82,6 +86,8 @@ export const getAllAdmin = async (req, res) => {
 
             
         }));
+
+        const imgDir = fs.readdirSync(path.join(__dirname, '../uploads/Admins'))
 
         res.json(adminsWithImages);
 

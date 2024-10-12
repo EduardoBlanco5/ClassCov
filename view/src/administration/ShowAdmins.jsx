@@ -23,6 +23,7 @@ function ShowAdmins() {
         }
    
         
+        
     }
 
     if (admins.length === 0) {
@@ -59,11 +60,16 @@ function ShowAdmins() {
                             <h1>{admin.date_of_birth}</h1>   
                             <h1>{admin.role}</h1>   
                             <h1>{admin.status}</h1>   
+
+
                             {/* Mostrar la imagen si existe */}
                             {console.log(admin.file)}
                                 {admin.file && (
                                     <img src={admin.file} className="w-20 h-20 object-cover rounded-full my-2" />
                                 )}
+
+
+                                
                             <p className="text-black font-semibold"> {admin.shift}</p>
                         
                                 <Link to={`/UpdatedAdmin/${admin.id}`}>
