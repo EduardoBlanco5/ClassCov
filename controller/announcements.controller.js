@@ -1,6 +1,12 @@
 import { where } from 'sequelize'
 import {announcementsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -46,6 +52,11 @@ export const createAnnouncement = [
     validateTask,
     async (req, res) => {
         try {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const announcementData = {
+                ...req.body,
+                file: filePath 
+            };
             await announcementsModel.create(req.body);
             res.json({ 'message': 'Anuncio creado correctamente' });
         } catch (error) {

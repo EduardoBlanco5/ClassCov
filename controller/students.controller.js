@@ -1,6 +1,12 @@
 import { where } from 'sequelize'
 import {studentsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -48,7 +54,12 @@ export const createStudent = [
     validateTask,
     async (req, res) => {
         try {
-            await studentsModel.create(req.body);
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const studentsData = {
+                ...req.body,
+                file: filePath 
+            };
+            await studentsModel.create(studentsData);
             res.json({ 'message': 'Alumno creado correctamente' });
         } catch (error) {
             console.error('Database Error:', error);
@@ -60,8 +71,16 @@ export const createStudent = [
 //Mostrar todos R
 export const getAllStudents = async (req, res) => {
     try {
-        const tasks = await studentsModel.findAll()
-        res.json(tasks)
+        const students = await studentsModel.findAll()
+
+        const studentsWithImages = students.map(student => ({
+            ...student.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: student.file ? `${req.protocol}://${req.get('host')}${student.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(studentsWithImages)
     } catch (error) {
         res.json({message: error.message})
     }

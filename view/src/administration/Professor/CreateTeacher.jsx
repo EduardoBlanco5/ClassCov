@@ -17,6 +17,8 @@ function CreateTeacher() {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
+    const [status, setStatus] = useState('');
+    const [file, setFile] = useState(null);
     const [role, setRole] = useState('2')
 
     const onSubmit = handleSubmit((data) => {
@@ -25,10 +27,33 @@ function CreateTeacher() {
 
     const create = async (e) => {
       e.preventDefault() 
-      await axios.post(URI,  {name: name, email: email, hire_date: hire_date, password: password, role: role,
-                          phone: phone, date_of_birth,
-      })
-      navigate('/ShowTeachers')
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('phone', phone);
+      formData.append('date_of_birth', date_of_birth);
+      formData.append('role', role);
+      formData.append('status', status)
+      formData.append('hire_date', hire_date);
+      // Agregar el archivo al FormData
+      formData.append('file', file);
+      
+      try {
+        // Enviar el FormData con una solicitud POST
+        await axios.post(URI, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        // Navegar a la página de lista de administradores después de guardar
+        navigate('/ShowTeachers')
+        
+      } catch (error) {
+        console.error('Error al crear el administrador:', error);
+      }
     }
 
 
@@ -94,8 +119,18 @@ function CreateTeacher() {
               >
               </input>
 
-          
+              <label className='text-white'>Status</label>
+            <input
+            type='text'
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className='w-full px-4 py-2 rounded-md my-2'
+            >
+            </input>
 
+              <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+              <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
+          
               <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
           </form>
           </div>

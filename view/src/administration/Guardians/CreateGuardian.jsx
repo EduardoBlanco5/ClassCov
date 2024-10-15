@@ -18,6 +18,7 @@ function CreateGuardian() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('3')
     const [status, setStatus] = useState('')
+    const [file, setFile] = useState(null);
 
     const onSubmit = handleSubmit((data) => {
         console.log(data);
@@ -25,10 +26,30 @@ function CreateGuardian() {
 
     const create = async (e) => {
         e.preventDefault() 
-        await axios.post(URI,  {name: name, email: email, password: password, role: role,
-                            phone: phone, date_of_birth: date_of_birth, status: status,
-        })
-        navigate('/')
+        const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('phone', phone);
+        formData.append('date_of_birth', date_of_birth);
+        formData.append('role', role);
+        formData.append('status', status);
+        // Agregar el archivo al FormData
+        formData.append('file', file);
+
+        try {
+            // Enviar el FormData con una solicitud POST
+            await axios.post(URI, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+      
+            navigate('/ShowGuardians');
+          } catch (error) {
+            console.error('Error al crear el Tutor:', error);
+          }
     }
 
     return (
@@ -37,9 +58,7 @@ function CreateGuardian() {
     <div className='flex justify-center'>
         <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
         <form onSubmit={create} >
-            <h1 className='font-bold text-white text-center text-3xl'>Tutor
-
-            </h1>
+            <h1 className='font-bold text-white text-center text-3xl'>Tutor</h1>
 
             <label className='text-white'>Nombre Completo</label>
             <input 
@@ -77,15 +96,6 @@ function CreateGuardian() {
             className='w-full px-4 py-2 rounded-md my-2'
             ></input>
 
-            <label className='text-white'>Estatus</label>
-            <input
-            type='text'
-            placeholder='Activo, Inactivo'
-            value={status}
-            onChange={ (e) => setStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            ></input>
-
 
             <label className='text-white'>Fecha de Nacimiento</label>
             <input
@@ -95,6 +105,18 @@ function CreateGuardian() {
             className='w-full px-4 py-2 rounded-md my-2'
             >
             </input>
+
+            <label className='text-white'>Status</label>
+            <input
+            type='text'
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className='w-full px-4 py-2 rounded-md my-2'
+            >
+            </input>
+
+            <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>

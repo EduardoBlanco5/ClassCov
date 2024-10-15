@@ -58,6 +58,13 @@ function ShowGuardians() {
                             <h1>{guardian.date_of_birth}</h1>   
                             <h1>{guardian.role}</h1>   
                             <h1>{guardian.status}</h1>   
+
+                            {/* Mostrar la imagen si existe */}
+                            {console.log(guardian.file)}
+                                {guardian.file && (
+                                    <img src={guardian.file} className="w-20 h-20 object-cover rounded-full my-2" />
+                                )}
+
                                 <Link to={`/UpdatedGuardian/${guardian.id}`}>
                                 <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md ">
                                     Actualizar

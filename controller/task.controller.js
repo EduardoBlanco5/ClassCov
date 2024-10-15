@@ -1,6 +1,12 @@
 import { where } from 'sequelize'
 import {taskModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -46,7 +52,12 @@ export const createTask = [
     validateTask,
     async (req, res) => {
         try {
-            await taskModel.create(req.body);
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const taskData = {
+                ...req.body,
+                file: filePath 
+            };
+            await taskModel.create(taskData);
             res.json({ 'message': 'Tarea creada correctamente' });
         } catch (error) {
             console.error('Database Error:', error);
@@ -59,7 +70,13 @@ export const createTask = [
 export const getAllTasks = async (req, res) => {
     try {
         const tasks = await taskModel.findAll()
-        res.json(tasks)
+        const tasksWithImages = tasks.map(task => ({
+            ...task.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null // URL completa
+
+            
+        }));
+        res.json(tasksWithImages)
     } catch (error) {
         res.json({message: error.message})
     }

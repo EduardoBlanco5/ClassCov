@@ -16,8 +16,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //uso de las rutas
-app.use(express.static(path.join(__dirname, '../uploads/Admins')));
-app.use(express.static(path.join(__dirname, '../uploads/Tasks')));
+app.use(express.static(path.join(__dirname, '../Perfil/Admins')));
+app.use(express.static(path.join(__dirname, '../Perfil/Announcements')));
+app.use(express.static(path.join(__dirname, '../Perfil/Guardians')));
+app.use(express.static(path.join(__dirname, '../Perfil/Students')));
+app.use(express.static(path.join(__dirname, '../Perfil/Tasks')));
+app.use(express.static(path.join(__dirname, '../Perfil/Teachers')));
 
 app.use(cors());
 app.use(express.json())

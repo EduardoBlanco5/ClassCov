@@ -10,6 +10,7 @@ export const taskModel = db.define("tasks", {
   status: { type: DataTypes.STRING },
   class_id: { type: DataTypes.INTEGER },
   teacher_id: { type: DataTypes.INTEGER },
+  file: {type: DataTypes.STRING},
 });
 
 export const announcementsModel = db.define("announcements", {
@@ -18,6 +19,7 @@ export const announcementsModel = db.define("announcements", {
   teacher_id: { type: DataTypes.INTEGER },
   class_id: { type: DataTypes.INTEGER },
   date: { type: DataTypes.DATE },
+  
 });
 
 export const studentsModel = db.define("students", {
@@ -31,6 +33,7 @@ export const studentsModel = db.define("students", {
   admission: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
   class_id: { type: DataTypes.INTEGER },
+  file: {type: DataTypes.STRING},
 });
 
 export const guardiansModel = db.define("guardians", {
@@ -41,6 +44,7 @@ export const guardiansModel = db.define("guardians", {
   role: { type: DataTypes.INTEGER },
   date_of_birth: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
+  file: {type: DataTypes.STRING},
 });
 
 export const teachersModel = db.define("teachers", {
@@ -52,6 +56,7 @@ export const teachersModel = db.define("teachers", {
   phone: { type: DataTypes.STRING },
   date_of_birth: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
+  file: {type: DataTypes.STRING},
 });
 
 export const administrationModel = db.define("administrations", {
@@ -74,7 +79,7 @@ export const classModel = db.define("classes", {
 
 export const upTasksModel = db.define("uptasks", {
   title: { type: DataTypes.STRING },
-  file_path: { type: DataTypes.STRING },
+  file: { type: DataTypes.STRING },
   student_id: { type: DataTypes.INTEGER },
   task_id: { type: DataTypes.INTEGER },
 });

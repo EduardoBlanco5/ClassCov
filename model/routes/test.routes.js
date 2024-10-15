@@ -15,7 +15,17 @@ import {createUpTask} from "../../controller/upTask.controller.js"
 const router = express.Router();
 
 //Tareas
-router.post('/task', createTask);//C
+const ImageTasks = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'Teachers/Tasks');
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+const TeachersTasks = multer({ storage: ImageTasks })
+
+router.post('/task', TeachersTasks.single('file'), createTask);//C
 router.get('/tasks', getAllTasks);//R
 router.get('/tasks/class', getTasksByClassId);
 router.get('/task/:id', getTask);//R
@@ -31,7 +41,17 @@ router.put('/announcement/:id', updateAnnouncement);//U
 router.delete('/announcement/:id', deleteAnnouncement);//D
 
 //Estudiantes
-router.post('/student', createStudent);//C
+const ImageStudent = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'Perfil/Students');
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+const PerfilStudents = multer({ storage: ImageStudent })
+
+router.post('/student', PerfilStudents.single('file'), createStudent);//C
 router.get('/students', getAllStudents);//R
 router.get('/students/class', getStudentsByClassId); // Obtener estudiantes por class_id
 router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes por guardian_id
@@ -40,14 +60,34 @@ router.put('/student/:id', updateStudent);//U
 router.delete('/student/:id', deleteStudent);//D
 
 //Tutores
-router.post('/guardian', createGuardian);
+const ImageGuardian = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'Perfil/Guardians');
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+const PerfilGuardian = multer({ storage: ImageGuardian })
+
+router.post('/guardian',  PerfilGuardian.single('file'), createGuardian);
 router.get('/guardians', getAllGuardians);
 router.get('/guardian/:id', getGuardian);
 router.put('/guardian/:id', updateGuardian);
 router.delete('/guardian/:id', deleteGuardian);
 
 //Profesores
-router.post('/teacher', createTeacher);
+const ImageTeacher = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'Perfil/Teachers');
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+const PerfilTeacher = multer({ storage: ImageTeacher })
+
+router.post('/teacher', PerfilTeacher.single('file'), createTeacher);
 router.get('/teachers', getAllTeachers);
 router.get('/teacher/:id', getTeacher);
 router.put('/teacher/:id', updateTeacher);
@@ -57,15 +97,15 @@ router.delete('/teacher/:id', deleteTeacher);
 //Administracion
 const ImageAdmin = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, 'uploads/Admins');
+      cb(null, 'Perfil/Admins');
   },
   filename: function (req, file, cb) {
       cb(null, `${Date.now()}_${file.originalname}`);
   }
 });
-const uploadA = multer({ storage: ImageAdmin })
+const PerfilAdmin = multer({ storage: ImageAdmin })
 
-router.post('/admin', uploadA.single('file'), createAdmin);
+router.post('/admin', PerfilAdmin.single('file'), createAdmin);
 router.get('/admins', getAllAdmin);
 router.get('/admin/:id', getAdmin);
 router.put('/admin/:id', updateAdmin);

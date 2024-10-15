@@ -1,6 +1,12 @@
 import { where } from 'sequelize'
 import {guardiansModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -48,7 +54,12 @@ export const createGuardian = [
     validateTask,
     async (req, res) => {
         try {
-            await guardiansModel.create(req.body);
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const guardianData = {
+                ...req.body,
+                file: filePath 
+            };
+            await guardiansModel.create(guardianData);
             res.json({ 'message': 'Tutor creado correctamente' });
         } catch (error) {
             console.error('Database Error:', error);
@@ -60,8 +71,19 @@ export const createGuardian = [
 //Mostrar todos R
 export const getAllGuardians = async (req, res) => {
     try {
-        const tasks = await guardiansModel.findAll()
-        res.json(tasks)
+
+
+        const guardians = await guardiansModel.findAll();
+
+        // Modificar la respuesta para incluir la URL completa de la imagen
+        const guardiansWithImages = guardians.map(guardian => ({
+            ...guardian.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: guardian.file ? `${req.protocol}://${req.get('host')}${guardian.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(guardiansWithImages)
     } catch (error) {
         res.json({message: error.message})
     }

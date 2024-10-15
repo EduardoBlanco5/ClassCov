@@ -17,6 +17,7 @@ function CreateAdmin() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('')
     const [file, setFile] = useState(null);
+    const [status, setStatus] = useState('')
     const [message, setMessage] = useState('');
 
 
@@ -35,7 +36,7 @@ function CreateAdmin() {
     formData.append('phone', phone);
     formData.append('date_of_birth', date_of_birth);
     formData.append('role', role);
-
+    formData.append('status', status)
     // Agregar el archivo al FormData
     formData.append('file', file);
 
@@ -113,6 +114,15 @@ function CreateAdmin() {
             type='text'
             value={role}
             onChange={(e) => setRole(e.target.value)}
+            className='w-full px-4 py-2 rounded-md my-2'
+            >
+            </input>
+
+            <label className='text-white'>Status</label>
+            <input
+            type='text'
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
             className='w-full px-4 py-2 rounded-md my-2'
             >
             </input>

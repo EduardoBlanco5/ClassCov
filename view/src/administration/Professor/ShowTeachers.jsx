@@ -58,6 +58,13 @@ function ShowTeachers() {
                             <h1>{teacher.date_of_birth}</h1>   
                             <h1>{teacher.role}</h1>   
                             <h1>{teacher.status}</h1>   
+
+                            {/* Mostrar la imagen si existe */}
+                            {console.log(teacher.file)}
+                                {teacher.file && (
+                                    <img src={teacher.file} className="w-20 h-20 object-cover rounded-full my-2" />
+                                )}
+
                                 <Link to={`/UpdatedTeacher/${teacher.id}`}>
                                 <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md ">
                                     Actualizar
