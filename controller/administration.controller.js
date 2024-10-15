@@ -87,8 +87,6 @@ export const getAllAdmin = async (req, res) => {
             
         }));
 
-        const imgDir = fs.readdirSync(path.join(__dirname, '../uploads/Admins'))
-
         res.json(adminsWithImages);
 
     } catch (error) {
@@ -100,10 +98,17 @@ export const getAllAdmin = async (req, res) => {
 export const getAdmin = async (req, res) => {
    
     try {
-        const task = await administrationModel.findAll({
+        const admins = await administrationModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const adminsWithImages = admins.map(admin => ({
+            ...admin.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: admin.file ? `${req.protocol}://${req.get('host')}${admin.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(adminsWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }
@@ -115,9 +120,17 @@ export const updateAdmin = [
     
     async (req, res) => {
         try {
-            const result = await administrationModel.update(req.body, {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const AdminsData = {
+                ...req.body,
+                file: filePath 
+            };
+            const result = await administrationModel.update(AdminsData, {
                 where: { id: req.params.id }
             });
+
+
+
             if (!result[0] === 0) {
                 return res.status(404).json({ message: 'Administrador no encontrado' });
             }

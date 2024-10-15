@@ -66,6 +66,7 @@ export const administrationModel = db.define("administrations", {
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING },
   date_of_birth: { type: DataTypes.DATE },
+  hire_date: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
   file: {type: DataTypes.STRING},
 });

@@ -29,7 +29,7 @@ router.post('/task', TeachersTasks.single('file'), createTask);//C
 router.get('/tasks', getAllTasks);//R
 router.get('/tasks/class', getTasksByClassId);
 router.get('/task/:id', getTask);//R
-router.put('/task/:id', updateTask);//U
+router.put('/task/:id', TeachersTasks.single('file'), updateTask);//U
 router.delete('/task/:id', deleteTask);//D
 
 //Anuncios
@@ -56,7 +56,7 @@ router.get('/students', getAllStudents);//R
 router.get('/students/class', getStudentsByClassId); // Obtener estudiantes por class_id
 router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes por guardian_id
 router.get('/student/:id', getStudent);//R
-router.put('/student/:id', updateStudent);//U
+router.put('/student/:id', PerfilStudents.single('file'), updateStudent);//U
 router.delete('/student/:id', deleteStudent);//D
 
 //Tutores
@@ -73,7 +73,7 @@ const PerfilGuardian = multer({ storage: ImageGuardian })
 router.post('/guardian',  PerfilGuardian.single('file'), createGuardian);
 router.get('/guardians', getAllGuardians);
 router.get('/guardian/:id', getGuardian);
-router.put('/guardian/:id', updateGuardian);
+router.put('/guardian/:id', PerfilGuardian.single('file'), updateGuardian);
 router.delete('/guardian/:id', deleteGuardian);
 
 //Profesores
@@ -90,7 +90,7 @@ const PerfilTeacher = multer({ storage: ImageTeacher })
 router.post('/teacher', PerfilTeacher.single('file'), createTeacher);
 router.get('/teachers', getAllTeachers);
 router.get('/teacher/:id', getTeacher);
-router.put('/teacher/:id', updateTeacher);
+router.put('/teacher/:id', PerfilTeacher.single('file'), updateTeacher);
 router.delete('/teacher/:id', deleteTeacher);
 
 
@@ -108,7 +108,7 @@ const PerfilAdmin = multer({ storage: ImageAdmin })
 router.post('/admin', PerfilAdmin.single('file'), createAdmin);
 router.get('/admins', getAllAdmin);
 router.get('/admin/:id', getAdmin);
-router.put('/admin/:id', updateAdmin);
+router.put('/admin/:id', PerfilAdmin.single('file'), updateAdmin);
 router.delete('/admin/:id', deleteAdmin);
 
 //Clases

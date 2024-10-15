@@ -15,6 +15,7 @@ function ProfileAdmin() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
+    const [file, setfile] = useState(null)
   
     const {id} = useParams()
     
@@ -32,6 +33,7 @@ function ProfileAdmin() {
       setDate_of_birth(res.data.date_of_birth)
       setRole(res.data.role)
       setStatus(res.data.status)  
+      setfile(res.data.file)
 
       console.log(res.data.file)
       
@@ -46,6 +48,10 @@ function ProfileAdmin() {
             <p>Fecha de nacimiento: {date_of_birth}</p>
             <p>Puesto: {role}</p>
             <p>Status: {status}</p>
+            {/* Mostrar la imagen si existe */}
+              {file && (
+                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
+              )}
         </div>
       </div>
   )

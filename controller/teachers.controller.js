@@ -89,10 +89,16 @@ export const getAllTeachers = async (req, res) => {
 export const getTeacher = async (req, res) => {
    
     try {
-        const task = await teachersModel.findAll({
+        const teachers = await teachersModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const teachersWithImages = teachers.map(teacher => ({
+            ...teacher.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: teacher.file ? `${req.protocol}://${req.get('host')}${teacher.file}` : null // URL completa
+
+            
+        }));
+        res.json(teachersWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }
@@ -104,9 +110,17 @@ export const updateTeacher = [
     
     async (req, res) => {
         try {
-            const result = await teachersModel.update(req.body, {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            const teacherData = {
+                ...req.body,
+                file: filePath 
+            };
+            const result = await teachersModel.update(teacherData, {
                 where: { id: req.params.id }
             });
+
+
+
             if (result[0] === 0) {
                 return res.status(404).json({ message: 'Profesor no encontrado' });
             }

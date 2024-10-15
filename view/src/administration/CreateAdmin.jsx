@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const URI = 'http://localhost:4000/admin'
+
 function CreateAdmin() {
 
     const navigate =useNavigate()
@@ -18,6 +19,7 @@ function CreateAdmin() {
     const [role, setRole] = useState('')
     const [file, setFile] = useState(null);
     const [status, setStatus] = useState('')
+    const [hire_date, setHire_date] = useState('')
     const [message, setMessage] = useState('');
 
 
@@ -37,6 +39,7 @@ function CreateAdmin() {
     formData.append('date_of_birth', date_of_birth);
     formData.append('role', role);
     formData.append('status', status)
+    formData.append('hire_date', hire_date);
     // Agregar el archivo al FormData
     formData.append('file', file);
 
@@ -108,6 +111,15 @@ function CreateAdmin() {
             className='w-full px-4 py-2 rounded-md my-2'
             >
             </input>
+
+            <label className='text-white'>Fecha de Contrato</label>
+              <input
+              type='date'
+              value={hire_date}
+              onChange={(e) => setHire_date(e.target.value)}
+              className='w-full px-4 py-2 rounded-md my-2'
+              >
+              </input>
 
             <label className='text-white'>Puesto</label>
             <input
