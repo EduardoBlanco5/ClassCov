@@ -7,9 +7,13 @@ import { fileURLToPath } from 'url';
 // import indexRoutes from './routes/index.routes.js'
 import router from './routes/test.routes.js'
 import { db } from './db.js';
+import authRoutes from './routes/auth.routes.js'
+import dotenv from 'dotenv';
+
 
 const app = express();
 
+dotenv.config();
 
 // Obtener el directorio actual
 const __filename = fileURLToPath(import.meta.url);
@@ -27,7 +31,7 @@ app.use(cors());
 app.use(express.json())
 app.use('/', router);
 
-
+app.use('/auth', authRoutes);
 
 try {
     await db.authenticate()

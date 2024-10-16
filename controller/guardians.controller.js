@@ -55,8 +55,13 @@ export const createGuardian = [
     async (req, res) => {
         try {
             const filePath = req.file ? `/${req.file.filename}` : null;
+            // Encriptar la contraseña
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
+
             const guardianData = {
                 ...req.body,
+                password: hashedPassword,  // Reemplazar con la contraseña encriptada
                 file: filePath 
             };
             await guardiansModel.create(guardianData);
