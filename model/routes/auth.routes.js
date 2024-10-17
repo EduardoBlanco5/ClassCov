@@ -42,6 +42,7 @@ router.post('/login', async (req, res) => {
     console.log('Contraseña almacenada en la base de datos:', user.password);
     console.log('Contraseña proporcionada:', password);
     console.log('Longitud de la contraseña proporcionada:', password.length);
+
     const isMatch = await bcrypt.compare(password, user.password);
     console.log('¿Contraseña coincide?', isMatch);
     if (!isMatch) {

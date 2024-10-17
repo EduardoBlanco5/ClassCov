@@ -4,6 +4,7 @@ import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
+import bcrypt from 'bcryptjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,8 +57,12 @@ export const createTeacher = [
     async (req, res) => {
         try {
             const filePath = req.file ? `/${req.file.filename}` : null;
+            const salt = await bcrypt.genSalt(10);
+             const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
+
             const teacherData = {
                 ...req.body,
+                password: hashedPassword, 
                 file: filePath 
             };
             await teachersModel.create(teacherData);

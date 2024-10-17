@@ -35,69 +35,61 @@ import ClassTasks from './administration/Classes/ClassTasks';
 import ClassAnnouncements from './administration/Classes/ClassAnnouncements';
 import UpTask from './administration/Students/UpTask';
 import ShowUpTasks from './administration/Students/ShowUpTasks';
+import ProtecttedRoute from './components/ProtecttedRoute';
+import { AuthProvider } from './components/AuthContext';
 
 
 function App() {
-
+  const role = localStorage.getItem('role');
 
   return (
-    <>
+    <AuthProvider>
       
       <BrowserRouter>
       <Navbar/>
         <Routes>
 
-          <Route path='/Login' element={<Login/>}>Login</Route>
+          <Route path='/' element={<Login/>}>Login</Route>
           
+           {/* Rutas protegidas */}
+           <Route path='/Home' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian', 'student']} />}>
+            <Route index element={<Home />} />
+          </Route>
+
+          {/* Rutas para administradores */}
+          <Route path='/admin/create-teacher' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateTeacher />} />
+          </Route>
+          <Route path='/admin/show-teachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ShowTeachers />} />
+          </Route>
+          {/* Otras rutas de administración... */}
+
+          {/* Rutas para profesores */}
+          <Route path='/teacher/create-task' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+            <Route index element={<CreateTask />} />
+          </Route>
+
+          <Route path='/teacher/show-tasks' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+            <Route index element={<ShowTask />} />
+          </Route>
           
-          <Route path='/showTasks' element={<ShowTask/>}>Tareas</Route>
-          <Route path='/createTask' element={<CreateTask/>}>Crear Tarea</Route>
-          <Route path='/' element={<Home/>}>Inicio</Route>
-          <Route path='/UpdatedTask/:id' element={<UpdatedTask/>}>Actualizar</Route>
-          <Route path='/TaskCard/:id' element={<TaskCard/>}>Task Cards</Route>
 
-          <Route path='/CreateAnnouncements' element={<CreateAnnouncements/>}>Anuncios</Route>
-          <Route path='/UpdatedAnnouncement/:id' element={<UpdatedAnnouncement/>}>Actualizar Anuncio</Route>
-          <Route path='/ShowAnnouncements' element={<ShowAnnouncements/>}>Mostrar Anuncios</Route>
-          <Route path='/AnnouncementCard/:id' element={<AnnouncementCard/>}>Task Anuncio</Route>
+          {/* Rutas para estudiantes */}
+          <Route path='/student/up-task' element={<ProtecttedRoute allowedRoles={['student']} />}>
+            <Route index element={<UpTask />} />
+          </Route>
+          <Route path='/student/show-up-tasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
+            <Route index element={<ShowUpTasks />} />
+          </Route>
 
-          <Route path='/CreateTeacher' element={<CreateTeacher/>}></Route>
-          <Route path='/ShowTeachers' element={<ShowTeachers/>}></Route>
-          <Route path='/UpdatedTeacher/:id' element={<UpdatedTeacher/>}></Route>
-          <Route path='/ProfileTeacher/:id' element={<ProfileTeacher/>}></Route>
-
-          <Route path='/CreateStudent' element={<CreateStudent/>}></Route>
-          <Route path='/ShowStudents' element={<ShowStudents/>}></Route>
-          <Route path='/UpdatedStudent/:id' element={<UpdatedStudent/>}></Route>
-          <Route path='/ProfileStudent/:id' element={<ProfileStudent/>}></Route>
-          <Route path='/UpTask' element={<UpTask/>}></Route>
-          <Route path='ShowUpTasks' element={<ShowUpTasks/>}></Route>
+          {/* Otras rutas... */}
           
-
-          <Route path='/CreateGuardian' element={<CreateGuardian/>}></Route>
-          <Route path='/ShowGuardians' element={<ShowGuardians/>}></Route>
-          <Route path='/UpdatedGuardian/:id' element={<UpdatedGuardian/>}></Route>
-          <Route path='/ProfileGuardian/:id' element={<ProfileGuardian/>}></Route>
-
-
-          <Route path='/CreateClass' element={<CreateClass/>}></Route>
-          <Route path='/ShowClass' element={<ShowClass/>}></Route>
-          <Route path='/UpdateClass/:id' element={<UpdateClass/>}></Route>
-          <Route path='/ClassCard/:id' element={<ClassCard/>}></Route>
-          <Route path='/ClassTasks/:id' element={<ClassTasks/>}></Route>
-          <Route path='/ClassAnnouncements/:id' element={<ClassAnnouncements/>}></Route>
-
-          <Route path='/CreateAdmin' element={<CreateAdmin/>}></Route>
-          <Route path='/ShowAdmins' element={<ShowAdmins/>}></Route>
-          <Route path='/UpdatedAdmin/:id' element={<UpdatedAdmin/>}></Route>
-          <Route path='/ProfileAdmin/:id' element={<ProfileAdmin/>}></Route>
-
-
 
 
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   )
 }
 

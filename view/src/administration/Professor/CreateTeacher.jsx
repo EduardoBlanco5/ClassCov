@@ -19,7 +19,7 @@ function CreateTeacher() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [status, setStatus] = useState('');
     const [file, setFile] = useState(null);
-    const [role, setRole] = useState('2')
+    const [role, setRole] = useState('teacher')
 
     const onSubmit = handleSubmit((data) => {
       console.log(data);

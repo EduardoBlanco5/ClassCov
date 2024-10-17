@@ -1,17 +1,35 @@
 import {set, useForm} from 'react-hook-form'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
+
+const URI = 'http://localhost:4000/auth/login'
 
 function Login() {
 
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(null); // Estado para mensajes de error
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
+  
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         console.log(password, email);
+        try {
+            const response = await axios.post(URI, { email, password });
+      
+
+            const { token, role } = response.data; // Asegúrate de que tu API devuelva el rol
+      login(token, role); // Llama a login con el token y rol
+            navigate(`/${role}`);
+          } catch (err) {
+            console.error('Error al iniciar sesión:', err);
+            setError('Usuario o contraseña incorrectos');
+          }
       }
 
   return (
@@ -40,6 +58,7 @@ function Login() {
                 className='rounded-md w-60 font-semibold py-1'
                 >
                 </input>
+                {error && <p className="text-red-500 mt-2">{error}</p>}
 
                 <button className='p-2 flex bg-indigo-500 rounded-md mt-10 ml-20' type='submit'>Entrar</button>
             </form>
