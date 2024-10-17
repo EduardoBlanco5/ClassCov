@@ -15,9 +15,6 @@ const app = express();
 
 dotenv.config();
 
-console.log('JWT_SECRET:', process.env.JWT_SECRET);
-console.log('JWT_EXPIRES_IN:', process.env.JWT_EXPIRES_IN);
-
 // Obtener el directorio actual
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

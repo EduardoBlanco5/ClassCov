@@ -58,6 +58,13 @@ function ShowStudents() {
                             <h1>{student.date_of_birth}</h1>   
                             <h1>{student.role}</h1>   
                             <h1>{student.status}</h1>   
+
+                            {/* Mostrar la imagen si existe */}
+                            {console.log(student.file)}
+                                {student.file && (
+                                    <img src={student.file} className="w-20 h-20 object-cover rounded-full my-2" />
+                                )}
+
                                 <Link to={`/Updatedstudent/${student.id}`}>
                                 <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md ">
                                     Actualizar

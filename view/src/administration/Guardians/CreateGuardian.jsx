@@ -16,7 +16,7 @@ function CreateGuardian() {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
-    const [role, setRole] = useState('3')
+    const [role, setRole] = useState('guardian')
     const [status, setStatus] = useState('')
     const [file, setFile] = useState(null);
 

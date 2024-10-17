@@ -37,6 +37,7 @@ import UpTask from './administration/Students/UpTask';
 import ShowUpTasks from './administration/Students/ShowUpTasks';
 import ProtecttedRoute from './components/ProtecttedRoute';
 import { AuthProvider } from './components/AuthContext';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -50,40 +51,69 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Login/>}>Login</Route>
+          <Route path='/Profile' element={<Profile/>}></Route>
+
+
           
            {/* Rutas protegidas */}
            <Route path='/Home' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian', 'student']} />}>
             <Route index element={<Home />} />
           </Route>
 
-          {/* Rutas para administradores */}
-          <Route path='/admin/create-teacher' element={<ProtecttedRoute allowedRoles={['admin']} />}>
-            <Route index element={<CreateTeacher />} />
-          </Route>
-          <Route path='/admin/show-teachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
-            <Route index element={<ShowTeachers />} />
-          </Route>
-          {/* Otras rutas de administración... */}
+          {/* Rutas para ADMINISTRADORES */}
 
-          {/* Rutas para profesores */}
-          <Route path='/teacher/create-task' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+          <Route path='/CreateAdmins' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateAdmin/>}></Route>
+          </Route>
+          <Route path='/CreateStudent' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateStudent/>}></Route>
+          </Route>
+          <Route path='/CreateGuardian' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateGuardian/>}></Route>
+          </Route>
+          <Route path='/CreateTeacher' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateTeacher/>}></Route>
+          </Route>
+          <Route path='/ShowTeachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ShowTeachers/>}></Route>
+          </Route>
+          <Route path='/ShowGuardians' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ShowGuardians/>}></Route>
+          </Route>
+          <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
+            <Route index element={<ShowStudents/>}></Route>
+          </Route>
+          
+
+
+          {/* Rutas para PROFESORES*/}
+          <Route path='/CreateTask' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
             <Route index element={<CreateTask />} />
           </Route>
 
-          <Route path='/teacher/show-tasks' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['teacher', 'student']} />}>
             <Route index element={<ShowTask />} />
           </Route>
           
 
-          {/* Rutas para estudiantes */}
-          <Route path='/student/up-task' element={<ProtecttedRoute allowedRoles={['student']} />}>
-            <Route index element={<UpTask />} />
+          {/* Rutas para ESTUDIANTES */}
+          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
+            <Route index element={<ShowTask />} />
           </Route>
           <Route path='/student/show-up-tasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
             <Route index element={<ShowUpTasks />} />
           </Route>
+          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
+            <Route index element={<ShowTask />} />
+          </Route>
 
-          {/* Otras rutas... */}
+           {/* Rutas para TUTORES */}
+           <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['guardian']} />}>
+            <Route index element={<ShowStudents />} />
+          </Route>
+          <Route path='/student/show-up-tasks' element={<ProtecttedRoute allowedRoles={['guardian']} />}>
+            <Route index element={<ShowUpTasks />} />
+          </Route>
           
 
 

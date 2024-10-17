@@ -36,13 +36,10 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
 
-    const { user, role } = result;
 
+    const { user, role,} = result;
+     
     // Verificar la contraseña
-    console.log('Contraseña almacenada en la base de datos:', user.password);
-    console.log('Contraseña proporcionada:', password);
-    console.log('Longitud de la contraseña proporcionada:', password.length);
-
     const isMatch = await bcrypt.compare(password, user.password);
     console.log('¿Contraseña coincide?', isMatch);
     if (!isMatch) {
@@ -56,7 +53,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
     );
 
-    res.json({ token, role });
+    res.json({ token, role, name: user.name });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error en el servidor' });

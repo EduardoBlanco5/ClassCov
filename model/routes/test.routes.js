@@ -11,7 +11,6 @@ import { createClass, updateClass, deleteClass, getAllClass, getClass } from "..
 import {createUpTask} from "../../controller/upTask.controller.js"
 
 
-
 const router = express.Router();
 
 //Tareas

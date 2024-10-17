@@ -15,6 +15,11 @@ function Navbar() {
   };
 
   const role = localStorage.getItem('role'); // Obtener el rol del usuario
+  const name = localStorage.getItem('name'); // Obtener el nombre del usuario
+
+  const handleProfileClick = () => {
+    navigate('/profile'); // Redirige al perfil del usuario
+  };
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
@@ -25,13 +30,17 @@ function Navbar() {
       <ul className="flex gap-x-4">
         {isLoggedIn ? (
           <>
+          <li className="text-white" onClick={handleProfileClick}>
+            {name}
+          </li>
             {role === 'admin' && (
               <>
                 <li>
-                  <Link className="text-white" to="/admin/create-teacher">Crear Profesor</Link>
+                  <Link className="text-white" to="/CreateTeacher">Crear Profesor</Link>
+                  
                 </li>
                 <li>
-                  <Link className="text-white" to="/admin/show-teachers">Ver Profesores</Link>
+                  <Link className="text-white" to="/ShowTeachers">Ver Profesores</Link>
                 </li>
                 {/* Agrega más enlaces para Administradores */}
               </>
@@ -40,10 +49,10 @@ function Navbar() {
             {role === 'teacher' && (
               <>
                 <li>
-                  <Link className="text-white" to="/teacher/create-task">Crear Tarea</Link>
+                  <Link className="text-white" to="/CreateTask">Crear Tarea</Link>
                 </li>
                 <li>
-                  <Link className="text-white" to="/teacher/show-tasks">Ver Tareas</Link>
+                  <Link className="text-white" to="/ShowTasks">Ver Tareas</Link>
                 </li>
                 {/* Agrega más enlaces para Profesores */}
               </>
@@ -55,7 +64,7 @@ function Navbar() {
                   <Link className="text-white" to="/student/up-task">Subir Tarea</Link>
                 </li>
                 <li>
-                  <Link className="text-white" to="/student/show-up-tasks">Ver Tareas Subidas</Link>
+                  <Link className="text-white" to="/ShowTasks">Ver Tareas Subidas</Link>
                 </li>
                 {/* Agrega más enlaces para Estudiantes */}
               </>
@@ -64,7 +73,7 @@ function Navbar() {
             {role === 'guardian' && (
               <>
                 <li>
-                  <Link className="text-white" to="/guardian/show-children">Ver Hijos</Link>
+                  <Link className="text-white" to="/ShowStudents">Ver Hijos</Link>
                 </li>
                 {/* Agrega más enlaces para Tutores */}
               </>

@@ -10,6 +10,7 @@ function Login() {
 
 
     const [email, setEmail] = useState('')
+
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null); // Estado para mensajes de error
     const { login } = useContext(AuthContext);
@@ -23,9 +24,19 @@ function Login() {
             const response = await axios.post(URI, { email, password });
       
 
-            const { token, role } = response.data; // Asegúrate de que tu API devuelva el rol
-      login(token, role); // Llama a login con el token y rol
-            navigate(`/${role}`);
+            const { token, role, name} = response.data; // Asegúrate de que tu API devuelva el rol
+      login(token, role, name); // Llama a login con el token y rol
+      if (role === 'student') {
+        navigate(`/Home`);
+      }else if (role === 'admin') {
+        navigate('/CreateAdmins');
+      }
+      else if (role === 'teacher') {
+        navigate('/CreateTask');
+      }
+      else if (role === 'guardian') {
+        navigate('/ShowStudents');
+      }
           } catch (err) {
             console.error('Error al iniciar sesión:', err);
             setError('Usuario o contraseña incorrectos');
