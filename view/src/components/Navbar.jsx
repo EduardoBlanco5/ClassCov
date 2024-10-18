@@ -16,10 +16,9 @@ function Navbar() {
 
   const role = localStorage.getItem('role'); // Obtener el rol del usuario
   const name = localStorage.getItem('name'); // Obtener el nombre del usuario
+  const id = localStorage.getItem('id'); // Obtener el nombre del usuario
 
-  const handleProfileClick = () => {
-    navigate('/profile'); // Redirige al perfil del usuario
-  };
+
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
@@ -30,8 +29,10 @@ function Navbar() {
       <ul className="flex gap-x-4">
         {isLoggedIn ? (
           <>
-          <li className="text-white" onClick={handleProfileClick}>
-            {name}
+
+          <li className="text-white" >
+            <Link to={`/Profile/${id}`}>{`${name}, ${id}` }</Link>
+            
           </li>
             {role === 'admin' && (
               <>

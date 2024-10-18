@@ -5,10 +5,11 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
-  const login = (token, role, name) => {
+  const login = (token, role, name, id) => {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
     localStorage.setItem('name', name);
+    localStorage.setItem('id', id);
     setIsLoggedIn(true);
   };
 
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('name');
-    
+    localStorage.removeItem('id');
     setIsLoggedIn(false);
   };
 

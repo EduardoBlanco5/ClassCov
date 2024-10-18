@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
     );
 
-    res.json({ token, role, name: user.name });
+    res.json({ token, role, name: user.name, id: user.id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error en el servidor' });

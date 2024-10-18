@@ -51,7 +51,7 @@ function App() {
         <Routes>
 
           <Route path='/' element={<Login/>}>Login</Route>
-          <Route path='/Profile' element={<Profile/>}></Route>
+          <Route path='/Profile/:id' element={<Profile/>}></Route>
 
 
           
@@ -82,6 +82,9 @@ function App() {
           </Route>
           <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
             <Route index element={<ShowStudents/>}></Route>
+          </Route>
+          <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ProfileTeacher/>}></Route>
           </Route>
           
 

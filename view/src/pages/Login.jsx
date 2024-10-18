@@ -24,8 +24,8 @@ function Login() {
             const response = await axios.post(URI, { email, password });
       
 
-            const { token, role, name} = response.data; // Asegúrate de que tu API devuelva el rol
-      login(token, role, name); // Llama a login con el token y rol
+            const { token, role, name, id} = response.data; // Asegúrate de que tu API devuelva el rol
+      login(token, role, name, id); // Llama a login con el token y rol
       if (role === 'student') {
         navigate(`/Home`);
       }else if (role === 'admin') {
