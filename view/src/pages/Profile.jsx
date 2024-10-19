@@ -1,130 +1,75 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from "react-router-dom"
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 
-const URIT = 'http://localhost:4000/teacher/'
-const URIS = 'http://localhost:4000/students/'
-const URIG = 'http://localhost:4000/guardian/'
-const URIA = 'http://localhost:4000/admin/'
+const URIT = 'http://localhost:4000/teacher/';
+const URIS = 'http://localhost:4000/student/';
+const URIG = 'http://localhost:4000/guardian/';
+const URIA = 'http://localhost:4000/admin/';
 
 function Profile() {
+  const [profile, setProfile] = useState({});
+  const { id } = useParams();
+  const role = localStorage.getItem('role'); // Obtén el rol
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [password, setPassword] = useState('')
-    const [date_of_birth, setDate_of_birth] = useState('')
-    const [role, setRole] = useState('')
-    const [status, setStatus] = useState('')
-    const [hire_date, setHire_date] = useState('')
-    const [admission, setAdmission] = useState('')
-    const [guardian_id, setGuardian_id] = useState('')
-    const [class_id, setClass_id] = useState('')
-    const [teacher_id, setTeacher_id] = useState('')
-    const [file, setfile] = useState(null)
-  
-    const {id} = useParams()
-    
+  useEffect(() => {
+    getProfileById(role);
+  }, [id, role]);
 
-    useEffect( () => {
-      getProfileById()
-      findAdmin()
-      findStudent()
-    },[id])
+  const getProfileById = async (role) => {
+    try {
+      let url;
+      switch (role) {
+        case 'admin':
+          url = URIA + id;
+          break;
+        case 'teacher':
+          url = URIT + id;
+          break;
+        case 'student':
+          url = URIS + id;
+          break;
+        case 'guardian':
+          url = URIG + id;
+          break;
+        default:
+          console.error(`Role not recognized: ${role}`);
+          return;
+      }
 
-    const findAdmin = async () => {
-      const res = await axios.get(URIA+id)
-      setName(res.data.name)
-      setEmail(res.data.email)
-      setPhone(res.data.phone)
-      setPassword(res.data.password)
-      setDate_of_birth(res.data.date_of_birth)
-      setHire_date(res.data.hire_date)
-      setRole(res.data.role)
-      setStatus(res.data.status)  
-      setfile(res.data.file)
+      const res = await axios.get(url);
+      setProfile(res.data);  // Actualizamos solo los datos obtenidos
+    } catch (error) {
+      console.error('Error fetching profile:', error);
     }
+  };
 
-    const findTeacher = async () => {
-      const res = await axios.get(URIT+id)
-      setName(res.data.name)
-      setEmail(res.data.email)
-      setPhone(res.data.phone)
-      setPassword(res.data.password)
-      setDate_of_birth(res.data.date_of_birth)
-      setRole(res.data.role)
-      setStatus(res.data.status)  
-      setfile(res.data.file)
-      setHire_date(res.data.hire_date)
-    }
-    const findStudent = async () => {
-      const res = await axios.get(URIS+id)
-      setName(res.data.name)
-      setEmail(res.data.email)
-      setGuardian_id(res.data.guardian_id)
-      setPassword(res.data.password)
-      setDate_of_birth(res.data.date_of_birth)
-      setAdmission(res.data.admission)
-      setRole(res.data.role)
-      setPhone(res.data.phone)
-      setStatus(res.data.status)  
-    }
-    const findGuardian = async () => {
-      const res = await axios.get(URIG+id)
-      setName(res.data.name)
-      setEmail(res.data.email)
-      setPhone(res.data.phone)
-      setPassword(res.data.password)
-      setDate_of_birth(res.data.date_of_birth)
-      setRole(res.data.role)
-      setStatus(res.data.status)  
-    }
-
-
-
-    const getProfileById = async (role
-
-    ) => {
-        switch (role) {
-            case 'admin':
-                return findAdmin();
-                break;
-            case 'teacher':
-                return 'Segundo';
-                break;
-            case 'student':
-                return findStudent();
-                break;
-            case 'guardian':
-                return 'Cuarto';
-                break;
-            default:
-                return `role: ${role}`
-                break;
-        }
-      
-    }
-    
   return (
-    <div>
-      <div className='flex justify-center'>
-      <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md text-white'>
-          <h1>Nombre: {name}</h1>
-          <p>Correo: <span className='text-red-700'>{email}</span></p>
-          <p>Telefono: {phone}</p>
-          <p>Fecha de nacimiento: {date_of_birth}</p>
-          <p>Puesto: {role}</p>
-          <p>Status: {status}</p>
-          {/* Mostrar la imagen si existe */}
-          {file && (
-            <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-          )}
-        </div>
+    <div className="flex justify-center">
+      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
+        <h1>Nombre: {profile.name || 'N/A'}</h1>
+        <p>Correo: <span className="text-red-700">{profile.email || 'N/A'}</span></p>
+        <p>Teléfono: {profile.phone || 'N/A'}</p>
+        <p>Fecha de nacimiento: {profile.date_of_birth || 'N/A'}</p>
+        <p>Puesto: {profile.role || 'N/A'}</p>
+        <p>Status: {profile.status || 'N/A'}</p>
+
+        {/* Mostrar solo si el perfil tiene la propiedad */}
+        {profile.hire_date && <p>Fecha de contratación: {profile.hire_date}</p>}
+        {profile.admission && <p>Fecha de admisión: {profile.admission}</p>}
+        {profile.guardian_id && <p>ID del Tutor: {profile.guardian_id}</p>}
+        {profile.class_id && <p>ID de la Clase: {profile.class_id}</p>}
+        
+        {profile.file && (
+          <img
+            src={profile.file}
+            className="w-20 h-20 object-cover rounded-full my-2"
+            alt="Profile"
+          />
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;
