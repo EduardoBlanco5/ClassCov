@@ -62,6 +62,8 @@ function App() {
 
           {/* Rutas para ADMINISTRADORES */}
 
+          {/* Crear */}
+
           <Route path='/CreateAdmins' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<CreateAdmin/>}></Route>
           </Route>
@@ -77,13 +79,18 @@ function App() {
           <Route path='/CreateClass' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<CreateClass/>}></Route>
           </Route>
+          {/* Ver */}
+
           <Route path='/ShowTeachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ShowTeachers/>}></Route>
+          </Route>
+          <Route path='/ShowAdmins' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ShowAdmins/>}></Route>
           </Route>
           <Route path='/ShowGuardians' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ShowGuardians/>}></Route>
           </Route>
-          <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
+          <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher']} />}>
             <Route index element={<ShowStudents/>}></Route>
           </Route>
           <Route path='/ShowClass' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
@@ -106,6 +113,20 @@ function App() {
           </Route>
           <Route path='/ClassAnnouncements/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ClassAnnouncements/>}></Route>
+          </Route>
+
+          {/* Actualizar */}
+          <Route path='/Updatedstudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdatedStudent/>}></Route>
+          </Route>
+          <Route path='/UpdatedTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdatedTeacher/>}></Route>
+          </Route>
+          <Route path='/UpdatedAdmin/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdatedAdmin/>}></Route>
+          </Route>
+          <Route path='/UpdatedGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdatedGuardian/>}></Route>
           </Route>
 
           

@@ -31,11 +31,46 @@ function Navbar() {
         {isLoggedIn ? (
           <>
             <li className="text-white">
-              <Link to={`/Profile/${id}`}>{`${name}, ${id}`}</Link>
+              <Link to={`/Profile/${id}`}>{`${name}`}</Link>
             </li>
 
             {role === "admin" && (
               <>
+
+              {/* Menú Clases */}
+              <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("clases")}
+                    className="text-white bg-green-500 px-3 py-1 rounded-md"
+                  >
+                    Clases
+                  </button>
+                  {openDropdown === "clases" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateClass"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Crear Clase
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowClass"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Clases
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
                 {/* Menú Profesores */}
                 <div className="relative">
                   <button
@@ -70,33 +105,103 @@ function Navbar() {
                   )}
                 </div>
 
-                {/* Menú Clases */}
+                
+
+                {/* Menú Alumnos */}
                 <div className="relative">
                   <button
-                    onClick={() => toggleDropdown("clases")}
-                    className="text-white bg-green-500 px-3 py-1 rounded-md"
+                    onClick={() => toggleDropdown("Alumnos")}
+                    className="text-white bg-yellow-500 px-3 py-1 rounded-md"
                   >
-                    Clases
+                    Alumnos
                   </button>
-                  {openDropdown === "clases" && (
+                  {openDropdown === "Alumnos" && (
                     <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
                       <ul className="py-1">
                         <li>
                           <Link
                             className="text-black block px-4 py-2"
-                            to="/CreateClass"
+                            to="/CreateStudent"
                             onClick={() => setOpenDropdown(null)}
                           >
-                            Crear Clase
+                            Crear Alumno
                           </Link>
                         </li>
                         <li>
                           <Link
                             className="text-black block px-4 py-2"
-                            to="/ShowClasses"
+                            to="/ShowStudents"
                             onClick={() => setOpenDropdown(null)}
                           >
-                            Ver Clases
+                            Ver Alumnos
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* Menú Tutores */}
+                <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("Tutores")}
+                    className="text-white bg-purple-500 px-3 py-1 rounded-md"
+                  >
+                    Tutores
+                  </button>
+                  {openDropdown === "Tutores" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateGuardian"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Crear Tutor
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowGuardians"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Tutores
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* Menú Admins */}
+                <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("Admin")}
+                    className="text-white bg-orange-500 px-3 py-1 rounded-md"
+                  >
+                    Administradores
+                  </button>
+                  {openDropdown === "Admin" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateAdmins"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Crear Admin
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowAdmins"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Admins
                           </Link>
                         </li>
                       </ul>

@@ -13,22 +13,32 @@ function UpdatedGuardian() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
+    const [file, setFile] = useState(null)
   
     const {id} = useParams()
     
     const update = async (e) => {
 
-        e.preventDefault()
-        await axios.put(URI+id, {
-            name: name,
-            email: email,
-            phone: phone,
-            password: password,
-            date_of_birth: date_of_birth,
-            role: role,
-            status: status,
-        })
-        navigate('/ShowGuardians')
+      e.preventDefault()
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("phone", phone);
+      formData.append("password", password);
+      formData.append("date_of_birth", date_of_birth);
+      formData.append("role", role);
+      formData.append("status", status);
+      if (file) formData.append("file", file); // Agregar la imagen
+      try {
+        await axios.put(`${URI}${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        navigate("/ShowGuardians");
+      } catch (error) {
+        console.error("Error updating teacher:", error);
+      }   
     
       }
       
@@ -44,7 +54,8 @@ function UpdatedGuardian() {
         setPassword(res.data.password)
         setDate_of_birth(res.data.date_of_birth)
         setRole(res.data.role)
-        setStatus(res.data.status)  
+        setStatus(res.data.status)
+        setFile(res.data.file)  
         
       }
 
@@ -53,6 +64,11 @@ function UpdatedGuardian() {
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md flex'>
         <form onSubmit={update} >
         <h1 className="text-white font-bold text-3xl text-center">Tutor</h1>
+        {/* Mostrar la imagen si existe */}
+        {console.log(file)}
+                  {file && (
+                  <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
+                )}
 
             <label className="text-white">Nombre</label>
             <input 
@@ -118,6 +134,9 @@ function UpdatedGuardian() {
             onChange={ (e) => setStatus(e.target.value)}
             className='w-32 px-1 py-1 rounded-md my-1 mx-10'
             ></input>
+
+            <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
 
             <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-32 mt-2' type='submit'>Actualizar</button>
