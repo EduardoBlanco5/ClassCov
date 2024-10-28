@@ -127,20 +127,25 @@ export const updateAdmin = [
     async (req, res) => {
         try {
             const filePath = req.file ? `/${req.file.filename}` : null;
-            const AdminsData = {
+            // Encriptar la contraseña
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
+            
+            const adminData = {
                 ...req.body,
+                password: hashedPassword,  // Reemplazar con la contraseña encriptada
                 file: filePath 
             };
-            const result = await administrationModel.update(AdminsData, {
+            const result = await administrationModel.update(adminData, {
                 where: { id: req.params.id }
             });
 
 
 
-            if (!result[0] === 0) {
+            if (result[0] === 0) {
                 return res.status(404).json({ message: 'Administrador no encontrado' });
             }
-            res.json({ "message": "Administrador Actualizado con éxito" });
+            res.json({ "message": "Admin Actualizado con éxito" });
         } catch (error) {
             console.error('Database Error:', error);
             res.json({ message: error.message });

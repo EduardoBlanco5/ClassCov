@@ -74,6 +74,9 @@ function App() {
           <Route path='/CreateTeacher' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<CreateTeacher/>}></Route>
           </Route>
+          <Route path='/CreateClass' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateClass/>}></Route>
+          </Route>
           <Route path='/ShowTeachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ShowTeachers/>}></Route>
           </Route>
@@ -83,9 +86,28 @@ function App() {
           <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
             <Route index element={<ShowStudents/>}></Route>
           </Route>
+          <Route path='/ShowClass' element={<ProtecttedRoute allowedRoles={['admin', 'guardian']} />}>
+            <Route index element={<ShowClass/>}></Route>
+          </Route>
           <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileTeacher/>}></Route>
           </Route>
+          <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ProfileStudent/>}></Route>
+          </Route>
+          <Route path='/ProfileGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ProfileGuardian/>}></Route>
+          </Route>
+          <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ClassCard/>}></Route>
+          </Route>
+          <Route path='/ClassTasks/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ClassTasks/>}></Route>
+          </Route>
+          <Route path='/ClassAnnouncements/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ClassAnnouncements/>}></Route>
+          </Route>
+
           
 
 

@@ -18,6 +18,8 @@ function ProfileStudent() {
     const [role, setRole] = useState('')
     const [phone, setPhone] = useState('')
     const [status, setStatus] = useState('')
+    const [file, setfile] = useState(null)
+    
 
     const [nameG, setNameG] = useState('') //Nombre del padre
   
@@ -45,7 +47,8 @@ function ProfileStudent() {
       setAdmission(res.data.admission)
       setRole(res.data.role)
       setPhone(res.data.phone)
-      setStatus(res.data.status)  
+      setStatus(res.data.status)
+      setfile(res.data.file)    
       
     }
 
@@ -58,6 +61,10 @@ function ProfileStudent() {
   return (
     <div className='flex justify-center'>
         <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md text-white'>
+          {/* Mostrar la imagen si existe */}
+          {file && (
+                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
+              )}
             <h1>Nombre: {name}</h1>
             <p>Correo: <span className='text-red-700'>{email}</span></p>
             <p>Telefono: {phone}</p>

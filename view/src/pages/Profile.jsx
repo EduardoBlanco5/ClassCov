@@ -47,6 +47,13 @@ function Profile() {
   return (
     <div className="flex justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
+      {profile.file && (
+          <img
+            src={profile.file}
+            className="w-20 h-20 object-cover rounded-full my-2"
+            alt="Profile"
+          />
+        )}
         <h1>Nombre: {profile.name || 'N/A'}</h1>
         <p>Correo: <span className="text-red-700">{profile.email || 'N/A'}</span></p>
         <p>Teléfono: {profile.phone || 'N/A'}</p>
@@ -60,13 +67,7 @@ function Profile() {
         {profile.guardian_id && <p>ID del Tutor: {profile.guardian_id}</p>}
         {profile.class_id && <p>ID de la Clase: {profile.class_id}</p>}
         
-        {profile.file && (
-          <img
-            src={profile.file}
-            className="w-20 h-20 object-cover rounded-full my-2"
-            alt="Profile"
-          />
-        )}
+        
       </div>
     </div>
   );

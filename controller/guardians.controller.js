@@ -99,10 +99,17 @@ export const getAllGuardians = async (req, res) => {
 export const getGuardian = async (req, res) => {
    
     try {
-        const task = await guardiansModel.findAll({
+        const guardians = await guardiansModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const guardiansWithImages = guardians.map(guardian => ({
+            ...guardian.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: guardian.file ? `${req.protocol}://${req.get('host')}${guardian.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(guardiansWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }
@@ -114,10 +121,23 @@ export const updateGuardian = [
     
     async (req, res) => {
         try {
-            const result = await guardiansModel.update(req.body, {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            // Encriptar la contraseña
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
+            
+            const guardianData = {
+                ...req.body,
+                password: hashedPassword,  // Reemplazar con la contraseña encriptada
+                file: filePath 
+            };
+            const result = await guardiansModel.update(guardianData, {
                 where: { id: req.params.id }
             });
-            if (!result[0] === 0) {
+
+
+
+            if (result[0] === 0) {
                 return res.status(404).json({ message: 'Tutor no encontrado' });
             }
             res.json({ "message": "Tutor Actualizado con éxito" });

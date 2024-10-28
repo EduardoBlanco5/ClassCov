@@ -96,10 +96,17 @@ export const getAllStudents = async (req, res) => {
 export const getStudent = async (req, res) => {
    
     try {
-        const task = await studentsModel.findAll({
+        const students = await studentsModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const studentsWithImages = students.map(student => ({
+            ...student.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: student.file ? `${req.protocol}://${req.get('host')}${student.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(studentsWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }
@@ -111,9 +118,22 @@ export const updateStudent = [
     
     async (req, res) => {
         try {
-            const result = await studentsModel.update(req.body, {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+            // Encriptar la contraseña
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
+            
+            const studentData = {
+                ...req.body,
+                password: hashedPassword,  // Reemplazar con la contraseña encriptada
+                file: filePath 
+            };
+            const result = await studentsModel.update(studentData, {
                 where: { id: req.params.id }
             });
+
+
+
             if (result[0] === 0) {
                 return res.status(404).json({ message: 'Alumno no encontrado' });
             }
