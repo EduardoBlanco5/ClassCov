@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef  } from "react";
 import { AuthContext } from "./AuthContext";
 
 function Navbar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     logout();
@@ -20,6 +21,19 @@ function Navbar() {
   const toggleDropdown = (menu) => {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(null);
+      }
+    };
+    
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
@@ -27,7 +41,7 @@ function Navbar() {
         <h1 className="text-2xl font-bold text-white">Inicio</h1>
       </Link>
 
-      <ul className="flex gap-x-4">
+      <ul className="flex gap-x-4" ref={dropdownRef}>
         {isLoggedIn ? (
           <>
             <li className="text-white">
