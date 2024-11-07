@@ -114,6 +114,9 @@ function App() {
           <Route path='/ClassAnnouncements/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ClassAnnouncements/>}></Route>
           </Route>
+          <Route path='/TaskCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'student']} />}>
+            <Route index element={<TaskCard/>}></Route>
+          </Route>
 
           {/* Actualizar */}
           <Route path='/Updatedstudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
