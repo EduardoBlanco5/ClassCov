@@ -29,17 +29,20 @@ function Login() {
       if (role === 'student') {
         navigate(`/Home`);
       }else if (role === 'admin') {
-        navigate('/CreateAdmins');
+        navigate('/Home');
       }
       else if (role === 'teacher') {
-        navigate('/CreateTask');
+        navigate('/Home');
       }
       else if (role === 'guardian') {
-        navigate('/ShowStudents');
+        navigate('/Home');
       }
           } catch (err) {
             console.error('Error al iniciar sesión:', err);
             setError('Usuario o contraseña incorrectos');
+            setTimeout(() => {
+              setError(null);
+            }, 2000);
           }
       }
 
