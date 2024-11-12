@@ -32,7 +32,6 @@ export const studentsModel = db.define("students", {
   date_of_birth: { type: DataTypes.DATE },
   admission: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
-  class_id: { type: DataTypes.INTEGER },
   file: {type: DataTypes.STRING},
 });
 
@@ -90,3 +89,8 @@ export const students_classesModel = db.define('students_classes', {
   class_id: {type: DataTypes.INTEGER},
   
 })
+
+students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
+students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
+studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });
+classModel.hasMany(students_classesModel, { foreignKey: 'class_id' });
