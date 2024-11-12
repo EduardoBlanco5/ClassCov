@@ -62,6 +62,8 @@ function Navbar() {
                   {openDropdown === "clases" && (
                     <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
                       <ul className="py-1">
+
+
                         <li>
                           <Link
                             className="text-black block px-4 py-2"
@@ -71,6 +73,18 @@ function Navbar() {
                             Crear Clase
                           </Link>
                         </li>
+
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateStudentClass"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Añadir Estudiantes 
+                          </Link>
+                        </li>
+
+
                         <li>
                           <Link
                             className="text-black block px-4 py-2"
@@ -279,6 +293,33 @@ function Navbar() {
                             onClick={() => setOpenDropdown(null)}
                           >
                             Ver Alumnos
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* Menú Clases */}
+              <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("clases")}
+                    className="text-white bg-green-500 px-3 py-1 rounded-md"
+                  >
+                    Clases
+                  </button>
+                  {openDropdown === "clases" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+
+
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowClass"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Clases
                           </Link>
                         </li>
                       </ul>

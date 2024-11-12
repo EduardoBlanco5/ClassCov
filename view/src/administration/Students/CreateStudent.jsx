@@ -19,7 +19,7 @@ function CreateStudent() {
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('student')
     const [guardian_id, setGuardian_id] = useState ('')
-    const [class_id, setClass_id] = useState ('')
+    //const [class_id, setClass_id] = useState ('')
     const [status, setStatus] = useState ('')
     const [file, setFile] = useState(null);
 
@@ -34,7 +34,7 @@ function CreateStudent() {
         formData.append('name', name);
         formData.append('email', email);
         formData.append('guardian_id', guardian_id);
-        formData.append('class_id', class_id);
+        //formData.append('class_id', class_id);
         formData.append('password', password);
         formData.append('date_of_birth', date_of_birth);
         formData.append('admission', admission);
@@ -108,14 +108,6 @@ function CreateStudent() {
             className='w-full px-4 py-2 rounded-md my-2'
             ></input>
 
-            <label className='text-white'>id de la clase</label>
-            <input
-            type='text'
-            placeholder='1, 2, 3, ...'
-            value={class_id}
-            onChange={ (e) => setClass_id(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            ></input>
 
             <label className='text-white'>Fecha de Nacimiento</label>
             <input

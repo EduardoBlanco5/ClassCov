@@ -9,6 +9,7 @@ const URIP = 'http://localhost:4000/teacher/'
 const URIS = 'http://localhost:4000/students/'
 const URIT = 'http://localhost:4000/tasks/'
 const URIA = 'http://localhost:4000/announcements/'
+const URISC = 'http://localhost:4000/class/'
 
 
 
@@ -64,8 +65,8 @@ function ClassCard() {
 
 
     const getStudentsByClassId = async (classId) => {
-        const res = await axios.get(`${URIS}class?class_id=${classId}`);
-        setStudents(res.data); // Establecer solo los estudiantes de la clase actual
+        const res = await axios.get(`${URISC}${classId}/students`);
+    setStudents(res.data); // Establece solo los estudiantes de la clase actual
     };
 
     const getTasksByClassId = async (classId) => {
