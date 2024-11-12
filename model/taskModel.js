@@ -84,3 +84,9 @@ export const upTasksModel = db.define("uptasks", {
   student_id: { type: DataTypes.INTEGER },
   task_id: { type: DataTypes.INTEGER },
 });
+
+export const students_classesModel = db.define('students_classes', {
+  student_id: {type: DataTypes.INTEGER},
+  class_id: {type: DataTypes.INTEGER},
+  
+})

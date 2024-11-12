@@ -9,6 +9,7 @@ import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass } from "../../controller/class.controller.js";
 import {createUpTask} from "../../controller/upTask.controller.js"
+import { createStudentClass, deleteStudentClass, getAllStudentClass, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 
 
 const router = express.Router();
@@ -116,6 +117,14 @@ router.get('/classes', getAllClass);
 router.get('/class/:id', getClass);
 router.put('/class/:id', updateClass);
 router.delete('/class/:id', deleteClass);
+
+//StudentsClasses
+router.post('/studentClass', createStudentClass);
+router.get('/StudentsClasses', getAllStudentClass);
+router.get('/StudentClass/:id', getStudentClass);
+router.get('/class/:class_id/students', getStudentsByClass);
+router.put('/StudentClass/:id', updateStudentClass);
+router.delete('/StudentClass/:id', deleteStudentClass);
 
 // Subir archivo
 const Task = multer.diskStorage({
