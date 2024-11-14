@@ -25,7 +25,10 @@ function Login() {
       
 
             const { token, role, name, id} = response.data; // Asegúrate de que tu API devuelva el rol
+
       login(token, role, name, id); // Llama a login con el token y rol
+      localStorage.setItem('teacher_id', id); 
+      
       if (role === 'student') {
         navigate(`/Home`);
       }else if (role === 'admin') {

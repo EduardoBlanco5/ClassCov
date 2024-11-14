@@ -7,7 +7,7 @@ import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent
 import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGuardian } from "../../controller/guardians.controller.js";
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
-import { createClass, updateClass, deleteClass, getAllClass, getClass } from "../../controller/class.controller.js";
+import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
 import {createUpTask} from "../../controller/upTask.controller.js"
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 
@@ -115,6 +115,7 @@ router.delete('/admin/:id', deleteAdmin);
 router.post('/class', createClass);
 router.get('/classes', getAllClass);
 router.get('/class/:id', getClass);
+router.get('/classes/teacher/:teacher_id', getClassesByTeacherId);
 router.put('/class/:id', updateClass);
 router.delete('/class/:id', deleteClass);
 

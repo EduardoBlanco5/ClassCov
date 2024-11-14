@@ -94,6 +94,18 @@ export const getClass = async (req, res) => {
         res.json({message: error.message})
     }
 }
+//Clase basada por teacher_id
+export const getClassesByTeacherId = async (req, res) => {
+    try {
+        const { teacher_id } = req.params;
+        const classes = await classModel.findAll({
+            where: { teacher_id },
+        });
+        res.json(classes);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 //Actualizar U
 
