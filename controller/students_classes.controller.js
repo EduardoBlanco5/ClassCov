@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {students_classesModel, studentsModel} from '../model/taskModel.js'
+import {students_classesModel, studentsModel, classModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -109,6 +109,33 @@ export const getStudentClass = async (req, res) => {
           res.status(500).json({ message: 'Error al obtener los estudiantes de la clase' });
       }
   };
+
+
+  //Para obtener las clases de los estudiantes
+  export const getClassesByStudent = async (req, res) => {
+    try {
+        const studentId = req.params.student_id;
+        
+        // Consulta para obtener las clases asociadas a un estudiante específico
+        const studentClasses = await students_classesModel.findAll({
+            where: { student_id: studentId },
+            include: [
+                {
+                    model: classModel, // Asegúrate de que `ClassModel` esté definido y sea el modelo de la clase
+                    attributes: ['id', 'grade', 'salon', 'shift'], // Ajusta estos atributos según los que necesites mostrar
+                }
+            ],
+        });
+
+        // Formatea los datos para extraer solo los detalles de la clase
+        const classDetails = studentClasses.map(record => record.class);
+
+        res.json(classDetails);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al obtener las clases del estudiante' });
+    }
+};
 
 //Actualizar U
 

@@ -18,36 +18,31 @@ function Login() {
   
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(password, email);
-        try {
-            const response = await axios.post(URI, { email, password });
-      
-
-            const { token, role, name, id} = response.data; // Asegúrate de que tu API devuelva el rol
-
-      login(token, role, name, id); // Llama a login con el token y rol
-      localStorage.setItem('teacher_id', id); 
-      
-      if (role === 'student') {
-        navigate(`/Home`);
-      }else if (role === 'admin') {
-        navigate('/Home');
-      }
-      else if (role === 'teacher') {
-        navigate('/Home');
-      }
-      else if (role === 'guardian') {
-        navigate('/Home');
-      }
-          } catch (err) {
-            console.error('Error al iniciar sesión:', err);
-            setError('Usuario o contraseña incorrectos');
-            setTimeout(() => {
-              setError(null);
-            }, 2000);
+      e.preventDefault();
+      console.log(password, email);
+      try {
+          const response = await axios.post(URI, { email, password });
+  
+          const { token, role, name, id } = response.data; // Asegúrate de que tu API devuelva el rol y el ID correcto
+          login(token, role, name, id); // Llama a login con el token y rol
+          
+          // Guarda los datos en localStorage según el rol
+          localStorage.setItem('role', role); 
+          if (role === 'teacher') {
+              localStorage.setItem('teacher_id', id);
+          } else if (role === 'student') {
+              localStorage.setItem('student_id', id);
           }
+  
+          navigate('/Home'); // Redirige al usuario a /Home después del login
+      } catch (err) {
+          console.error('Error al iniciar sesión:', err);
+          setError('Usuario o contraseña incorrectos');
+          setTimeout(() => {
+              setError(null);
+          }, 2000);
       }
+  }
 
   return (
     <div className='flex justify-center'>

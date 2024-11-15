@@ -9,7 +9,7 @@ import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
 import {createUpTask} from "../../controller/upTask.controller.js"
-import { createStudentClass, deleteStudentClass, getAllStudentClass, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
+import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 
 
 const router = express.Router();
@@ -124,6 +124,7 @@ router.post('/studentClass', createStudentClass);
 router.get('/StudentsClasses', getAllStudentClass);
 router.get('/StudentClass/:id', getStudentClass);
 router.get('/class/:class_id/students', getStudentsByClass);
+router.get('/student/:student_id/classes', getClassesByStudent);
 router.put('/StudentClass/:id', updateStudentClass);
 router.delete('/StudentClass/:id', deleteStudentClass);
 

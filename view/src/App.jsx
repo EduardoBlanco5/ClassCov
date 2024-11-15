@@ -101,7 +101,7 @@ function App() {
           <Route path='/ShowStudentsClass' element={<ProtecttedRoute allowedRoles={['admin',]} />}>
             <Route index element={<ListStudentClasses/>}></Route>
           </Route>
-          <Route path='/ShowClass' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher']} />}>
+          <Route path='/ShowClass' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher', 'student']} />}>
             <Route index element={<ShowClass/>}></Route>
           </Route>
           <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>

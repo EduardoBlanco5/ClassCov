@@ -48,9 +48,9 @@ function Navbar() {
               <Link to={`/Profile/${id}`}>{`${name}`}</Link>
             </li>
 
+            {/*ADMINS */}
             {role === "admin" && (
               <>
-
               {/* Menú Clases */}
               <div className="relative">
                   <button
@@ -239,6 +239,7 @@ function Navbar() {
               </>
             )}
 
+            {/*PROFES */}
             {role === "teacher" && (
               <>
                 {/* Menú Tareas */}
@@ -329,21 +330,34 @@ function Navbar() {
               </>
             )}
 
+            {/*ALUMNOS*/}
             {role === "student" && (
-              <>
-                <li>
-                  <Link className="text-white" to="/student/up-task">
-                    Subir Tarea
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-white" to="/ShowTasks">
-                    Ver Tareas
-                  </Link>
-                </li>
-              </>
+              <div className="relative">
+              <button
+                onClick={() => toggleDropdown("clases")}
+                className="text-white bg-green-500 px-3 py-1 rounded-md"
+              >
+                Clases
+              </button>
+              {openDropdown === "clases" && (
+                <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                  <ul className="py-1">
+                    <li>
+                      <Link
+                        className="text-black block px-4 py-2"
+                        to="/ShowClass"
+                        onClick={() => setOpenDropdown(null)}
+                      >
+                        Ver Clases
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
             )}
 
+            {/*TUTORES */}
             {role === "guardian" && (
               <>
                 <li>
