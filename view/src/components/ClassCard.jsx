@@ -126,6 +126,10 @@ function ClassCard() {
         <Link to={`/ClassAnnouncements/${id}`}> 
         <button className='bg-slate-700 rounded-md mx-2 px-1 text-white'>Anuncios</button>
         </Link>
+
+        <Link to={`/ClassStudents/${id}`}> 
+        <button className='bg-yellow-500 rounded-md mx-2 px-1 text-white'>Alumnos</button>
+        </Link>
         
         <div className='bg-emerald-500'>
             <h2 className="font-bold text-white text-2xl text-center mt-4">Alumnos:</h2>

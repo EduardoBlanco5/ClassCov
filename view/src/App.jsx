@@ -40,6 +40,7 @@ import { AuthProvider } from './components/AuthContext';
 import Profile from './pages/Profile';
 import CreateStudentClass from './administration/Classes/CreateStudentClass';
 import ListStudentClasses from './administration/Classes/ListStudentsClass';
+import ClassStudents from './administration/Classes/ClassStudents';
 
 
 function App() {
@@ -113,11 +114,14 @@ function App() {
           <Route path='/ProfileGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileGuardian/>}></Route>
           </Route>
-          <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+          <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
             <Route index element={<ClassCard/>}></Route>
           </Route>
-          <Route path='/ClassTasks/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+          <Route path='/ClassTasks/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
             <Route index element={<ClassTasks/>}></Route>
+          </Route>
+          <Route path='/ClassStudents/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+            <Route index element={<ClassStudents/>}></Route>
           </Route>
           <Route path='/ClassAnnouncements/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ClassAnnouncements/>}></Route>
@@ -144,7 +148,7 @@ function App() {
 
 
           {/* Rutas para PROFESORES*/}
-          <Route path='/CreateTask' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+          <Route path='/CreateTask/:class_id' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
             <Route index element={<CreateTask />} />
           </Route>
 
@@ -154,14 +158,9 @@ function App() {
           
 
           {/* Rutas para ESTUDIANTES */}
-          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
-            <Route index element={<ShowTask />} />
-          </Route>
+      
           <Route path='/student/show-up-tasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
             <Route index element={<ShowUpTasks />} />
-          </Route>
-          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['student']} />}>
-            <Route index element={<ShowTask />} />
           </Route>
 
            {/* Rutas para TUTORES */}

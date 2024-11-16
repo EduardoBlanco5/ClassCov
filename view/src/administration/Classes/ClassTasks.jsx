@@ -40,6 +40,15 @@ function ClassTasks() {
             </ul>
 
         </div>
+
+        {/* Botón para crear tarea */}
+        <div className="text-center mt-4">
+                <Link to={`/CreateTask/${id}`}>
+                    <button className="bg-green-700 rounded-md px-4 py-2 text-white">
+                        Crear Tarea
+                    </button>
+                </Link>
+            </div>
     </div>
   )
 }

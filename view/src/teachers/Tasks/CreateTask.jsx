@@ -1,12 +1,14 @@
 import {useForm} from 'react-hook-form'
 import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState,} from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const URI = 'http://localhost:4000/task'
 
 function CreateTask() {
   const {register, handleSubmit} = useForm()
+  const { class_id } = useParams(); // Obtener el id de la clase desde la URL
+  const teacher_id = localStorage.getItem("teacher_id") || "1"; // Asegúrate de guardar este dato al iniciar sesión
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -14,8 +16,6 @@ function CreateTask() {
   const [qualification, setQualification] = useState('')
   const [deliveryDate, setDeliveryDate] = useState('')
   const [status, setStatus] = useState('')
-  const [class_id, setClass_id] = useState('')
-  const [teacher_id, setTeacher_id] = useState('')
 
   const navigate =useNavigate()
 
@@ -28,7 +28,7 @@ function CreateTask() {
     await axios.post(URI,  {title: title, description: description, notes: notes, qualification: qualification,
       deliveryDate: deliveryDate,status: status, class_id: class_id, teacher_id: teacher_id,
     })
-    navigate('/')
+    navigate(`/ClassCard/${class_id}`)
   }
 
 
@@ -71,24 +71,6 @@ function CreateTask() {
           value={qualification}
           onChange={ (e) => setQualification(e.target.value)}
           className='w-32 px-1 py-1 rounded-md my-1 mx-[20%]'
-          ></input>
-
-          <label className='text-white text-1xl font-semibold'>Id de la clase</label>
-          <input 
-          type='text'
-          placeholder='id'
-          value={class_id}
-          onChange={ (e) => setClass_id(e.target.value)}
-          className='w-32 px-1 py-1 rounded-md my-1 mx-[18%]'
-          ></input>
-
-          <label className='text-white text-1xl font-semibold'>Id del profesor</label>
-          <input 
-          type='text'
-          placeholder='id'
-          value={teacher_id}
-          onChange={ (e) => setTeacher_id(e.target.value)}
-          className='w-32 px-1 py-1 rounded-md my-1 mx-16'
           ></input>
 
           <label className='text-white text-1xl font-semibold'>Fecha de Entrega</label>
