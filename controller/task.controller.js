@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {taskModel} from '../model/taskModel.js'
+import {taskModel, classModel, teachersModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -34,6 +34,9 @@ const validateTask = [
         .isInt({ min: 0, max: 10 }).withMessage('La calificación debe ser un número entre 0 y 10'),
     body('deliveryDate')
         .isISO8601().withMessage('La fecha de entrega debe ser una fecha válida'),
+    body('class_id')
+        .notEmpty().withMessage('El ID de la clase es obligatorio')
+        .isInt().withMessage('El ID de la clase debe ser un número'),
     
     (req, res, next) => {
         const errors = validationResult(req);
@@ -52,11 +55,24 @@ export const createTask = [
     validateTask,
     async (req, res) => {
         try {
-            const filePath = req.file ? `/${req.file.filename}` : null;
+
+             // Verificar si el teacher_id existe
+             const teacherExists = await teachersModel.findByPk(req.body.teacher_id);
+             if (!teacherExists) {
+                 return res.status(400).json({ message: 'El profesor especificado no existe.' });
+             }
+
+            const classExists = await classModel.findByPk(req.body.class_id);
+            if (!classExists) {
+                return res.status(400).json({ message: 'La clase especificada no existe.' });
+            }
+            const filePath = req.file ? `/${req.file.filename}` : '';
+
             const taskData = {
                 ...req.body,
-                file: filePath 
+                file: filePath || '',
             };
+
             await taskModel.create(taskData);
             res.json({ 'message': 'Tarea creada correctamente' });
         } catch (error) {

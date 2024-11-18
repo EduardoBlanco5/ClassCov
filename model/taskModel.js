@@ -10,7 +10,7 @@ export const taskModel = db.define("tasks", {
   status: { type: DataTypes.STRING },
   class_id: { type: DataTypes.INTEGER },
   teacher_id: { type: DataTypes.INTEGER },
-  file: {type: DataTypes.STRING},
+  file: {type: DataTypes.STRING, allowNull: false, defaultValue: '' },
 });
 
 export const announcementsModel = db.define("announcements", {

@@ -16,6 +16,8 @@ function CreateTask() {
   const [qualification, setQualification] = useState('')
   const [deliveryDate, setDeliveryDate] = useState('')
   const [status, setStatus] = useState('')
+  const [file, setFile] = useState(null);
+  
 
   const navigate =useNavigate()
 
@@ -25,9 +27,34 @@ function CreateTask() {
 
   const create = async (e) => {
     e.preventDefault() 
-    await axios.post(URI,  {title: title, description: description, notes: notes, qualification: qualification,
-      deliveryDate: deliveryDate,status: status, class_id: class_id, teacher_id: teacher_id,
-    })
+    const formData = new FormData();
+
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('notes', notes);
+        formData.append('qualification', qualification);
+        formData.append('deliveryDate', deliveryDate);
+        formData.append('status', status);
+        // Agregar el archivo al FormData
+
+        if (file) {
+        formData.append('file', file);
+        }
+
+        formData.append('teacher_id', teacher_id); // Añade teacher_id
+        formData.append('class_id', class_id); // Asegúrate de que `class_id` provenga de `useParams`
+
+        try {
+            // Enviar el FormData con una solicitud POST
+            await axios.post(URI, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+            navigate('/ShowClass')
+            } catch (error) {
+                console.error('Error al crear tarea:', error);
+            }
     navigate(`/ClassCard/${class_id}`)
   }
 
@@ -91,6 +118,9 @@ function CreateTask() {
           onChange={ (e) => setStatus(e.target.value)}
           className='w-40 px-1 py-1 rounded-md my-1 mx-16'
           ></input>
+
+          <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+          <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
 
           <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>

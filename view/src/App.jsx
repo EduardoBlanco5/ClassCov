@@ -99,6 +99,9 @@ function App() {
           <Route path='/ShowStudents' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher']} />}>
             <Route index element={<ShowStudents/>}></Route>
           </Route>
+          <Route path='/ShowAnnouncements' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher', 'student']} />}>
+            <Route index element={<ShowAnnouncements/>}></Route>
+          </Route>
           <Route path='/ShowStudentsClass' element={<ProtecttedRoute allowedRoles={['admin',]} />}>
             <Route index element={<ListStudentClasses/>}></Route>
           </Route>
@@ -108,7 +111,7 @@ function App() {
           <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileTeacher/>}></Route>
           </Route>
-          <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+          <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<ProfileStudent/>}></Route>
           </Route>
           <Route path='/ProfileGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>

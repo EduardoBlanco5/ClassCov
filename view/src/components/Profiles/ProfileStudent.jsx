@@ -69,7 +69,6 @@ function ProfileStudent() {
             <p>Correo: <span className='text-red-700'>{email}</span></p>
             <p>Telefono: {phone}</p>
             <p>Fecha de nacimiento: {date_of_birth}</p>
-            <p>Tutor: {guardian_id}</p>
             <p>Fecha de Admisión: {admission}</p>
             <p>Puesto: {role}</p>
             <p>Status: {status}</p>
