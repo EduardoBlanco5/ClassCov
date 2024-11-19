@@ -33,7 +33,17 @@ router.put('/task/:id', TeachersTasks.single('file'), updateTask);//U
 router.delete('/task/:id', deleteTask);//D
 
 //Anuncios
-router.post('/announcement', createAnnouncement);//C
+const ImageAnnouncements = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'uploads/Announcements');
+  },
+  filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+  }
+});
+const announcementsfiles = multer({ storage: ImageAnnouncements })
+
+router.post('/announcement', announcementsfiles.single('file'), createAnnouncement);//C
 router.get('/announcements', getAllAnnouncements);//R
 router.get('/announcements/class', getAnnouncementsByClassId);
 router.get('/announcement/:id', getAnnouncement);//R

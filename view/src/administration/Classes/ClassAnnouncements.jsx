@@ -27,7 +27,9 @@ function ClassAnnouncements() {
             <h2 className="font-bold text-white text-2xl text-center mt-4">Anuncios:</h2>
             <ul className="mt-5 ">
                 {announcements.map(announcement => (
-                    <li key={announcement.id} className="text-center">{announcement.title}</li> 
+                    <Link to={`/AnnouncementCard/${announcement.id}`}>
+                        <li key={announcement.id} className="text-center">{announcement.title}</li> 
+                    </Link>
 
                 ))}
             </ul>

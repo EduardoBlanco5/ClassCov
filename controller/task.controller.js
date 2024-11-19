@@ -66,6 +66,7 @@ export const createTask = [
             if (!classExists) {
                 return res.status(400).json({ message: 'La clase especificada no existe.' });
             }
+            
             const filePath = req.file ? `/${req.file.filename}` : '';
 
             const taskData = {

@@ -236,71 +236,46 @@ function Navbar() {
                     </div>
                   )}
                 </div>
+
+                {/* Menú Anuncios */}
+                <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("Anuncios")}
+                    className="text-white bg-pink-500 px-3 py-1 rounded-md"
+                  >
+                    Anuncios
+                  </button>
+                  {openDropdown === "Anuncios" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateAnnouncements"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Crear Anuncio
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowAnnouncements"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Anuncios
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </>
             )}
 
             {/*PROFES */}
             {role === "teacher" && (
               <>
-                {/* Menú Tareas */}
-                <div className="relative">
-                  <button
-                    onClick={() => toggleDropdown("tareas")}
-                    className="text-white bg-purple-500 px-3 py-1 rounded-md"
-                  >
-                    Tareas
-                  </button>
-                  {openDropdown === "tareas" && (
-                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
-                      <ul className="py-1">
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/CreateTask"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Crear Tarea
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/ShowTasks"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Ver Tareas
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
-
-                {/* Menú Alumnos */}
-                <div className="relative">
-                  <button
-                    onClick={() => toggleDropdown("alumnos")}
-                    className="text-white bg-yellow-500 px-3 py-1 rounded-md"
-                  >
-                    Alumnos
-                  </button>
-                  {openDropdown === "alumnos" && (
-                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
-                      <ul className="py-1">
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/ShowStudents"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Ver Alumnos
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
-
                 {/* Menú Clases */}
               <div className="relative">
                   <button

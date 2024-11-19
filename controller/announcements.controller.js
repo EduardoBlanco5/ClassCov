@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {announcementsModel} from '../model/taskModel.js'
+import {announcementsModel, classModel, teachersModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -32,8 +32,9 @@ const validateTask = [
     body('teacher_id').notEmpty().withMessage('El id del Profesor es obligatorio')
     .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),
 
-    body('teacher_id').notEmpty().withMessage('El id de la Clase es obligatorio')
-    .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),
+    body('class_id')
+        .notEmpty().withMessage('El ID de la clase es obligatorio')
+        .isInt().withMessage('El ID de la clase debe ser un número'),
 
     (req, res, next) => {
         const errors = validationResult(req);
@@ -52,12 +53,24 @@ export const createAnnouncement = [
     validateTask,
     async (req, res) => {
         try {
+
+            // Verificar si el teacher_id existe
+            const teacherExists = await teachersModel.findByPk(req.body.teacher_id);
+            if (!teacherExists) {
+                return res.status(400).json({ message: 'El profesor especificado no existe.' });
+            }
+
+           const classExists = await classModel.findByPk(req.body.class_id);
+           if (!classExists) {
+               return res.status(400).json({ message: 'La clase especificada no existe.' });
+           }
+
             const filePath = req.file ? `/${req.file.filename}` : null;
             const announcementData = {
                 ...req.body,
-                file: filePath 
+                file: filePath || '',
             };
-            await announcementsModel.create(req.body);
+            await announcementsModel.create(announcementData);
             res.json({ 'message': 'Anuncio creado correctamente' });
         } catch (error) {
             console.error('Database Error:', error);

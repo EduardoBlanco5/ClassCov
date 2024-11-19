@@ -19,6 +19,7 @@ export const announcementsModel = db.define("announcements", {
   teacher_id: { type: DataTypes.INTEGER },
   class_id: { type: DataTypes.INTEGER },
   date: { type: DataTypes.DATE },
+  file: {type: DataTypes.STRING, allowNull: false, defaultValue: '' },
   
 });
 

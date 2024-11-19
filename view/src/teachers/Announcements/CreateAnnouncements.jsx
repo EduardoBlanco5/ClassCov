@@ -1,18 +1,21 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const URI = "http://localhost:4000/announcement";
 
 function CreateAnnouncements() {
   const { register, handleSubmit } = useForm();
 
+  const { class_id } = useParams(); // Obtener el id de la clase desde la URL
+  const teacher_id = localStorage.getItem("teacher_id") || "1"; // Asegúrate de guardar este dato al iniciar sesión
+
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [teacher_id, setTeacher_id] = useState("");
-  const [class_id, setClass_id] = useState("");
   const [date, setDate] = useState("");
+  const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -22,14 +25,33 @@ function CreateAnnouncements() {
 
   const create = async (e) => {
     e.preventDefault();
-    await axios.post(URI, {
-      title: title,
-      content: content,
-      teacher_id: teacher_id,
-      class_id: class_id,
-      date: date,
-    });
-    navigate("/");
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('date', date);
+    
+    // Agregar el archivo al FormData
+
+    if (file) {
+    formData.append('file', file);
+    }
+
+    formData.append('teacher_id', teacher_id); // Añade teacher_id
+    formData.append('class_id', class_id); // Asegúrate de que `class_id` provenga de `useParams`
+
+    try {
+        // Enviar el FormData con una solicitud POST
+        await axios.post(URI, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        navigate('/ShowClass')
+        } catch (error) {
+            console.error('Error al crear tarea:', error);
+        }
+      navigate(`/ClassCard/${class_id}`)
   };
 
   return (
@@ -62,23 +84,6 @@ function CreateAnnouncements() {
           <label className="text-white text-1xl font-semibold">
             id del profesor
           </label>
-          <input
-            placeholder="id Profesor"
-            value={teacher_id}
-            onChange={(e) => setTeacher_id(e.target.value)}
-            className="w-32 px-1 py-1 rounded-md my-2 mx-[18%]"
-          ></input>
-
-          <label className="text-white text-1xl font-semibold">
-            id de la materia
-          </label>
-          <input
-            type="text"
-            placeholder="id Materia"
-            value={class_id}
-            onChange={(e) => setClass_id(e.target.value)}
-            className="w-32 px-1 py-1 rounded-md my-1 mx-[15%]"
-          ></input>
 
           <label className="text-white text-1xl font-semibold">
             Fecha y hora
@@ -90,6 +95,10 @@ function CreateAnnouncements() {
             onChange={(e) => setDate(e.target.value)}
             className="px-1 py-1 rounded-md my-2 mx-3"
           ></input>
+
+
+          <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
+          <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
 
           <button className="bg-green-600 rounded-md w-20 mx-32" type="submit">
             Guardar
