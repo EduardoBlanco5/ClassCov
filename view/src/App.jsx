@@ -152,6 +152,9 @@ function App() {
           <Route path='/UpdatedGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<UpdatedGuardian/>}></Route>
           </Route>
+          <Route path='/UpdateClass/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdateClass/>}></Route>
+          </Route>
 
           
 
