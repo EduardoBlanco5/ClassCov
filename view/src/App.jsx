@@ -85,7 +85,7 @@ function App() {
           <Route path='/CreateClass' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<CreateClass/>}></Route>
           </Route>
-          <Route path='/Createannouncements' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+          <Route path='/Createannouncements/:class_id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<CreateAnnouncements/>}></Route>
           </Route>
           {/* Ver */}
@@ -154,6 +154,12 @@ function App() {
           </Route>
           <Route path='/UpdateClass/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<UpdateClass/>}></Route>
+          </Route>
+          <Route path='/UpdatedAnnouncement/:id' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+            <Route index element={<UpdatedAnnouncement/>}></Route>
+          </Route>
+          <Route path='/UpdatedTask/:id' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
+            <Route index element={<UpdatedTask/>}></Route>
           </Route>
 
           

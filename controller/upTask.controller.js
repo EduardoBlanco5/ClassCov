@@ -1,26 +1,160 @@
-import { connDB } from "../model/routes/index.routes.js";
+import { where } from 'sequelize'
+import {taskModel, classModel, teachersModel, upTasksModel} from '../model/taskModel.js'
+import { body, validationResult } from 'express-validator';
+import path from 'path';
+import fs from 'fs-extra';
+import { fileURLToPath } from 'url';
 
-export const createUpTask = async (req, res) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    if (!req.file) {
-        return res.status(400).send('No se subió ningún archivo');
-      }
-    
-      // Ruta del archivo en el servidor
-      const file = `/uploads/${req.file.filename}`;
-      const student_id = req.body.student_id
-      
-      // Obtener el task_id del cuerpo de la solicitud
-      const taskId = req.body.task_id;
-    
-      // Guardar la ruta en la base de datos
-      const query = 'INSERT INTO uptasks (file, task_id, student_id, createdAt) VALUES (?, ?, ?, NOW())';
-      connDB.query(query, [file, taskId, student_id], (err, result) => {
-        if (err) {
-          console.log('Error al guardar la ruta en la base de datos:', err);
-          return res.status(500).send('Error al guardar en la base de datos');
-        }
-        res.status(200).send('Archivo subido y ruta guardada correctamente');
-      });
+// Lista de palabras reservadas y caracteres sospechosos
+const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
+const specialCharacters = ['--', ';', '/*', '*/', '"', "'"];
+
+// Función para validar entradas contra palabras reservadas y caracteres especiales
+const containsReservedWords = (value) => {
+
+    // Verificar si la entrada contiene alguna de las palabras reservadas
+    const wordsMatch = reservedWords.some(word => new RegExp(`\\b${word}\\b`, 'i').test(value));
+    // Verificar si la entrada contiene caracteres especiales
+    const charsMatch = specialCharacters.some(char => value.includes(char));
+    return !(wordsMatch || charsMatch);
 };
 
+// Middleware de validación para las tareas
+const validateTask = [
+    body('title')
+        .notEmpty().withMessage('El título es obligatorio')
+        .custom(containsReservedWords).withMessage('El título contiene palabras reservadas o caracteres no permitidos'),
+    body('description')
+        .notEmpty().withMessage('La descripción es obligatoria')
+        .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),
+    body('qualification')
+        .isInt({ min: 0, max: 10 }).withMessage('La calificación debe ser un número entre 0 y 10'),
+    body('deliveryDate')
+        .isISO8601().withMessage('La fecha de entrega debe ser una fecha válida'),
+    body('class_id')
+        .notEmpty().withMessage('El ID de la clase es obligatorio')
+        .isInt().withMessage('El ID de la clase debe ser un número'),
+    
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.error('Validation Errors:', errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+
+
+// C
+export const createUpTask = [
+ 
+    async (req, res) => {
+        try {
+
+             // Verificar si el teacher_id existe
+             const taskExists = await teachersModel.findByPk(req.body.task_id);
+             if (!teacherExists) {
+                 return res.status(400).json({ message: 'La tarea especificada no existe.' });
+             }
+
+            const classExists = await classModel.findByPk(req.body.class_id);
+            if (!classExists) {
+                return res.status(400).json({ message: 'La clase especificada no existe.' });
+            }
+            
+            const filePath = req.file ? `/${req.file.filename}` : '';
+
+            const taskData = {
+                ...req.body,
+                file: filePath || '',
+            };
+
+            await upTasksModel.create(taskData);
+            res.json({ 'message': 'Tarea creada correctamente' });
+        } catch (error) {
+            console.error('Database Error:', error);
+            res.json({ message: error.message });
+        }
+    }
+];
+
+//Mostrar todos R
+export const getAllUpTasks = async (req, res) => {
+    try {
+        const tasks = await upTasksModel.findAll()
+        const tasksWithImages = tasks.map(task => ({
+            ...task.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null // URL completa
+
+            
+        }));
+        res.json(tasksWithImages)
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
+//Mostrar uno R
+export const getUpTask = async (req, res) => {
+   
+    try {
+        const task = await upTasksModel.findAll({
+            where: {id: req.params.id}
+        })
+        res.json(task[0])
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
+
+//Actualizar U
+
+export const updateUpTask = [
+    
+    async (req, res) => {
+        try {
+            const result = await upTasksModel.update(req.body, {
+                where: { id: req.params.id }
+            });
+            if (result[0] === 0) {
+                return res.status(404).json({ message: 'Tarea no encontrada' });
+            }
+            res.json({ "message": "Tarea Actualizada con éxito" });
+        } catch (error) {
+            console.error('Database Error:', error);
+            res.json({ message: error.message });
+        }
+    }
+];
+
+// D
+export const deleteUpTask = async (req, res) => {
+    try {
+        await upTasksModel.destroy({
+            where: {id: req.params.id}
+        })
+        res.json({'message': 'Tarea eliminada con exito'})
+    } catch (error) {
+        res.json({message: error.message})
+    }
+    
+}
+
+//Busqueda por id
+export const getUpTasksByClassId = async (req, res) => {
+    const classId = req.query.class_id; // Obtener class_id de la query
+    try {
+        const tasks = await upTasksModel.findAll({
+            where: { class_id: classId } // Filtrar Tareas por class_id
+        });
+        res.json(tasks);
+    } catch (error) {
+        console.error('Database Error:', error);
+        res.status(500).json({ message: error.message });
+    }
+};

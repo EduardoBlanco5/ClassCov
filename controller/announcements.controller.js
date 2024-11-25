@@ -82,8 +82,16 @@ export const createAnnouncement = [
 //Mostrar todos R
 export const getAllAnnouncements = async (req, res) => {
     try {
-        const tasks = await announcementsModel.findAll()
-        res.json(tasks)
+        const announcements = await announcementsModel.findAll()
+        const announcementsWithImages = announcements.map(announcement => ({
+            ...announcement.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: announcement.file ? `${req.protocol}://${req.get('host')}${announcement.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(announcementsWithImages);
+
     } catch (error) {
         res.json({message: error.message})
     }
@@ -93,10 +101,17 @@ export const getAllAnnouncements = async (req, res) => {
 export const getAnnouncement = async (req, res) => {
    
     try {
-        const task = await announcementsModel.findAll({
+        const announcements = await announcementsModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const announcementsWithImages = announcements.map(announcement => ({
+            ...announcement.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: announcement.file ? `${req.protocol}://${req.get('host')}${announcement.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(announcementsWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }
@@ -108,13 +123,23 @@ export const updateAnnouncement = [
     
     async (req, res) => {
         try {
-            const result = await announcementsModel.update(req.body, {
+            const filePath = req.file ? `/${req.file.filename}` : null;
+     
+            
+            const announcementData = {
+                ...req.body,
+                file: filePath || '',
+            };
+            const result = await announcementsModel.update(announcementData, {
                 where: { id: req.params.id }
             });
+
+
+
             if (result[0] === 0) {
                 return res.status(404).json({ message: 'Anuncio no encontrado' });
             }
-            res.json({ "message": "Comentario Actualizado con éxito" });
+            res.json({ "message": "Anuncio Actualizado con éxito" });
         } catch (error) {
             console.error('Database Error:', error);
             res.json({ message: error.message });

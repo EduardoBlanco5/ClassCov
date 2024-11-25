@@ -47,7 +47,7 @@ router.post('/announcement', announcementsfiles.single('file'), createAnnounceme
 router.get('/announcements', getAllAnnouncements);//R
 router.get('/announcements/class', getAnnouncementsByClassId);
 router.get('/announcement/:id', getAnnouncement);//R
-router.put('/announcement/:id', updateAnnouncement);//U
+router.put('/announcement/:id', announcementsfiles.single('file'), updateAnnouncement);//U
 router.delete('/announcement/:id', deleteAnnouncement);//D
 
 //Estudiantes
@@ -139,9 +139,9 @@ router.put('/StudentClass/:id', updateStudentClass);
 router.delete('/StudentClass/:id', deleteStudentClass);
 
 // Subir archivo
-const Task = multer.diskStorage({
+const ImageUpTask = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, dir); // Continua con la ruta de destino
+      cb(null, 'uploads/Tasks'); // Continua con la ruta de destino
     },
     filename: function (req, file, cb) {
       cb(null, `${Date.now()}_${file.originalname}`); // Generar un nombre único para el archivo
@@ -149,10 +149,10 @@ const Task = multer.diskStorage({
   });
 
 
-const uploadT = multer({ storage: Task })
+const uploadT = multer({ storage: ImageUpTask })
 
 
-router.post('/upload/Task', uploadT.single('file'), createUpTask);
+router.post('/uploadTask', uploadT.single('file'), createUpTask);
 
 //router.post('/upload/Task', uploadA.single('file'), createUpTask); 
 
