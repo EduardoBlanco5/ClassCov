@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, teachersModel, upTasksModel} from '../model/taskModel.js'
+import {taskModel, classModel, teachersModel, upTasksModel, students_classesModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -23,65 +23,53 @@ const containsReservedWords = (value) => {
 };
 
 // Middleware de validación para las tareas
-const validateTask = [
-    body('title')
-        .notEmpty().withMessage('El título es obligatorio')
-        .custom(containsReservedWords).withMessage('El título contiene palabras reservadas o caracteres no permitidos'),
-    body('description')
-        .notEmpty().withMessage('La descripción es obligatoria')
-        .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),
-    body('qualification')
-        .isInt({ min: 0, max: 10 }).withMessage('La calificación debe ser un número entre 0 y 10'),
-    body('deliveryDate')
-        .isISO8601().withMessage('La fecha de entrega debe ser una fecha válida'),
-    body('class_id')
-        .notEmpty().withMessage('El ID de la clase es obligatorio')
-        .isInt().withMessage('El ID de la clase debe ser un número'),
-    
-    (req, res, next) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            console.error('Validation Errors:', errors.array());
-            return res.status(400).json({ errors: errors.array() });
-        }
-        next();
-    }
-];
 
 
 
 // C
-export const createUpTask = [
- 
-    async (req, res) => {
-        try {
-
-             // Verificar si el teacher_id existe
-             const taskExists = await teachersModel.findByPk(req.body.task_id);
-             if (!teacherExists) {
-                 return res.status(400).json({ message: 'La tarea especificada no existe.' });
-             }
-
-            const classExists = await classModel.findByPk(req.body.class_id);
-            if (!classExists) {
-                return res.status(400).json({ message: 'La clase especificada no existe.' });
-            }
-            
-            const filePath = req.file ? `/${req.file.filename}` : '';
-
-            const taskData = {
-                ...req.body,
-                file: filePath || '',
-            };
-
-            await upTasksModel.create(taskData);
-            res.json({ 'message': 'Tarea creada correctamente' });
-        } catch (error) {
-            console.error('Database Error:', error);
-            res.json({ message: error.message });
-        }
+export const createUpTask = async (req, res) => {
+    try {
+      // Verificar que el archivo y los campos necesarios estén presentes
+      if (!req.file) {
+        return res.status(400).json({ message: 'No se recibió ningún archivo.' });
+      }
+  
+      const { task_id, student_id, class_id } = req.body;
+  
+      if (!task_id || !student_id || !class_id) {
+        return res.status(400).json({ message: 'Faltan datos obligatorios (task_id, student_id o class_id).' });
+      }
+  
+      // Validar si la tarea existe en la base de datos
+      const taskExists = await taskModel.findByPk(task_id);
+      if (!taskExists) {
+        return res.status(400).json({ message: 'La tarea especificada no existe.' });
+      }
+  
+      // Validar si el estudiante está registrado en la clase
+      const studentClass = await students_classesModel.findOne({
+        where: { student_id, class_id },
+      });
+      if (!studentClass) {
+        return res.status(400).json({ message: 'El estudiante no está inscrito en esta clase.' });
+      }
+  
+      // Crear el registro en la base de datos
+      const filePath = `/uploads/Tasks/${req.file.filename}`; // Ruta relativa al archivo subido
+      await upTasksModel.create({
+        task_id,
+        student_id,
+        class_id,
+        file: filePath,
+      });
+  
+      res.status(201).json({ message: 'Archivo subido y tarea registrada correctamente.', filePath });
+    } catch (error) {
+      console.error('Error en el controlador createUpTask:', error);
+      res.status(500).json({ message: 'Error al registrar la tarea.' });
     }
-];
+  };
+
 
 //Mostrar todos R
 export const getAllUpTasks = async (req, res) => {

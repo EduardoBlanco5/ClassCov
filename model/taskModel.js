@@ -78,12 +78,12 @@ export const classModel = db.define("classes", {
   teacher_id: { type: DataTypes.INTEGER },
 });
 
-export const upTasksModel = db.define("uptasks", {
-  title: { type: DataTypes.STRING },
+export const upTasksModel = db.define('uptasks', {
+
   file: { type: DataTypes.STRING },
-  student_id: { type: DataTypes.INTEGER },
-  task_id: { type: DataTypes.INTEGER },
-  class_id: { type: DataTypes.INTEGER},
+  student_id: { type: DataTypes.INTEGER, allowNull: false },
+  task_id: { type: DataTypes.INTEGER, allowNull: false },
+ 
 });
 
 export const students_classesModel = db.define('students_classes', {

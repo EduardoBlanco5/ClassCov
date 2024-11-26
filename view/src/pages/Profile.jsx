@@ -47,6 +47,7 @@ function Profile() {
   return (
     <div className="flex justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
+        {console.log(profile.file)}
       {profile.file && (
           <img
             src={profile.file}

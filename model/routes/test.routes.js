@@ -152,7 +152,11 @@ const ImageUpTask = multer.diskStorage({
 const uploadT = multer({ storage: ImageUpTask })
 
 
-router.post('/uploadTask', uploadT.single('file'), createUpTask);
+router.post('/uploadTask', uploadT.single('file'), (req, res, next) => {
+  console.log('Archivo recibido:', req.file);
+  console.log('Datos recibidos:', req.body);
+  next();
+}, createUpTask);
 
 //router.post('/upload/Task', uploadA.single('file'), createUpTask); 
 
