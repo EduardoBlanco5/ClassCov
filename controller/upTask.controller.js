@@ -34,9 +34,9 @@ export const createUpTask = async (req, res) => {
         return res.status(400).json({ message: 'No se recibió ningún archivo.' });
       }
   
-      const { task_id, student_id, class_id } = req.body;
+      const { task_id, student_id} = req.body;
   
-      if (!task_id || !student_id || !class_id) {
+      if (!task_id || !student_id) {
         return res.status(400).json({ message: 'Faltan datos obligatorios (task_id, student_id o class_id).' });
       }
   
@@ -46,20 +46,12 @@ export const createUpTask = async (req, res) => {
         return res.status(400).json({ message: 'La tarea especificada no existe.' });
       }
   
-      // Validar si el estudiante está registrado en la clase
-      const studentClass = await students_classesModel.findOne({
-        where: { student_id, class_id },
-      });
-      if (!studentClass) {
-        return res.status(400).json({ message: 'El estudiante no está inscrito en esta clase.' });
-      }
   
       // Crear el registro en la base de datos
       const filePath = `/uploads/Tasks/${req.file.filename}`; // Ruta relativa al archivo subido
       await upTasksModel.create({
         task_id,
         student_id,
-        class_id,
         file: filePath,
       });
   

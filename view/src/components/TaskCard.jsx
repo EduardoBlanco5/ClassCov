@@ -7,17 +7,23 @@ const URI = 'http://localhost:4000/task/';
 const UPLOAD_URI = 'http://localhost:4000/uploadTask';
 
 function TaskCard() {
+  const { id } = useParams();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  
   const [notes, setNotes] = useState('');
   const [qualification, setQualification] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [file, setFile] = useState(null); // Para el archivo a subir
   const [message, setMessage] = useState(''); // Mensajes de éxito o error al subir
+  const [task_id, setTask_id] = useState(id);
 
-  const { id } = useParams();
   const { user } = useContext(AuthContext); // Recuperar rol del usuario desde AuthContext
   const role = user?.role || localStorage.getItem('role'); // Respaldo con localStorage
+  // Obtener el ID del estudiante desde localStorage
+  const student_id = localStorage.getItem('student_id');
+  const teacher_id = localStorage.getItem('teacher_id'); // En caso de que sea un profesor
 
   useEffect(() => {
     getTaskById();
@@ -46,9 +52,6 @@ function TaskCard() {
       return;
     }
 
-    // Obtener el ID del estudiante desde localStorage
-    const student_id = localStorage.getItem('student_id');
-    const teacher_id = localStorage.getItem('teacher_id'); // En caso de que sea un profesor
 
     if (!student_id && !teacher_id) {
       setMessage('No se pudo obtener el ID del usuario.');
@@ -60,11 +63,11 @@ function TaskCard() {
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('task_id', id); // ID de la tarea obtenida de los parámetros
+    formData.append('task_id', task_id); // ID de la tarea obtenida de los parámetros
     formData.append('student_id', userId); // ID del estudiante o profesor
 
     try {
-      const res = await axios.post(UPLOAD_URI, formData, {
+      await axios.post(UPLOAD_URI, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMessage('Archivo subido exitosamente.');
@@ -72,7 +75,7 @@ function TaskCard() {
       console.error('Error al subir archivo:', error);
       setMessage('Error al subir el archivo. Intenta nuevamente.');
     }
-    console.log(student_id)
+    
   };
 
   return (
@@ -81,6 +84,8 @@ function TaskCard() {
         <h1>Título: {title}</h1>
         <p>Descripción: <span className="text-red-700">{description}</span></p>
         <p>Fecha de entrega: {deliveryDate}</p>
+        
+        {console.log(task_id)}
         {role === 'teacher' && (
           <Link to={`/UpdatedTask/${id}`}>
             <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md">

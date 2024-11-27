@@ -155,6 +155,10 @@ const uploadT = multer({ storage: ImageUpTask })
 router.post('/uploadTask', uploadT.single('file'), (req, res, next) => {
   console.log('Archivo recibido:', req.file);
   console.log('Datos recibidos:', req.body);
+  const { task_id, student_id } = req.body;
+
+  // Imprimir los datos recibidos para confirmar
+  console.log('Datos enviados:', { task_id, student_id, file: req.file });
   next();
 }, createUpTask);
 
