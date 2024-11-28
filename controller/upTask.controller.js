@@ -144,15 +144,44 @@ export const getUpTasksByClassId = async (req, res) => {
 export const getUpTaskByStudentAndTask = async (req, res) => {
     try {
         const { task_id, student_id } = req.query; // Obtenemos parámetros de la consulta
-        const task = await upTasksModel.findOne({
+        const upTasks = await upTasksModel.findAll({
             where: { task_id, student_id }
         });
-        if (!task) {
-            return res.status(404).json({ message: 'No se encontró la tarea enviada.' });
-        }
-        res.json(task);
+        const upTasksWithImages = upTasks.map(upTask => ({
+            ...upTask.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: upTask.file ? `${req.protocol}://${req.get('host')}${upTask.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(upTasksWithImages[0])
     } catch (error) {
         console.error('Error al obtener la tarea:', error);
         res.status(500).json({ message: 'Error al buscar la tarea.' });
+    }
+};
+
+export const getPendingTasksByStudent = async (req, res) => {
+    const { class_id, student_id } = req.query;
+
+    if (!class_id || !student_id) {
+        return res.status(400).json({ error: 'class_id y student_id son requeridos' });
+    }
+
+    try {
+        const pendingTasks = await tasks.findAll({
+            where: { class_id, status: 'pending' },
+            include: [
+                {
+                    model: upTasksModel,
+                    where: { student_id },
+                },
+            ],
+        });
+
+        res.json(pendingTasks);
+    } catch (error) {
+        console.error('Error al obtener tareas pendientes:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
 };

@@ -84,14 +84,14 @@ const TaskCard = () => {
         <p>Descripción: {description}</p>
         <p>Fecha de entrega: {deliveryDate}</p>
          {/* Mostrar la imagen si existe */}
-         {console.log(file)}
+       
           {file && (
                 <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
               )}
   
         {role === 'student' && (
           <div className="mt-4">
-            {console.log(uploadedTask.file)}
+           
             {uploadedTask ? (
               <div className="mt-4">
                 <p className="text-green-500">Tarea Enviada</p>
