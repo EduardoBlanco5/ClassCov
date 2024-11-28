@@ -48,12 +48,14 @@ export const createUpTask = async (req, res) => {
   
   
       // Crear el registro en la base de datos
-      const filePath = `/uploads/Tasks/${req.file.filename}`; // Ruta relativa al archivo subido
-      await upTasksModel.create({
-        task_id,
-        student_id,
-        file: filePath,
-      });
+      const filePath = req.file ? `/${req.file.filename}` : null;
+
+
+      const upTaskData = {
+                ...req.body,
+                file: filePath || '',
+            };
+            await upTasksModel.create(upTaskData);
   
       res.status(201).json({ message: 'Archivo subido y tarea registrada correctamente.', filePath });
     } catch (error) {
@@ -136,5 +138,21 @@ export const getUpTasksByClassId = async (req, res) => {
     } catch (error) {
         console.error('Database Error:', error);
         res.status(500).json({ message: error.message });
+    }
+};
+
+export const getUpTaskByStudentAndTask = async (req, res) => {
+    try {
+        const { task_id, student_id } = req.query; // Obtenemos parámetros de la consulta
+        const task = await upTasksModel.findOne({
+            where: { task_id, student_id }
+        });
+        if (!task) {
+            return res.status(404).json({ message: 'No se encontró la tarea enviada.' });
+        }
+        res.json(task);
+    } catch (error) {
+        console.error('Error al obtener la tarea:', error);
+        res.status(500).json({ message: 'Error al buscar la tarea.' });
     }
 };

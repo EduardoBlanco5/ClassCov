@@ -8,7 +8,7 @@ import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGua
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
-import {createUpTask} from "../../controller/upTask.controller.js"
+import {createUpTask, getUpTaskByStudentAndTask} from "../../controller/upTask.controller.js"
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 
 
@@ -161,6 +161,8 @@ router.post('/uploadTask', uploadT.single('file'), (req, res, next) => {
   console.log('Datos enviados:', { task_id, student_id, file: req.file });
   next();
 }, createUpTask);
+
+router.get('/uptask', getUpTaskByStudentAndTask);
 
 //router.post('/upload/Task', uploadA.single('file'), createUpTask); 
 

@@ -103,10 +103,17 @@ export const getAllTasks = async (req, res) => {
 export const getTask = async (req, res) => {
    
     try {
-        const task = await taskModel.findAll({
+        const tasks = await taskModel.findAll({
             where: {id: req.params.id}
         })
-        res.json(task[0])
+        const tasksWithImages = tasks.map(task => ({
+            ...task.dataValues,  // Usar dataValues para obtener los datos del modelo
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null // URL completa
+
+            
+        }));
+
+        res.json(tasksWithImages[0])
     } catch (error) {
         res.json({message: error.message})
     }

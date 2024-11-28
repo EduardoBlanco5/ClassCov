@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, '../Perfil/Students')));
 app.use(express.static(path.join(__dirname, '../Perfil/Tasks')));
 app.use(express.static(path.join(__dirname, '../Perfil/Teachers')));
 app.use(express.static(path.join(__dirname, '../uploads/Announcements')));
-app.use(express.static(path.join(__dirname, '../uploads/Tasks')));
+app.use(express.static(path.join(__dirname, '../Teachers/Tasks')));
 
 app.use(cors());
 app.use(express.json())
