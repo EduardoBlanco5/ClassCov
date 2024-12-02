@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, teachersModel} from '../model/taskModel.js'
+import {taskModel, classModel, teachersModel, upTasksModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -154,14 +154,27 @@ export const deleteTask = async (req, res) => {
 
 //Busqueda por id
 export const getTasksByClassId = async (req, res) => {
-    const classId = req.query.class_id; // Obtener class_id de la query
+    const { class_id, student_id } = req.query;
+
+    console.log("Parámetros recibidos:", { class_id, student_id });
+
+    if (!class_id || !student_id) {
+        return res.status(400).json({ message: "class_id y student_id son obligatorios" });
+    }
+
     try {
-        const tasks = await taskModel.findAll({
-            where: { class_id: classId } // Filtrar estudiantes por class_id
-        });
-        res.json(tasks);
+        const tasks = await taskModel.findAll({ where: { class_id } });
+        const upTasks = await upTasksModel.findAll({ where: { student_id } });
+        const deliveredTaskIds = upTasks.map((task) => task.task_id);
+
+        const tasksWithStatus = tasks.map((task) => ({
+            ...task.dataValues,
+            isDelivered: deliveredTaskIds.includes(task.id),
+        }));
+
+        res.json(tasksWithStatus);
     } catch (error) {
-        console.error('Database Error:', error);
-        res.status(500).json({ message: error.message });
+        console.error("Error en el servidor:", error);
+        res.status(500).json({ message: "Error interno del servidor" });
     }
 };

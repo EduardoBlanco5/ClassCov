@@ -35,6 +35,7 @@ function Login() {
           }
   
           navigate('/Home'); // Redirige al usuario a /Home después del login
+          console.log('ID del estudiante almacenado:', localStorage.getItem('student_id'));
       } catch (err) {
           console.error('Error al iniciar sesión:', err);
           setError('Usuario o contraseña incorrectos');
