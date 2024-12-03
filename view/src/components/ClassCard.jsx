@@ -19,6 +19,7 @@ function ClassCard() {
     const [salon, setSalon] = useState('')
     const [shift, setShift] = useState('')
     const [teacher_id, setTeacher_id] = useState('')
+    const studentId = localStorage.getItem('student_id'); // Recupera el ID del estudiante
     
     
 
@@ -70,8 +71,25 @@ function ClassCard() {
     };
 
     const getTasksByClassId = async (classId) => {
-        const res = await axios.get(`${URIT}class?class_id=${classId}`);
-        setTasks(res.data); // Establecer solo los estudiantes de la clase actual
+        if (!classId || !studentId) {
+            console.error('classId o studentId están vacíos', { classId, studentId });
+            return;
+        }
+    
+        try {
+            const res = await axios.get(`${URIT}class`, { 
+                params: { class_id: classId, student_id: studentId } 
+            });
+            setTasks(res.data);
+        } catch (error) {
+            if (error.response) {
+                console.error('Error del servidor:', error.response.data);
+            } else if (error.request) {
+                console.error('Error en la solicitud:', error.request);
+            } else {
+                console.error('Error:', error.message);
+            }
+        }
     };
 
     const getAnnouncementsByClassId = async (classId) => {
@@ -119,6 +137,7 @@ function ClassCard() {
 
         </div>
 
+      
         <Link to={`/ClassTasks/${id}`}> 
         <button className='bg-blue-700 rounded-md mx-2 px-1 text-white'>Tareas</button>
         </Link>

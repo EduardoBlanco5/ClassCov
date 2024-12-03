@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, teachersModel, upTasksModel, students_classesModel} from '../model/taskModel.js'
+import {taskModel, classModel, teachersModel, upTasksModel, studentsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -183,5 +183,38 @@ export const getPendingTasksByStudent = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener tareas pendientes:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};
+
+export const getTasksAndSubmissions = async (req, res) => {
+    const { class_id, teacher_id } = req.query;
+
+    if (!class_id || !teacher_id) {
+        return res.status(400).json({ message: 'class_id y teacher_id son obligatorios' });
+    }
+
+    try {
+        // Obtener las tareas asignadas por el profesor
+        const tasks = await taskModel.findAll({
+            where: { class_id, teacher_id },
+            include: [
+                {
+                    model: upTasksModel,
+                    as: 'upTasks', // Debe coincidir con el alias en la asociación
+                    include: [
+                    {
+                        model: studentsModel,
+                        as: 'student', // Debe coincidir con el alias en la asociación
+                        attributes: ['id', 'name'], // Obtener solo los campos necesarios
+                    },
+                ],
+            },
+        ],
+    });
+
+        res.json(tasks);
+    } catch (error) {
+        console.error('Error al obtener tareas y entregas:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
     }
 };

@@ -96,3 +96,7 @@ students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
 students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
 studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });
 classModel.hasMany(students_classesModel, { foreignKey: 'class_id' });
+taskModel.hasMany(upTasksModel, { foreignKey: 'task_id', as: 'upTasks' });
+upTasksModel.belongsTo(taskModel, { foreignKey: 'task_id', as: 'task' });
+studentsModel.hasMany(upTasksModel, { foreignKey: 'student_id', as: 'submissions' });
+upTasksModel.belongsTo(studentsModel, { foreignKey: 'student_id', as: 'student' });
