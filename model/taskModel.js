@@ -4,7 +4,6 @@ import { DataTypes } from "sequelize";
 export const taskModel = db.define("tasks", {
   title: { type: DataTypes.STRING },
   description: { type: DataTypes.STRING },
-  qualification: { type: DataTypes.STRING },
   deliveryDate: { type: DataTypes.DATE },
   notes: { type: DataTypes.STRING },
   status: { type: DataTypes.STRING },
@@ -83,6 +82,7 @@ export const upTasksModel = db.define('uptasks', {
   file: { type: DataTypes.STRING },
   student_id: { type: DataTypes.INTEGER, allowNull: false },
   task_id: { type: DataTypes.INTEGER, allowNull: false },
+  qualification: { type: DataTypes.STRING },
  
 });
 

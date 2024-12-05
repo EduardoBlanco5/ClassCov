@@ -41,6 +41,7 @@ import Profile from './pages/Profile';
 import CreateStudentClass from './administration/Classes/CreateStudentClass';
 import ListStudentClasses from './administration/Classes/ListStudentsClass';
 import ClassStudents from './administration/Classes/ClassStudents';
+import GradingTask from './teachers/Tasks/GradingTask';
 
 
 function App() {
@@ -138,7 +139,10 @@ function App() {
           <Route path='/TaskCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'student', 'teacher']} />}>
             <Route index element={<TaskCard/>}></Route>
           </Route>
-
+          <Route path='/GradingTask/:id' element={<ProtecttedRoute allowedRoles={['admin','teacher']} />}>
+            <Route index element={<GradingTask/>}></Route>
+          </Route>
+          
           {/* Actualizar */}
           <Route path='/Updatedstudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<UpdatedStudent/>}></Route>

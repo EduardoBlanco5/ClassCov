@@ -110,19 +110,18 @@ function ClassTasks() {
                                 <h4 className="font-bold">{task.title}</h4>
                                 <p>{task.description}</p>
                                 <h5 className="font-semibold mt-2">Entregas:</h5>
+                 
                                 {task.upTasks && task.upTasks.length > 0 ? (
                                     <ul>
                                         {task.upTasks.map((submission) => (
                                             <li key={submission.id} className="mt-2">
                                                 <span className="font-semibold">{submission.student.name}:</span>{' '}
-                                                <a
-                                                    href={submission.file}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-blue-500 underline"
-                                                >
-                                                    Ver archivo
-                                                </a>
+                                                
+                                            <Link to={`/GradingTask/${task.id}`}>
+                                                <p className="text-green-500 font-bold">
+                                                    Entregado
+                                                </p>
+                                            </Link>
                                             </li>
                                         ))}
                                     </ul>

@@ -30,8 +30,6 @@ const validateTask = [
     body('description')
         .notEmpty().withMessage('La descripción es obligatoria')
         .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),
-    body('qualification')
-        .isInt({ min: 0, max: 10 }).withMessage('La calificación debe ser un número entre 0 y 10'),
     body('deliveryDate')
         .isISO8601().withMessage('La fecha de entrega debe ser una fecha válida'),
     body('class_id')

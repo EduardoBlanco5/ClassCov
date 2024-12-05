@@ -13,7 +13,7 @@ function CreateTask() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [notes, setNotes] = useState('')
-  const [qualification, setQualification] = useState('')
+  
   const [deliveryDate, setDeliveryDate] = useState('')
   const [status, setStatus] = useState('')
   const [file, setFile] = useState(null);
@@ -32,7 +32,7 @@ function CreateTask() {
         formData.append('title', title);
         formData.append('description', description);
         formData.append('notes', notes);
-        formData.append('qualification', qualification);
+      
         formData.append('deliveryDate', deliveryDate);
         formData.append('status', status);
         // Agregar el archivo al FormData
@@ -90,15 +90,6 @@ function CreateTask() {
           onChange={ (e) => setNotes(e.target.value)}
           className='w-full px-4 py-2 rounded-md my-2'
           ></textarea>
-
-          <label className='text-white text-1xl font-semibold'>Calificación</label>
-          <input 
-          type='text'
-          placeholder='0/10'
-          value={qualification}
-          onChange={ (e) => setQualification(e.target.value)}
-          className='w-32 px-1 py-1 rounded-md my-1 mx-[20%]'
-          ></input>
 
           <label className='text-white text-1xl font-semibold'>Fecha de Entrega</label>
           <input
