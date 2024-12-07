@@ -107,7 +107,9 @@ function ClassTasks() {
                 <h3 className="font-bold text-white text-xl text-center mt-4">Tareas Asignadas:</h3>
                         {teacherTasks.map((task) => (
                             <div key={task.id} className="bg-gray-200 p-4 rounded-md shadow-md mb-4">
+                                <Link to={`/GradingTask/${task.id}`}>
                                 <h4 className="font-bold">{task.title}</h4>
+                                </Link>
                                 <p>{task.description}</p>
                                 <h5 className="font-semibold mt-2">Entregas:</h5>
                  
@@ -117,11 +119,10 @@ function ClassTasks() {
                                             <li key={submission.id} className="mt-2">
                                                 <span className="font-semibold">{submission.student.name}:</span>{' '}
                                                 
-                                            <Link to={`/GradingTask/${task.id}`}>
+                                            
                                                 <p className="text-green-500 font-bold">
                                                     Entregado
                                                 </p>
-                                            </Link>
                                             </li>
                                         ))}
                                     </ul>

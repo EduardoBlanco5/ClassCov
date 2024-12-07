@@ -139,18 +139,6 @@ export const deleteUpTask = async (req, res) => {
 }
 
 //Busqueda por id
-export const getUpTasksByClassId = async (req, res) => {
-    const classId = req.query.class_id; // Obtener class_id de la query
-    try {
-        const tasks = await upTasksModel.findAll({
-            where: { class_id: classId } // Filtrar Tareas por class_id
-        });
-        res.json(tasks);
-    } catch (error) {
-        console.error('Database Error:', error);
-        res.status(500).json({ message: error.message });
-    }
-};
 
 export const getUpTaskByStudentAndTask = async (req, res) => {
     try {
@@ -227,5 +215,57 @@ export const getTasksAndSubmissions = async (req, res) => {
     } catch (error) {
         console.error('Error al obtener tareas y entregas:', error);
         res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+export const getUpTasksByTaskId = async (req, res) => {
+    try {
+        const { task_id } = req.params; // Obtener el ID de la tarea desde los parámetros
+        const upTasks = await upTasksModel.findAll({
+            where: { task_id },
+            include: [
+                {
+                    model: studentsModel,
+                    as: 'student',
+                    attributes: ['name'], // Traer solo el nombre del estudiante
+                },
+            ],
+        });
+
+        const upTasksWithImages = upTasks.map((task) => ({
+            ...task.dataValues,
+            studentName: task.student?.name || 'Sin nombre',
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null,
+        }));
+
+        res.json(upTasksWithImages);
+    } catch (error) {
+        console.error('Error al obtener las tareas enviadas:', error);
+        res.status(500).json({ message: 'Error al obtener las tareas enviadas.' });
+    }
+};
+
+export const gradeUpTask = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { qualification } = req.body;
+
+        if (!qualification) {
+            return res.status(400).json({ message: 'La calificación es obligatoria.' });
+        }
+
+        const result = await upTasksModel.update(
+            { qualification },
+            { where: { id } }
+        );
+
+        if (result[0] === 0) {
+            return res.status(404).json({ message: 'Tarea no encontrada.' });
+        }
+
+        res.status(200).json({ message: 'Calificación guardada correctamente.' });
+    } catch (error) {
+        console.error('Error al calificar la tarea:', error);
+        res.status(500).json({ message: 'Error interno del servidor.' });
     }
 };
