@@ -68,18 +68,29 @@ export const createUpTask = async (req, res) => {
 //Mostrar todos R
 export const getAllUpTasks = async (req, res) => {
     try {
-        const tasks = await upTasksModel.findAll()
-        const tasksWithImages = tasks.map(task => ({
-            ...task.dataValues,  // Usar dataValues para obtener los datos del modelo
-            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null // URL completa
+        const tasks = await upTasksModel.findAll({
+            include: [
+                {
+                    model: studentsModel, // Modelo relacionado
+                    as: 'student', // Alias definido en las asociaciones
+                    attributes: ['name'], // Campos que queremos incluir
+                },
+            ],
+        });
 
-            
+        // Mapear los datos para incluir la URL del archivo
+        const tasksWithImages = tasks.map((task) => ({
+            ...task.dataValues,
+            studentName: task.student?.name || 'Sin nombre', // Obtener el nombre del estudiante o un valor predeterminado
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null, // URL completa del archivo
         }));
-        res.json(tasksWithImages)
+
+        res.json(tasksWithImages);
     } catch (error) {
-        res.json({message: error.message})
+        console.error('Error al obtener las tareas:', error);
+        res.status(500).json({ message: 'Error al obtener las tareas.' });
     }
-}
+};
 
 //Mostrar uno R
 export const getUpTask = async (req, res) => {

@@ -75,7 +75,10 @@ function GradingTask() {
     };
   
     return (
-      <div className="flex justify-center">
+
+
+
+      <div className="justify-center">
         <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
           <h1>Título: {title}</h1>
           <p>Descripción: {description}</p>
@@ -83,31 +86,27 @@ function GradingTask() {
            {/* Mostrar la imagen si existe */}
          
             {file && (
-                  <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-                )}
+                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
+            )}
               
         </div>
 
         <div>
-        {upTasks.map ((UpTask) => (
-            
-        
-            <tr  key={UpTask.id} >
-                  <header className="flex w-full bg-slate-500 hover:bg-slate-700 rounded-md my-2">
-                        <h1 className="text-2xl font-bold w-full my-2 px-4 py-2">{UpTask.student_id}</h1>
-                        <p className="text-black font-semibold my-1"> {UpTask.task_id}</p>
-                        
-                    </header>
-
-                
-
-                    
-        
-            </tr>
-            
-        ))}
-        </div>
+    {upTasks.map((UpTask) => (
+        <tr key={UpTask.id}>
+            <header className="flex w-52 bg-slate-500 hover:bg-slate-700 rounded-md my-2">
+                <h1 className="text-2xl font-bold w-full my-2 px-4 py-2">
+                    {UpTask.studentName}
+                </h1>
+                <p className="text-black font-semibold my-1">
+                    {UpTask.task_id}
+                </p>
+            </header>
+        </tr>
+    ))}
+</div>
       </div>
+
 
     );
   };
