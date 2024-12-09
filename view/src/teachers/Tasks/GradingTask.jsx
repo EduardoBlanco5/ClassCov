@@ -69,7 +69,7 @@ function GradingTask() {
 
 
 
-      <div className="justify-center">
+      <div className="justify-stretch">
         <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
           <h1>Título: {title}</h1>
           <p>Descripción: {description}</p>

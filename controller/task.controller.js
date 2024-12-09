@@ -1,9 +1,10 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, teachersModel, upTasksModel} from '../model/taskModel.js'
+import {taskModel, classModel, teachersModel, upTasksModel, studentsModel, guardiansModel, students_classesModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
+import { sendEmail } from '../middleware/emailService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,33 +54,66 @@ export const createTask = [
     validateTask,
     async (req, res) => {
         try {
+            const { title, description, class_id, teacher_id } = req.body;
 
-             // Verificar si el teacher_id existe
-             const teacherExists = await teachersModel.findByPk(req.body.teacher_id);
-             if (!teacherExists) {
-                 return res.status(400).json({ message: 'El profesor especificado no existe.' });
-             }
-
-            const classExists = await classModel.findByPk(req.body.class_id);
+            // Verificar que la clase y el profesor existan
+            const classExists = await classModel.findByPk(class_id);
             if (!classExists) {
                 return res.status(400).json({ message: 'La clase especificada no existe.' });
             }
-            
-            const filePath = req.file ? `/${req.file.filename}` : '';
 
+            const teacherExists = await teachersModel.findByPk(teacher_id);
+            if (!teacherExists) {
+                return res.status(400).json({ message: 'El profesor especificado no existe.' });
+            }
+
+            // Crear la tarea
+            const filePath = req.file ? `/${req.file.filename}` : '';
             const taskData = {
                 ...req.body,
                 file: filePath || '',
             };
 
-            await taskModel.create(taskData);
-            res.json({ 'message': 'Tarea creada correctamente' });
+            const task = await taskModel.create(taskData);
+
+            // Obtener correos electrónicos de estudiantes y tutores de la clase
+            const students = await students_classesModel.findAll({
+                where: { class_id },
+                include: [
+                  {
+                    model: studentsModel, // Asegúrate de que tienes la relación definida entre students_classes y students
+                    as: 'student', // Esto depende del alias que hayas usado en tu asociación
+                    attributes: ['email'], // Solo seleccionamos el email
+                  }
+                ]
+              });
+              
+              const guardians = await guardiansModel.findAll({
+                where: { id: students.map((s) => s.student.guardian_id) },
+              });
+
+            const studentEmails = students.map((s) => s.student.email);
+            const guardianEmails = guardians.map((g) => g.email);
+
+            const recipients = [...studentEmails, ...guardianEmails]; // Combinar los correos
+
+            // Enviar correos
+            const subject = `Nueva Tarea: ${title}`;
+            const text = `Hola, se ha publicado una nueva tarea para la clase ${class_id}.\n\nTítulo: ${title}\nDescripción: ${description}\nFecha de entrega: ${req.body.deliveryDate}`;
+            const emailPromises = recipients.map((email) =>
+                sendEmail(email, subject, text, teacherExists.email) // Usamos el correo del profesor aquí
+            );
+
+            await Promise.all(emailPromises);
+
+            res.json({ message: 'Tarea creada y correos enviados' });
         } catch (error) {
-            console.error('Database Error:', error);
-            res.json({ message: error.message });
+            console.error('Error al crear tarea:', error);
+            res.status(500).json({ message: 'Error al crear tarea', error });
         }
-    }
+    },
 ];
+
 
 //Mostrar todos R
 export const getAllTasks = async (req, res) => {
