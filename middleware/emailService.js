@@ -11,10 +11,10 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export const sendEmail = async (to, subject, text, from) => {
+export const sendEmail = async (to, subject, text, fromEmail, fromName) => {
     try {
         await transporter.sendMail({
-            from: `"${teacherName}" <eduardoblanco58@gmail.com>`, // Usamos el correo del profesor aquí
+            from: `"${fromName}" <${fromEmail}>`, // Usar el nombre y correo del profesor
             to, // Destinatario
             subject, // Asunto
             text, // Contenido del correo

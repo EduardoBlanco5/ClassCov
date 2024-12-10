@@ -118,6 +118,17 @@ const TaskCard = () => {
                     <p>Tipo de archivo no soportado para vista previa. Descárgalo para verlo.</p>
                   )}
                 </div>
+                {uploadedTask.qualification ? (
+                                <p className="text-green-500 font-semibold">
+                                    Calificación: {uploadedTask.qualification}
+                                </p>
+                            ):(
+                              <>
+                                <p className='text-yellow-500 font-semibold'>
+                                  Pendiente
+                                </p>
+                              </>
+                            )}
               </div>
             ) : (
               <>

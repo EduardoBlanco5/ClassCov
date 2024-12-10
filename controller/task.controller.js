@@ -62,8 +62,8 @@ export const createTask = [
                 return res.status(400).json({ message: 'La clase especificada no existe.' });
             }
 
-            const teacherExists = await teachersModel.findByPk(teacher_id);
-            if (!teacherExists) {
+            const teacher = await teachersModel.findByPk(teacher_id);
+            if (!teacher) {
                 return res.status(400).json({ message: 'El profesor especificado no existe.' });
             }
 
@@ -80,17 +80,19 @@ export const createTask = [
             const students = await students_classesModel.findAll({
                 where: { class_id },
                 include: [
-                  {
-                    model: studentsModel, // Asegúrate de que tienes la relación definida entre students_classes y students
-                    as: 'student', // Esto depende del alias que hayas usado en tu asociación
-                    attributes: ['email'], // Solo seleccionamos el email
-                  }
-                ]
-              });
-              
-              const guardians = await guardiansModel.findAll({
-                where: { id: students.map((s) => s.student.guardian_id) },
-              });
+                    {
+                        model: studentsModel,
+                        as: 'student',
+                        attributes: ['email', 'guardian_id'],
+                    },
+                ],
+            });
+
+            const guardianIds = students.map((s) => s.student.guardian_id);
+            const guardians = await guardiansModel.findAll({
+                where: { id: guardianIds },
+                attributes: ['email'],
+            });
 
             const studentEmails = students.map((s) => s.student.email);
             const guardianEmails = guardians.map((g) => g.email);
@@ -101,7 +103,7 @@ export const createTask = [
             const subject = `Nueva Tarea: ${title}`;
             const text = `Hola, se ha publicado una nueva tarea para la clase ${class_id}.\n\nTítulo: ${title}\nDescripción: ${description}\nFecha de entrega: ${req.body.deliveryDate}`;
             const emailPromises = recipients.map((email) =>
-                sendEmail(email, subject, text, teacherExists.email) // Usamos el correo del profesor aquí
+                sendEmail(email, subject, text, teacher.email, teacher.name) // Pasar nombre y correo del profesor
             );
 
             await Promise.all(emailPromises);
