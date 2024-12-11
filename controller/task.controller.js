@@ -76,6 +76,10 @@ export const createTask = [
 
             const task = await taskModel.create(taskData);
 
+            const { grade, salon } = classExists;
+
+         
+
             // Obtener correos electrónicos de estudiantes y tutores de la clase
             const students = await students_classesModel.findAll({
                 where: { class_id },
@@ -94,14 +98,16 @@ export const createTask = [
                 attributes: ['email'],
             });
 
+
+
             const studentEmails = students.map((s) => s.student.email);
             const guardianEmails = guardians.map((g) => g.email);
-
+            
             const recipients = [...studentEmails, ...guardianEmails]; // Combinar los correos
 
             // Enviar correos
             const subject = `Nueva Tarea: ${title}`;
-            const text = `Hola, se ha publicado una nueva tarea para la clase ${class_id}.\n\nTítulo: ${title}\nDescripción: ${description}\nFecha de entrega: ${req.body.deliveryDate}`;
+            const text = `Hola, se ha publicado una nueva tarea para la clase ${grade} ${salon}.\n\nTítulo: ${title}\nDescripción: ${description}\nFecha de entrega: ${req.body.deliveryDate}`;
             const emailPromises = recipients.map((email) =>
                 sendEmail(email, subject, text, teacher.email, teacher.name) // Pasar nombre y correo del profesor
             );
