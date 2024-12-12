@@ -26,3 +26,17 @@ export const sendEmail = async (to, subject, text, fromEmail, fromName) => {
     }
 };
 
+export const sendEmailTask = async (to, subject, text, fromEmail, fromName) => {
+    try {
+        await transporter.sendMail({
+            from: `"${fromName}" <${fromEmail}>`, // Usar el nombre y correo del sistema
+            to, // Destinatario (correo del tutor)
+            subject, // Asunto
+            text, // Contenido del correo
+        });
+        console.log(`Correo enviado a ${to}`);
+    } catch (error) {
+        console.error('Error al enviar el correo:', error);
+        throw error;
+    }
+};

@@ -1,9 +1,11 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, teachersModel, upTasksModel, studentsModel} from '../model/taskModel.js'
+import {taskModel, classModel, guardiansModel, teachersModel, upTasksModel, studentsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
+import { sendEmailTask } from '../middleware/emailService.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,40 +31,56 @@ const containsReservedWords = (value) => {
 // C
 export const createUpTask = async (req, res) => {
     try {
-      // Verificar que el archivo y los campos necesarios estén presentes
-      if (!req.file) {
-        return res.status(400).json({ message: 'No se recibió ningún archivo.' });
-      }
-  
-      const { task_id, student_id} = req.body;
-  
-      if (!task_id || !student_id) {
-        return res.status(400).json({ message: 'Faltan datos obligatorios (task_id, student_id o class_id).' });
-      }
-  
-      // Validar si la tarea existe en la base de datos
-      const taskExists = await taskModel.findByPk(task_id);
-      if (!taskExists) {
-        return res.status(400).json({ message: 'La tarea especificada no existe.' });
-      }
-  
-  
-      // Crear el registro en la base de datos
-      const filePath = req.file ? `/${req.file.filename}` : null;
+        // Verificar que el archivo y los campos necesarios estén presentes
+        if (!req.file) {
+            return res.status(400).json({ message: 'No se recibió ningún archivo.' });
+        }
 
+        const { task_id, student_id } = req.body;
 
-      const upTaskData = {
-                ...req.body,
-                file: filePath || '',
-            };
-            await upTasksModel.create(upTaskData);
-  
-      res.status(201).json({ message: 'Archivo subido y tarea registrada correctamente.', filePath });
+        if (!task_id || !student_id) {
+            return res.status(400).json({ message: 'Faltan datos obligatorios (task_id, student_id).' });
+        }
+
+        // Validar si la tarea existe en la base de datos
+        const taskExists = await taskModel.findByPk(task_id);
+        if (!taskExists) {
+            return res.status(400).json({ message: 'La tarea especificada no existe.' });
+        }
+
+        // Crear el registro en la base de datos para la tarea subida
+        const filePath = req.file ? `/${req.file.filename}` : null;
+
+        const upTaskData = {
+            ...req.body,
+            file: filePath || '',
+        };
+        await upTasksModel.create(upTaskData);
+
+        // Obtener el estudiante y su tutor (guardian)
+        const student = await studentsModel.findByPk(student_id);
+        if (!student) {
+            return res.status(400).json({ message: 'El estudiante especificado no existe.' });
+        }
+
+        // Obtener el tutor (guardian) del estudiante
+        const guardian = await guardiansModel.findByPk(student.guardian_id);
+        if (!guardian) {
+            return res.status(400).json({ message: 'No se encontró tutor para este estudiante.' });
+        }
+
+        // Enviar el correo al tutor
+        const subject = `El estudiante ${student.name} ha subido una tarea`;
+        const text = `Hola, \n\nEl estudiante ${student.name} ha subido una tarea para la asignatura: ${taskExists.title}.\n\nArchivo: ${filePath || 'No se adjuntó ningún archivo'}\n\nSaludos, \nSistema de Tareas`;
+
+        await sendEmailTask(guardian.email, subject, text, 'no-reply@tusistema.com', 'Sistema de Tareas');
+
+        res.status(201).json({ message: 'Archivo subido y correo enviado al tutor correctamente.' });
     } catch (error) {
-      console.error('Error en el controlador createUpTask:', error);
-      res.status(500).json({ message: 'Error al registrar la tarea.' });
+        console.error('Error en el controlador createUpTask:', error);
+        res.status(500).json({ message: 'Error al registrar la tarea.' });
     }
-  };
+};
 
 
 //Mostrar todos R
