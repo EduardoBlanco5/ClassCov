@@ -92,6 +92,16 @@ export const students_classesModel = db.define('students_classes', {
   
 })
 
+export const attendancesModel = db.define('attendances',
+  {
+    student_id: {type: DataTypes.INTEGER},
+    class_id: {type: DataTypes.INTEGER},
+    attendance_date: {type: DataTypes.DATE},
+    status: {type: DataTypes.STRING},
+    notes: {type:DataTypes.STRING},
+    
+  })
+
 students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
 students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
 studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });

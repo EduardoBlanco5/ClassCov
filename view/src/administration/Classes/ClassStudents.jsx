@@ -17,6 +17,7 @@ function ClassStudents() {
         getStudentsByClassId(id);
         
         
+        
     },[id])
 
     const getStudentsByClassId = async (classId) => {
@@ -35,9 +36,15 @@ function ClassStudents() {
 
 
         </Link>
+
+        
+
                 ))}
             </ul>
 
+            <Link to={`/CreateAttendances/${id}`} className='bg-green-600 rounded-md'>
+                Asistencias
+            </Link>
         </div>
     </div>
   )

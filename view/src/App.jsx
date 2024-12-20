@@ -42,6 +42,7 @@ import CreateStudentClass from './administration/Classes/CreateStudentClass';
 import ListStudentClasses from './administration/Classes/ListStudentsClass';
 import ClassStudents from './administration/Classes/ClassStudents';
 import GradingTask from './teachers/Tasks/GradingTask';
+import CreateAttendance from './teachers/Attendances/CreateAttendance';
 
 
 function App() {
@@ -89,6 +90,10 @@ function App() {
           <Route path='/Createannouncements/:class_id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<CreateAnnouncements/>}></Route>
           </Route>
+          <Route path='/CreateAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+            <Route index element={<CreateAttendance/>}></Route>
+          </Route>
+
           {/* Ver */}
 
           <Route path='/ShowTeachers' element={<ProtecttedRoute allowedRoles={['admin']} />}>
