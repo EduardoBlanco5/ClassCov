@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
+import moment from 'moment';
+import 'react-toastify/dist/ReactToastify.css';
 
 const URI_CLASSES = 'http://localhost:4000/class';
 const URI_ATTENDANCES = 'http://localhost:4000/attendances';
@@ -13,6 +16,8 @@ function CreateAttendance() {
 
     useEffect(() => {
         getStudentsByClassId(id);
+        checkAttendanceForToday();
+        toast.info("Component Loaded!");
     }, [id]);
 
     const getStudentsByClassId = async (classId) => {
@@ -49,25 +54,58 @@ function CreateAttendance() {
             }
         });
     };
+    const [loading, setLoading] = useState(false);
 
+    const checkAttendanceForToday = async () => {
+        try {
+            const res = await axios.get(`${URI_ATTENDANCES}/check/${id}`);  // `id` es el class_id
+            console.log("Respuesta de verificación de asistencia:", res.data); // Verifica lo que está devolviendo
+            
+            if (res.data.exists) {
+                toast.error(res.data.message); // Muestra el mensaje de error
+                return false;
+            }
+            return true;
+        } catch (error) {
+            console.error('Error al verificar asistencia:', error);
+            toast.error('Hubo un problema al verificar la asistencia.');
+            return false;
+        }
+    };
+    
     const saveAttendance = async () => {
+        setLoading(true);
+        const canProceed = await checkAttendanceForToday();  // Verificación de la asistencia de hoy
+        
+        console.log("¿Se puede proceder?", canProceed); // Verifica si la asistencia se puede registrar
+        
+        if (!canProceed) {
+            toast.error('No se puede registrar la asistencia, ya fue tomada hoy.');
+            setLoading(false);
+            return;
+        }
+        
+        // Continuar con la lógica de guardar...
         const attendanceData = Object.entries(attendance).map(([studentId, data]) => ({
             student_id: studentId,
             class_id: id,
-            attendance_date: new Date().toLocaleDateString('en-CA'), // Formato YYYY-MM-DD para la fecha local
+            attendance_date: moment().format('YYYY-MM-DD'), // Solo fecha, sin hora
             status: data.status,
-            notes: data.notes
+            notes: data.notes,
         }));
-    
+        
         try {
+            console.log("Guardando asistencia...", attendanceData); // Verifica los datos a guardar
             for (const record of attendanceData) {
                 await axios.post(URI_ATTENDANCES, record);
             }
-            alert('Asistencia guardada correctamente');
+            toast.success('Asistencia guardada correctamente');
             navigate(`/ClassCard/${id}`);
         } catch (error) {
             console.error('Error al guardar asistencia:', error);
-            alert('Ocurrió un error al guardar la asistencia.');
+            toast.error('Ocurrió un error al guardar la asistencia.');
+        } finally {
+            setLoading(false); // Asegúrate de desactivar el estado loading
         }
     };
 
@@ -127,8 +165,9 @@ function CreateAttendance() {
             <button
                 className="bg-indigo-500 text-white px-4 py-2 mt-4 rounded hover:bg-indigo-600"
                 onClick={saveAttendance}
+                disabled={loading}
             >
-                Guardar Asistencia
+                {loading ? 'Guardando...' : 'Guardar Asistencia'}
             </button>
         </div>
     );

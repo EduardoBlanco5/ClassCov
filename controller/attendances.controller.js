@@ -2,6 +2,8 @@ import { where } from 'sequelize'
 import {classModel, attendancesModel, studentsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import moment from 'moment';
+import { Sequelize } from 'sequelize';
+
 
 // Lista de palabras reservadas y caracteres sospechosos
 const reservedWords = ['SELECT', 'INSERT', 'DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE'];
@@ -152,3 +154,33 @@ export const getAttendanceByDate = async (req, res) => {
       res.json({ message: "No se puede registrar asistencia para una fecha futura", canModify: false });
     }
   };
+
+  export const checkAttendanceForToday = async (req, res) => {
+    const { class_id } = req.params;
+
+    // Obtener la fecha de hoy sin la parte de la hora
+    const today = moment().format('YYYY-MM-DD'); // Solo fecha, sin hora
+    console.log(`Hoy: ${today}`); // Verifica la fecha
+
+    try {
+        // Buscar asistencia para la clase de hoy, filtrando por class_id y por la fecha
+        const attendance = await attendancesModel.findOne({
+            where: {
+                class_id: class_id, // Filtra por la clase específica
+                // Usamos DATE() para asegurar que solo se compara la fecha sin la hora
+                attendance_date: Sequelize.where(Sequelize.fn('DATE', Sequelize.col('attendance_date')), '=', today)
+            },
+        });
+
+        console.log("Asistencia encontrada:", attendance); // Verifica si hay asistencia
+
+        if (attendance) {
+            return res.json({ exists: true, message: 'Ya se tomó asistencia para esta clase hoy.' });
+        }
+
+        res.json({ exists: false });
+    } catch (error) {
+        console.error('Error al verificar asistencia:', error);
+        res.status(500).json({ message: 'Error al verificar asistencia.' });
+    }
+};

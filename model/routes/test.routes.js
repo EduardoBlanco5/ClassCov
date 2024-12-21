@@ -10,7 +10,7 @@ import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "..
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
 import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmissions, getUpTaskByStudentAndTask,  getUpTasksByTaskId, gradeUpTask} from "../../controller/upTask.controller.js"
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
-import { createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, updateAttendance } from "../../controller/attendances.controller.js";
+import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, updateAttendance } from "../../controller/attendances.controller.js";
 
 
 const router = express.Router();
@@ -177,6 +177,7 @@ router.get('/attendance/:id', getAttendance);
 router.put('/attendance/:id', updateAttendance);
 router.delete('/attendance/:id', deleteAttendance);
 router.get('/attendances/date/:date', getAttendanceByDate);
+router.get('/attendances/check/:class_id', checkAttendanceForToday);
 
 
 //router.post('/upload/Task', uploadA.single('file'), createUpTask); 
