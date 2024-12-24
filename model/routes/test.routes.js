@@ -11,6 +11,7 @@ import { createClass, updateClass, deleteClass, getAllClass, getClass, getClasse
 import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmissions, getUpTaskByStudentAndTask,  getUpTasksByTaskId, gradeUpTask} from "../../controller/upTask.controller.js"
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, updateAttendance } from "../../controller/attendances.controller.js";
+import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
 
 
 const router = express.Router();
@@ -179,8 +180,13 @@ router.delete('/attendance/:id', deleteAttendance);
 router.get('/attendances/date/:date', getAttendanceByDate);
 router.get('/attendances/check/:class_id', checkAttendanceForToday);
 
+//Materas
+router.post('/subject', createSubject);
+router.get('/subjects', getAllSubjects);
+router.get('/subject/:id', getSubject);
+router.put('/subject/:id', updateSubject);
+router.delete('/subject/:id', deleteSubject);
 
-//router.post('/upload/Task', uploadA.single('file'), createUpTask); 
 
 
 

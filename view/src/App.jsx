@@ -43,6 +43,8 @@ import ListStudentClasses from './administration/Classes/ListStudentsClass';
 import ClassStudents from './administration/Classes/ClassStudents';
 import GradingTask from './teachers/Tasks/GradingTask';
 import CreateAttendance from './teachers/Attendances/CreateAttendance';
+import CreateSubject from './administration/Subjects/CreateSubject';
+import ShowSubjects from './administration/Subjects/ShowSubjects';
 
 
 function App() {
@@ -87,6 +89,9 @@ function App() {
           <Route path='/CreateClass' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<CreateClass/>}></Route>
           </Route>
+          <Route path='/CreateSubject' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<CreateSubject/>}></Route>
+          </Route>
           <Route path='/Createannouncements/:class_id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<CreateAnnouncements/>}></Route>
           </Route>
@@ -116,6 +121,9 @@ function App() {
           </Route>
           <Route path='/ShowClass' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher', 'student']} />}>
             <Route index element={<ShowClass/>}></Route>
+          </Route>
+          <Route path='/ShowSubjects' element={<ProtecttedRoute allowedRoles={['admin', 'guardian', 'teacher', 'student']} />}>
+            <Route index element={<ShowSubjects/>}></Route>
           </Route>
           <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileTeacher/>}></Route>

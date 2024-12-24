@@ -10,6 +10,8 @@ export const taskModel = db.define("tasks", {
   class_id: { type: DataTypes.INTEGER },
   teacher_id: { type: DataTypes.INTEGER },
   file: {type: DataTypes.STRING, allowNull: false, defaultValue: '' },
+  subject_id: {type: DataTypes.INTEGER},
+
 });
 
 export const announcementsModel = db.define("announcements", {
@@ -89,6 +91,7 @@ export const upTasksModel = db.define('uptasks', {
 export const students_classesModel = db.define('students_classes', {
   student_id: {type: DataTypes.INTEGER},
   class_id: {type: DataTypes.INTEGER},
+  overall_average: {type: DataTypes.DECIMAL},
   
 })
 
@@ -101,6 +104,23 @@ export const attendancesModel = db.define('attendances',
     notes: {type:DataTypes.STRING},
     
   })
+
+  export const subjectsModel = db.define('subjects', 
+    {
+      name: {type: DataTypes.STRING},
+      description: {type: DataTypes.STRING},
+      grade: {type:DataTypes.STRING},
+
+    }
+  )
+
+  export const students_subjectsModel = db.define('students_subjects', 
+    {
+      student_id: {type: DataTypes.INTEGER},
+      subject_id: {type: DataTypes.INTEGER},
+      average_grade: {type: DataTypes.DECIMAL},
+    }
+  )
 
 students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
 students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
