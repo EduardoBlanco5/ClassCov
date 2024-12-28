@@ -99,6 +99,44 @@ function Navbar() {
                   )}
                 </div>
 
+                {/* Menú Materias */}
+              <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown("materias")}
+                    className="text-white bg-sky-900 px-3 py-1 rounded-md"
+                  >
+                    Materias
+                  </button>
+                  {openDropdown === "materias" && (
+                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                      <ul className="py-1">
+
+
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/CreateSubject"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Crear Materia
+                          </Link>
+                        </li>
+
+
+                        <li>
+                          <Link
+                            className="text-black block px-4 py-2"
+                            to="/ShowSubjects"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            Ver Materias
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
                 {/* Menú Profesores */}
                 <div className="relative">
                   <button

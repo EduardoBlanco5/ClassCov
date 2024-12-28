@@ -74,7 +74,7 @@ function ShowSubjects() {
             <div className="max-w-md w-full p-10 rounded-md my-2 px-4 py-2">
                 {subjects.map((subject) => (
                     <tr key={subject.id}>
-                        <Link to={`/ClassCard/${subject.id}`}>
+                        <Link to={`/SubjectCard/${subject.id}`}>
                             <header className="flex w-full bg-slate-500 hover:bg-slate-700 rounded-md my-2">
                                 <h1 className="text-2xl font-bold w-full my-2 px-4 py-2">
                                     {subject.name} 

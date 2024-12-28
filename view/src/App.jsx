@@ -45,6 +45,7 @@ import GradingTask from './teachers/Tasks/GradingTask';
 import CreateAttendance from './teachers/Attendances/CreateAttendance';
 import CreateSubject from './administration/Subjects/CreateSubject';
 import ShowSubjects from './administration/Subjects/ShowSubjects';
+import SubjectCard from './administration/Subjects/SubjectCard';
 
 
 function App() {
@@ -136,6 +137,9 @@ function App() {
           </Route>
           <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
             <Route index element={<ClassCard/>}></Route>
+          </Route>
+          <Route path='/SubjectCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+            <Route index element={<SubjectCard/>}></Route>
           </Route>
           <Route path='/AnnouncementCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<AnnouncementCard/>}></Route>

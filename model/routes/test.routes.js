@@ -180,7 +180,7 @@ router.delete('/attendance/:id', deleteAttendance);
 router.get('/attendances/date/:date', getAttendanceByDate);
 router.get('/attendances/check/:class_id', checkAttendanceForToday);
 
-//Materas
+//Materias
 router.post('/subject', createSubject);
 router.get('/subjects', getAllSubjects);
 router.get('/subject/:id', getSubject);

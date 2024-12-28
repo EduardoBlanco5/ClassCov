@@ -1,9 +1,11 @@
 import {useForm} from 'react-hook-form'
 import axios from 'axios';
-import { useState,} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect} from 'react';
+import { useNavigate, useParams} from 'react-router-dom';
 
 const URI = 'http://localhost:4000/task'
+const SUBJECTS_URI = 'http://localhost:4000/subjects'; // Endpoint para obtener materias
+
 
 function CreateTask() {
   const {register, handleSubmit} = useForm()
@@ -17,6 +19,9 @@ function CreateTask() {
   const [deliveryDate, setDeliveryDate] = useState('')
   const [status, setStatus] = useState('')
   const [file, setFile] = useState(null);
+
+  const [subjects, setSubjects] = useState([]); // Lista de materias
+  const [subjectId, setSubjectId] = useState(''); // Materia seleccionada
   
 
   const navigate =useNavigate()
@@ -24,6 +29,20 @@ function CreateTask() {
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   })
+
+  useEffect(() => {
+    // Obtener materias desde el backend
+    const fetchSubjects = async () => {
+      try {
+        const response = await axios.get(SUBJECTS_URI);
+        setSubjects(response.data);
+      } catch (error) {
+        console.error('Error al obtener materias:', error);
+      }
+    };
+
+    fetchSubjects();
+  }, []);
 
   const create = async (e) => {
     e.preventDefault() 
@@ -43,6 +62,7 @@ function CreateTask() {
 
         formData.append('teacher_id', teacher_id); // Añade teacher_id
         formData.append('class_id', class_id); // Asegúrate de que `class_id` provenga de `useParams`
+        formData.append('subject_id', subjectId); // Añade el subject_id seleccionado
 
         try {
             // Enviar el FormData con una solicitud POST
@@ -112,6 +132,20 @@ function CreateTask() {
 
           <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
           <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
+
+          <label className='text-white text-1xl font-semibold'>    Materia</label>
+          <select
+            value={subjectId}
+            onChange={(e) => setSubjectId(e.target.value)}
+            className='w-full px-4 py-2 rounded-md my-2'
+          >
+            <option value=''>Selecciona una materia</option>
+            {subjects.map((subject) => (
+              <option key={subject.id} value={subject.id}>
+                {subject.name}
+              </option>
+            ))}
+          </select>
 
           <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>
