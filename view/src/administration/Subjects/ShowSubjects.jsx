@@ -82,7 +82,7 @@ function ShowSubjects() {
                                 <div className="w-full px-4 py-2 my-2">
                                     
                                     {role === "admin" && (
-                                        <Link to={`/UpdateClass/${subject.id}`}>
+                                        <Link to={`/UpdatedSubject/${subject.id}`}>
                                             <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md">
                                                 Actualizar
                                             </button>

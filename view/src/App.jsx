@@ -46,6 +46,7 @@ import CreateAttendance from './teachers/Attendances/CreateAttendance';
 import CreateSubject from './administration/Subjects/CreateSubject';
 import ShowSubjects from './administration/Subjects/ShowSubjects';
 import SubjectCard from './administration/Subjects/SubjectCard';
+import UpdatedSubject from './administration/Subjects/UpdatedSubject';
 
 
 function App() {
@@ -181,6 +182,9 @@ function App() {
           </Route>
           <Route path='/UpdatedTask/:id' element={<ProtecttedRoute allowedRoles={['teacher']} />}>
             <Route index element={<UpdatedTask/>}></Route>
+          </Route>
+          <Route path='/UpdatedSubject/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<UpdatedSubject/>}></Route>
           </Route>
 
           
