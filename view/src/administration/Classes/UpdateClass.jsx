@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 const URI = 'http://localhost:4000/class/'
+const URIT = 'http://localhost:4000/teachers'
 
 function UpdateClass() {
 
@@ -13,9 +14,16 @@ function UpdateClass() {
 
     const [grado, setGrado] = useState('')
 
+    const [teachers, setTeachers] = useState([]); // Lista de materias
+
 
     const {id} = useParams()
     const navigate = useNavigate()
+
+    useEffect( () => {
+        getClassById()
+        fetchTeachers();
+    },[])
 
     const update = async (e) => {
         e.preventDefault()
@@ -32,9 +40,17 @@ function UpdateClass() {
 
     }
 
-    useEffect( () => {
-        getClassById()
-    },[])
+    // Obtener materias desde el backend
+    const fetchTeachers = async () => {
+        try {
+          const response = await axios.get(URIT);
+          setTeachers(response.data);
+        } catch (error) {
+          console.error('Error al obtener materias:', error);
+        }
+      };
+
+
 
     const getClassById = async () => {
         const res = await axios.get(URI+id)
