@@ -56,6 +56,9 @@ function UpdateClass() {
         const res = await axios.get(URI+id)
         
         setTeacher_id(res.data.teacher_id)
+        setGrade(res.data.grade)
+        setSalon(res.data.salon)
+        setShift(res.data.shift)
      
 
         console.log(res.data.id)
@@ -98,14 +101,19 @@ function UpdateClass() {
                     <h1 className="font-bold text-white text-3xl text-center">Grupo: {salon}</h1>
                     <h1 className="font-bold text-white text-3xl text-center">Turno: {shift}</h1>
                     
-                    <h1 className="font-bold text-white text-3xl text-center">id del Profesor:</h1>
-                    <input 
-                    type='text'
-                    placeholder='1, 2, 3, ...'
-                    value={teacher_id}
-                    onChange={ (e) => setTeacher_id(e.target.value)}
-                    className='w-10 mx-40 mt-3 text-center rounded-md '
-                    ></input>
+                    <label className='text-white text-1xl font-semibold'>    Profesor</label>
+                    <select
+                        value={teacher_id}
+                        onChange={(e) => setTeacher_id(e.target.value)}
+                        className='w-full px-4 py-2 rounded-md my-2'
+                    >
+                        <option value=''>Selecciona un Profesor</option>
+                        {teachers.map((teacher) => (
+                        <option key={teacher.id} value={teacher.id}>
+                            {teacher.name}
+                        </option>
+                        ))}
+                    </select>
 
 
                     <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-[38%]  mt-3' type='submit'>Actualizar</button>
