@@ -13,12 +13,18 @@ function GradingTask() {
     const [description, setDescription] = useState('');
     const [deliveryDate, setDeliveryDate] = useState('');
     const [file, setFile] = useState(null);
+    const [subject_id, setSubject_id] = useState('');
+    const [averageGrade, setAverageGrade] = useState(null);
+
 
     const [upTasks, setUpTasks] = useState([]);
     
     const { user } = useContext(AuthContext);
     const student_id = localStorage.getItem('student_id');
     const role = user?.role || localStorage.getItem('role');
+
+
+
   
     useEffect(() => {
         getTaskById();
@@ -34,6 +40,8 @@ function GradingTask() {
             setDescription(res.data.description);
             setDeliveryDate(res.data.deliveryDate);
             setFile(res.data.file);
+            setSubject_id(res.data.subject_id)
+            console.log(res.data.subject_id)
         } catch (error) {
             console.error('Error al obtener la tarea:', error);
         }
@@ -55,10 +63,15 @@ function GradingTask() {
 
   
     const handleGrade = async (taskId, qualification) => {
+        if (!qualification || isNaN(parseFloat(qualification))) {
+            alert('Introduce una calificación válida.');
+            return;
+        }
+    
         try {
-            await axios.put(`${UP_URI}grade/${taskId}`, { qualification });
-            alert('Calificación guardada exitosamente.');
-            getUpTask(); // Actualiza la lista después de calificar
+            await axios.put(`${UP_URI}grade/${taskId}`, { qualification: parseFloat(qualification) });
+            alert('Calificación guardada y promedio actualizado exitosamente.');
+            getUpTask(); // Actualiza la lista de tareas
         } catch (error) {
             console.error('Error al calificar la tarea:', error);
             alert('Hubo un error al guardar la calificación.');
@@ -120,6 +133,7 @@ function GradingTask() {
                                 </>
                             )}
                         </header>
+
                 </tr>
                     ))
                 ) : (

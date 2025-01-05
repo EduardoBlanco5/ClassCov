@@ -58,7 +58,6 @@ function ClassCard() {
     }
     
     
-    
     const getTeacherById = async (teacherId) => {
         const res = await axios.get(URIP + teacherId);
         setName(res.data.name);

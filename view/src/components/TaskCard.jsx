@@ -5,6 +5,7 @@ import { AuthContext } from './AuthContext';
 
 const URI = 'http://localhost:4000/task/';
 const UPLOAD_URI = 'http://localhost:4000/uploadTask';
+const URI_SUBJECT = 'http://localhost:4000/subject/';
 
 const TaskCard = () => {
   const { id } = useParams();
@@ -14,6 +15,10 @@ const TaskCard = () => {
   const [file, setFile] = useState(null);
   const [uploadedTask, setUploadedTask] = useState(null); // Para almacenar la tarea enviada
   const [message, setMessage] = useState('');
+
+  const [subject_id, setSubject_id] = useState('');
+  const [subject_name, setSubject_name] = useState('');
+
   const { user } = useContext(AuthContext);
   const student_id = localStorage.getItem('student_id');
   const role = user?.role || localStorage.getItem('role');
@@ -21,7 +26,21 @@ const TaskCard = () => {
   useEffect(() => {
       getTaskById();
       checkTaskSubmission();
+      
   }, []);
+
+  useEffect(() => {
+    if (subject_id) {
+      getSubjectById(subject_id);
+    }
+    
+  }, [subject_id]);
+  
+
+  const getSubjectById = async (subject_id) => {
+    const res = await axios.get(URI_SUBJECT + subject_id);
+    setSubject_name(res.data.name);
+  };
 
   //Información de la tarea dejada por el maestro
   const getTaskById = async () => {
@@ -31,6 +50,8 @@ const TaskCard = () => {
           setDescription(res.data.description);
           setDeliveryDate(res.data.deliveryDate);
           setFile(res.data.file);
+          setSubject_id(res.data.subject_id);
+          
       } catch (error) {
           console.error('Error al obtener la tarea:', error);
       }
@@ -64,6 +85,7 @@ const TaskCard = () => {
       formData.append('file', file);
       formData.append('task_id', id);
       formData.append('student_id', student_id);
+      formData.append('subject_id', subject_id);
 
       try {
           await axios.post('http://localhost:4000/uploadTask', formData, {
@@ -82,6 +104,7 @@ const TaskCard = () => {
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
         <h1>Título: {title}</h1>
         <p>Descripción: {description}</p>
+        <p>Materia: {subject_name}</p>
         <p>Fecha de entrega: {deliveryDate}</p>
          {/* Mostrar la imagen si existe */}
        

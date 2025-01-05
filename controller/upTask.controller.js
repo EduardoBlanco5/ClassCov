@@ -1,5 +1,5 @@
 import { where } from 'sequelize'
-import {taskModel, classModel, guardiansModel, teachersModel, upTasksModel, studentsModel} from '../model/taskModel.js'
+import {taskModel, classModel, guardiansModel, students_subjectsModel, upTasksModel, studentsModel} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
@@ -272,16 +272,41 @@ export const gradeUpTask = async (req, res) => {
             return res.status(400).json({ message: 'La calificación es obligatoria.' });
         }
 
-        const result = await upTasksModel.update(
-            { qualification },
-            { where: { id } }
-        );
-
-        if (result[0] === 0) {
+        // Actualizar calificación de la tarea
+        const task = await upTasksModel.findByPk(id);
+        if (!task) {
             return res.status(404).json({ message: 'Tarea no encontrada.' });
         }
 
-        res.status(200).json({ message: 'Calificación guardada correctamente.' });
+        task.qualification = qualification;
+        await task.save();
+
+        // Obtener el student_id y subject_id de la tarea
+        const { student_id, subject_id } = task;
+
+        // Calcular el promedio actual
+        const tasks = await upTasksModel.findAll({
+            where: { student_id, subject_id },
+        });
+
+        const totalQualifications = tasks.reduce(
+            (acc, task) => acc + (task.qualification || 0),
+            0
+        );
+        const averageGrade = totalQualifications / tasks.length;
+
+        // Actualizar o crear el registro en students_subjects
+        const [studentSubject] = await students_subjectsModel.findOrCreate({
+            where: { student_id, subject_id },
+            defaults: { average_grade: averageGrade },
+        });
+
+        if (!studentSubject.isNewRecord) {
+            studentSubject.average_grade = averageGrade;
+            await studentSubject.save();
+        }
+
+        res.status(200).json({ message: 'Calificación y promedio actualizados correctamente.' });
     } catch (error) {
         console.error('Error al calificar la tarea:', error);
         res.status(500).json({ message: 'Error interno del servidor.' });
