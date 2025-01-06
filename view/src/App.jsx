@@ -47,6 +47,7 @@ import CreateSubject from './administration/Subjects/CreateSubject';
 import ShowSubjects from './administration/Subjects/ShowSubjects';
 import SubjectCard from './administration/Subjects/SubjectCard';
 import UpdatedSubject from './administration/Subjects/UpdatedSubject';
+import ShowAttendances from './teachers/Attendances/ShowAttendances';
 
 
 function App() {
@@ -159,6 +160,9 @@ function App() {
           </Route>
           <Route path='/GradingTask/:id' element={<ProtecttedRoute allowedRoles={['admin','teacher']} />}>
             <Route index element={<GradingTask/>}></Route>
+          </Route>
+          <Route path='/ShowAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+            <Route index element={<ShowAttendances/>}></Route>
           </Route>
           
           {/* Actualizar */}

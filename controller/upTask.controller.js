@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import { sendEmailTask } from '../middleware/emailService.js';
+import { Op } from 'sequelize';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -278,22 +279,45 @@ export const gradeUpTask = async (req, res) => {
             return res.status(404).json({ message: 'Tarea no encontrada.' });
         }
 
-        task.qualification = qualification;
+        task.qualification = parseFloat(qualification); // Guardar calificación como número
         await task.save();
 
         // Obtener el student_id y subject_id de la tarea
         const { student_id, subject_id } = task;
 
-        // Calcular el promedio actual
-        const tasks = await upTasksModel.findAll({
-            where: { student_id, subject_id },
+        console.log(`Student ID: ${student_id}, Subject ID: ${subject_id}`);
+
+        // Obtener las tareas entregadas por el alumno con calificación
+        const deliveredTasks = await upTasksModel.findAll({
+            where: {
+                student_id,
+                subject_id,
+                qualification: { [Op.ne]: null }, // Filtrar solo las tareas con calificación
+            },
         });
 
-        const totalQualifications = tasks.reduce(
-            (acc, task) => acc + (task.qualification || 0),
-            0
-        );
-        const averageGrade = totalQualifications / tasks.length;
+        console.log(`Delivered tasks by the student: ${deliveredTasks.length}`);
+        console.log('Delivered tasks details:', deliveredTasks);
+
+        if (deliveredTasks.length === 0) {
+            return res.status(400).json({ message: 'El estudiante no ha entregado tareas con calificación.' });
+        }
+
+        // Sumar las calificaciones de las tareas entregadas
+        const totalQualifications = deliveredTasks.reduce((acc, task) => {
+            const qual = parseFloat(task.qualification); // Convertir a número
+            if (!isNaN(qual)) {
+                return acc + qual; // Solo sumar si la calificación es un número válido
+            }
+            return acc; // Si la calificación no es válida, no sumar
+        }, 0);
+
+        console.log(`Total qualifications: ${totalQualifications}`);
+
+        // Calcular el promedio basado solo en las tareas entregadas y calificadas
+        const averageGrade = totalQualifications / deliveredTasks.length;
+
+        console.log(`Calculated average grade: ${averageGrade}`);
 
         // Actualizar o crear el registro en students_subjects
         const [studentSubject] = await students_subjectsModel.findOrCreate({

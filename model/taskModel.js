@@ -85,7 +85,11 @@ export const upTasksModel = db.define('uptasks', {
   file: { type: DataTypes.STRING },
   student_id: { type: DataTypes.INTEGER, allowNull: false },
   task_id: { type: DataTypes.INTEGER, allowNull: false },
-  qualification: {type: DataTypes.DECIMAL, allowNull: true,},
+  qualification: {
+    type: DataTypes.DECIMAL(10, 0),
+    allowNull: true, // Permitir que sea NULL
+    defaultValue: null, // No asignar un valor por defecto
+},
   subject_id: {type: DataTypes.INTEGER},
  
 });
