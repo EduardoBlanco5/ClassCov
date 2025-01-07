@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import 'react-toastify/dist/ReactToastify.css';
@@ -112,6 +112,9 @@ function CreateAttendance() {
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Registrar asistencia</h2>
+            <Link to={`/ShowAttendances/${id}`}> 
+                <button className='bg-blue-700 rounded-md mx-2 px-1 text-white'>Ver asistencias</button>
+            </Link>
             <table className="table-auto w-full border-collapse border border-gray-300">
                 <thead>
                     <tr>

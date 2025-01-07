@@ -3,6 +3,7 @@ import {classModel, attendancesModel, studentsModel} from '../model/taskModel.js
 import { body, validationResult } from 'express-validator';
 import moment from 'moment';
 import { Sequelize } from 'sequelize';
+import { Op } from 'sequelize';
 
 
 // Lista de palabras reservadas y caracteres sospechosos
@@ -124,34 +125,27 @@ export const getAttendanceByDate = async (req, res) => {
     const { date } = req.params;
     const today = moment().startOf('day');
     const selectedDate = moment(date).startOf('day'); // Fecha seleccionada
-    
-    if (selectedDate.isBefore(today)) {
-      // Si la fecha es pasada, solo mostrar asistencias sin permitir modificaciones
-      try {
-        const attendances = await attendancesModel.findAll({
-          where: {
-            attendance_date: selectedDate
-          }
-        });
-        res.json({ attendances, canModify: false });
-      } catch (error) {
-        res.json({ message: error.message });
+  
+    try {
+      const attendances = await attendancesModel.findAll({
+        where: {
+          attendance_date: selectedDate
+        }
+      });
+  
+      // Transformar para devolver solo `dataValues`
+      const formattedAttendances = attendances.map(attendance => attendance.get({ plain: true }));
+  
+      if (selectedDate.isBefore(today)) {
+        return res.json({ attendances: formattedAttendances, canModify: false });
+      } else if (selectedDate.isSame(today)) {
+        return res.json({ attendances: formattedAttendances, canModify: true });
+      } else {
+        return res.json({ message: "No se puede registrar asistencia para una fecha futura", canModify: false });
       }
-    } else if (selectedDate.isSame(today)) {
-      // Si la fecha es hoy, permitir marcar asistencia
-      try {
-        const attendances = await attendancesModel.findAll({
-          where: {
-            attendance_date: selectedDate
-          }
-        });
-        res.json({ attendances, canModify: true });
-      } catch (error) {
-        res.json({ message: error.message });
-      }
-    } else {
-      // Si la fecha es futura, no permitir agregar o modificar asistencia
-      res.json({ message: "No se puede registrar asistencia para una fecha futura", canModify: false });
+    } catch (error) {
+      console.error('Error al obtener asistencias:', error);
+      return res.status(500).json({ message: error.message });
     }
   };
 
@@ -182,5 +176,43 @@ export const getAttendanceByDate = async (req, res) => {
     } catch (error) {
         console.error('Error al verificar asistencia:', error);
         res.status(500).json({ message: 'Error al verificar asistencia.' });
+    }
+};
+
+export const getAttendancesByClass = async (req, res) => {
+    const { class_id } = req.params;
+
+    try {
+        // Incluir la relación con el modelo 'studentsModel' usando 'include'
+        const attendances = await attendancesModel.findAll({
+            where: { class_id: class_id },
+            include: [
+                {
+                    model: studentsModel,
+                    as: 'student', // Asegúrate de usar el alias correcto
+                    attributes: ['id', 'name'], // Solo obtenemos el 'id' y 'name' del estudiante
+                }
+            ],
+            order: [['attendance_date', 'DESC']],
+        });
+
+        // Agrupar por fecha
+        const groupedAttendances = attendances.reduce((acc, attendance) => {
+            const date = moment(attendance.attendance_date).format('YYYY-MM-DD');
+            if (!acc[date]) acc[date] = [];
+            
+            // Reemplazar el 'student_id' por 'name' en los registros
+            const attendanceData = attendance.get({ plain: true });
+            attendanceData.student_name = attendanceData.student.name; // Agregar el nombre del estudiante
+            delete attendanceData.student; // Eliminar el objeto 'student' para no enviarlo de forma redundante
+
+            acc[date].push(attendanceData); // Solo los datos relevantes
+            return acc;
+        }, {});
+
+        res.json(groupedAttendances);
+    } catch (error) {
+        console.error('Error al obtener asistencias por clase:', error);
+        res.status(500).json({ message: error.message });
     }
 };

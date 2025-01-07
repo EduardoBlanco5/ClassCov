@@ -10,7 +10,7 @@ import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "..
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
 import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmissions, getUpTaskByStudentAndTask,  getUpTasksByTaskId, gradeUpTask} from "../../controller/upTask.controller.js"
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
-import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, updateAttendance } from "../../controller/attendances.controller.js";
+import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
 import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
 
 
@@ -179,6 +179,8 @@ router.put('/attendance/:id', updateAttendance);
 router.delete('/attendance/:id', deleteAttendance);
 router.get('/attendances/date/:date', getAttendanceByDate);
 router.get('/attendances/check/:class_id', checkAttendanceForToday);
+router.get('/attendances/class/:class_id', getAttendancesByClass);
+
 
 //Materias
 router.post('/subject', createSubject);

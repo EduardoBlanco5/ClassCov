@@ -26,8 +26,8 @@ export const announcementsModel = db.define("announcements", {
 });
 
 export const studentsModel = db.define("students", {
+  id: { type: DataTypes.INTEGER, primaryKey: true },
   name: { type: DataTypes.STRING },
-  email: { type: DataTypes.STRING },
   guardian_id: { type: DataTypes.INTEGER },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.INTEGER },
@@ -101,15 +101,15 @@ export const students_classesModel = db.define('students_classes', {
   
 })
 
-export const attendancesModel = db.define('attendances',
-  {
-    student_id: {type: DataTypes.INTEGER},
-    class_id: {type: DataTypes.INTEGER},
-    attendance_date: {type: DataTypes.DATE},
-    status: {type: DataTypes.STRING},
-    notes: {type:DataTypes.STRING},
-    
-  })
+export const attendancesModel = db.define('attendances', {
+  id: { type: DataTypes.INTEGER, primaryKey: true },
+  student_id: { type: DataTypes.INTEGER },
+  class_id: { type: DataTypes.INTEGER },
+  attendance_date: { type: DataTypes.DATE },
+  status: { type: DataTypes.STRING },
+  notes: { type: DataTypes.STRING },
+});
+
 
   export const subjectsModel = db.define('subjects', 
     {
@@ -143,3 +143,15 @@ students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
 
 studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });
 classModel.hasMany(students_classesModel, { foreignKey: 'class_id' });
+
+attendancesModel.associate = (models) => {
+  attendancesModel.belongsTo(models.studentsModel, { foreignKey: 'student_id', as: 'student' });
+};
+
+
+studentsModel.associate = (models) => {
+  studentsModel.hasMany(models.attendancesModel, { foreignKey: 'student_id', as: 'attendances' });
+};
+
+studentsModel.associate({ attendancesModel });
+attendancesModel.associate({ studentsModel });
