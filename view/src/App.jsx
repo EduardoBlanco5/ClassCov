@@ -49,6 +49,7 @@ import SubjectCard from './administration/Subjects/SubjectCard';
 import UpdatedSubject from './administration/Subjects/UpdatedSubject';
 import ShowAttendances from './teachers/Attendances/ShowAttendances';
 import AiHelper from './components/AiHelper';
+import StudentDashboard from './components/StudentDashboard';
 
 
 function App() {
@@ -165,8 +166,8 @@ function App() {
           <Route path='/ShowAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<ShowAttendances/>}></Route>
           </Route>
-          <Route path='/AiHelper' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
-            <Route index element={<AiHelper/>}></Route>
+          <Route path='/StudentDashboard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+            <Route index element={<StudentDashboard/>}></Route>
           </Route>
           
           {/* Actualizar */}
