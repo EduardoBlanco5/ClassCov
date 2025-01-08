@@ -18,7 +18,8 @@
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^11.0.2",
-    "toastify": "^2.0.1"
+    "toastify": "^2.0.1",
+    "usellm": "^0.13.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

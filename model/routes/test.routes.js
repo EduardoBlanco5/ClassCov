@@ -12,6 +12,7 @@ import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmis
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
 import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
+import { processRequest } from "../../controller/llmController.js";
 
 
 const router = express.Router();
@@ -189,6 +190,7 @@ router.get('/subject/:id', getSubject);
 router.put('/subject/:id', updateSubject);
 router.delete('/subject/:id', deleteSubject);
 
+router.post('/ai/process', processRequest);
 
 
 
