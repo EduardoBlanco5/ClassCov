@@ -127,41 +127,6 @@ export const attendancesModel = db.define('attendances', {
       average_grade: {type: DataTypes.DECIMAL},
     }
   )
-//Desafios
-  export const challengesModel = db.define('challenges', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    title: { type: DataTypes.STRING },
-    description: { type: DataTypes.TEXT },
-    difficulty: { type: DataTypes.ENUM('basic', 'advanced') },
-    reward: { type: DataTypes.STRING }, // Nombre de la insignia o recompensa
-    subject_id: { type: DataTypes.INTEGER }, // Relacionado con materias
-  });
-
-  //estudiante / desafios
-  export const studentChallengesModel = db.define('student_challenges', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    student_id: { type: DataTypes.INTEGER }, // Relación con el estudiante
-    challenge_id: { type: DataTypes.INTEGER }, // Relación con el desafío
-    status: { type: DataTypes.ENUM('assigned', 'in_progress', 'completed') },
-    progress: { type: DataTypes.DECIMAL(5, 2), defaultValue: 0.0 }, // Progreso en porcentaje
-    completed_at: { type: DataTypes.DATE, allowNull: true },
-  });
-
-  //Insignias
-  export const badgesModel = db.define('badges', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING },
-    description: { type: DataTypes.TEXT },
-    icon: { type: DataTypes.STRING }, // Ruta al icono de la insignia
-  });
-
-  //Estudiante / insignia
-  export const studentBadgesModel = db.define('student_badges', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    student_id: { type: DataTypes.INTEGER }, // Relación con el estudiante
-    badge_id: { type: DataTypes.INTEGER }, // Relación con la insignia
-    awarded_at: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }, // Fecha de asignación
-  });
 
 
 students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
@@ -192,22 +157,3 @@ studentsModel.associate = (models) => {
 studentsModel.associate({ attendancesModel });
 attendancesModel.associate({ studentsModel });
 
-// Relación entre challenges y subjects
-challengesModel.belongsTo(subjectsModel, { foreignKey: 'subject_id', as: 'subject' });
-subjectsModel.hasMany(challengesModel, { foreignKey: 'subject_id', as: 'challenges' });
-
-// Relación entre student_challenges y challenges
-studentChallengesModel.belongsTo(challengesModel, { foreignKey: 'challenge_id', as: 'challenge' });
-challengesModel.hasMany(studentChallengesModel, { foreignKey: 'challenge_id', as: 'studentChallenges' });
-
-// Relación entre student_challenges y students
-studentChallengesModel.belongsTo(studentsModel, { foreignKey: 'student_id', as: 'student' });
-studentsModel.hasMany(studentChallengesModel, { foreignKey: 'student_id', as: 'studentChallenges' });
-
-// Relación entre student_badges y badges
-studentBadgesModel.belongsTo(badgesModel, { foreignKey: 'badge_id', as: 'badge' });
-badgesModel.hasMany(studentBadgesModel, { foreignKey: 'badge_id', as: 'studentBadges' });
-
-// Relación entre student_badges y students
-studentBadgesModel.belongsTo(studentsModel, { foreignKey: 'student_id', as: 'student' });
-studentsModel.hasMany(studentBadgesModel, { foreignKey: 'student_id', as: 'studentBadges' });

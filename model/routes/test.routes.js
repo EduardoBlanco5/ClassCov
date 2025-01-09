@@ -12,8 +12,7 @@ import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmis
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
 import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
-import { assignChallenge, createChallenge, getAssignedChallenges, updateChallengeProgress } from "../../controller/challengesController.js";
-import { awardBadge, createBadge, getStudentBadges } from "../../controller/badgesController.js";
+
 
 
 
@@ -191,21 +190,5 @@ router.get('/subjects', getAllSubjects);
 router.get('/subject/:id', getSubject);
 router.put('/subject/:id', updateSubject);
 router.delete('/subject/:id', deleteSubject);
-
-//Desafios
-router.post('/challenge', createChallenge);  // Crear desafío
-
-router.post('/assignChallenge', assignChallenge);  // Asignar desafío a un estudiante
-router.put('/update-progress', updateChallengeProgress);  // Actualizar progreso del desafío
-router.get('/student/:student_id/challenges', getAssignedChallenges);
-
-//insignias
-router.post('/badge', createBadge);  // Crear insignia
-router.post('/award', awardBadge);  // Otorgar insignia a un estudiante
-router.get('/badge/:student_id', getStudentBadges);  // Obtener insignias de un estudiante
-
-
-
-
 
 export default router;

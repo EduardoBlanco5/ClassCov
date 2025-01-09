@@ -4,7 +4,7 @@ import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
-import { sendEmailTask } from '../middleware/emailService.js';
+import { sendEmailTask, sendEmail } from '../middleware/emailService.js';
 import { Op } from 'sequelize';
 
 
@@ -72,7 +72,7 @@ export const createUpTask = async (req, res) => {
 
         // Enviar el correo al tutor
         const subject = `El estudiante ${student.name} ha subido una tarea`;
-        const text = `Hola, \n\nEl estudiante ${student.name} ha subido una tarea para la asignatura: ${taskExists.title}.\n\nArchivo: ${filePath || 'No se adjuntó ningún archivo'}\n\nSaludos, \nSistema de Tareas`;
+        const text = `Hola, \n\nEl estudiante ${student.name} ha subido un archivo para la tarea: ${taskExists.title}.\n\nArchivo: ${filePath || 'No se adjuntó ningún archivo'}\n\nSaludos, \nSistema de Tareas`;
 
         await sendEmailTask(guardian.email, subject, text, 'no-reply@tusistema.com', 'Sistema de Tareas');
 
@@ -274,16 +274,20 @@ export const gradeUpTask = async (req, res) => {
         }
 
         // Actualizar calificación de la tarea
-        const task = await upTasksModel.findByPk(id);
+        const task = await upTasksModel.findByPk(id, {
+            include: { model: taskModel, as: 'task' },
+        });
         if (!task) {
             return res.status(404).json({ message: 'Tarea no encontrada.' });
         }
+        
 
         task.qualification = parseFloat(qualification); // Guardar calificación como número
         await task.save();
 
         // Obtener el student_id y subject_id de la tarea
         const { student_id, subject_id } = task;
+        const title = task.task?.title || 'Sin título'; // Obtener el título de la tarea o usar un valor predeterminado
 
         console.log(`Student ID: ${student_id}, Subject ID: ${subject_id}`);
 
@@ -329,6 +333,26 @@ export const gradeUpTask = async (req, res) => {
             studentSubject.average_grade = averageGrade;
             await studentSubject.save();
         }
+
+        const student = await studentsModel.findByPk(student_id);
+        if (!student) {
+            return res.status(400).json({ message: 'El estudiante especificado no existe.' });
+        }
+
+        // Obtener el tutor (guardian) del estudiante
+        const guardian = await guardiansModel.findByPk(student.guardian_id);
+        if (!guardian) {
+            return res.status(400).json({ message: 'No se encontró tutor para este estudiante.' });
+        }
+
+        // Crear un array de destinatarios
+        const recipients = [student.email, guardian.email].filter(email => email); // Excluir valores nulos o vacíos
+
+        // Enviar el correo al tutor y al estudiante
+        const subject = `Tarea ${title} ha sido calificada`;
+        const text = `Hola, \n\nLa calificación de la tarea ${title} es: ${qualification}\n\nSaludos, \nSistema de Tareas`;
+
+        await sendEmail(recipients.join(','), subject, text, 'no-reply@tusistema.com', 'Sistema de Tareas');
 
         res.status(200).json({ message: 'Calificación y promedio actualizados correctamente.' });
     } catch (error) {
