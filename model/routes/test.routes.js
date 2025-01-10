@@ -16,6 +16,7 @@ import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject
 
 
 
+
 const router = express.Router();
 
 //Tareas
@@ -190,5 +191,6 @@ router.get('/subjects', getAllSubjects);
 router.get('/subject/:id', getSubject);
 router.put('/subject/:id', updateSubject);
 router.delete('/subject/:id', deleteSubject);
+
 
 export default router;

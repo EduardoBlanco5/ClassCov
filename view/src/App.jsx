@@ -48,8 +48,8 @@ import ShowSubjects from './administration/Subjects/ShowSubjects';
 import SubjectCard from './administration/Subjects/SubjectCard';
 import UpdatedSubject from './administration/Subjects/UpdatedSubject';
 import ShowAttendances from './teachers/Attendances/ShowAttendances';
-import AiHelper from './components/AiHelper';
-import StudentDashboard from './components/StudentDashboard';
+import Dashboard from './components/Dashboard';
+
 
 
 function App() {
@@ -166,9 +166,10 @@ function App() {
           <Route path='/ShowAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<ShowAttendances/>}></Route>
           </Route>
-          <Route path='/StudentDashboard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
-            <Route index element={<StudentDashboard/>}></Route>
+          <Route path='/Dashboard' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
+            <Route index element={<Dashboard/>}></Route>
           </Route>
+          
           
           {/* Actualizar */}
           <Route path='/Updatedstudent/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
