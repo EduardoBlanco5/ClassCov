@@ -12,6 +12,7 @@ import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmis
 import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
 import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
 import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
+import { getDashboardData } from "../../controller/dashboard.controller.js";
 
 
 
@@ -191,6 +192,8 @@ router.get('/subjects', getAllSubjects);
 router.get('/subject/:id', getSubject);
 router.put('/subject/:id', updateSubject);
 router.delete('/subject/:id', deleteSubject);
+
+router.get('/dashboard/:student_id', getDashboardData);
 
 
 export default router;

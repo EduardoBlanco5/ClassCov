@@ -128,32 +128,32 @@ export const attendancesModel = db.define('attendances', {
     }
   )
 
+// Asociaciones
 
-students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
-students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
-studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });
-classModel.hasMany(students_classesModel, { foreignKey: 'class_id' });
-taskModel.hasMany(upTasksModel, { foreignKey: 'task_id', as: 'upTasks' });
-upTasksModel.belongsTo(taskModel, { foreignKey: 'task_id', as: 'task' });
-studentsModel.hasMany(upTasksModel, { foreignKey: 'student_id', as: 'submissions' });
-upTasksModel.belongsTo(studentsModel, { foreignKey: 'student_id', as: 'student' });
-studentsModel.hasMany(upTasksModel, { foreignKey: 'student_id', as: 'upTasks' });
+// Asociación de subjects con students_subjects
+students_subjectsModel.belongsTo(subjectsModel, { foreignKey: "subject_id" });
+subjectsModel.hasMany(students_subjectsModel, { foreignKey: "subject_id" });
 
-students_classesModel.belongsTo(studentsModel, { foreignKey: 'student_id' });
-students_classesModel.belongsTo(classModel, { foreignKey: 'class_id' });
+students_subjectsModel.belongsTo(studentsModel, { foreignKey: "student_id" });
+studentsModel.hasMany(students_subjectsModel, { foreignKey: "student_id" });
 
-studentsModel.hasMany(students_classesModel, { foreignKey: 'student_id' });
-classModel.hasMany(students_classesModel, { foreignKey: 'class_id' });
+// Asociación de clases con estudiantes
+students_classesModel.belongsTo(studentsModel, { foreignKey: "student_id" });
+students_classesModel.belongsTo(classModel, { foreignKey: "class_id" });
+studentsModel.hasMany(students_classesModel, { foreignKey: "student_id" });
+classModel.hasMany(students_classesModel, { foreignKey: "class_id" });
 
-attendancesModel.associate = (models) => {
-  attendancesModel.belongsTo(models.studentsModel, { foreignKey: 'student_id', as: 'student' });
-};
+// Asociación de tareas
+taskModel.hasMany(upTasksModel, { foreignKey: "task_id", as: "upTasks" });
+upTasksModel.belongsTo(taskModel, { foreignKey: "task_id", as: "task" });
+
+// Asociación de estudiantes con entregas
+studentsModel.hasMany(upTasksModel, { foreignKey: "student_id", as: "submissions" });
+upTasksModel.belongsTo(studentsModel, { foreignKey: "student_id", as: "student" });
+
+// Asociación de asistencia
+attendancesModel.belongsTo(studentsModel, { foreignKey: "student_id", as: "student" });
+studentsModel.hasMany(attendancesModel, { foreignKey: "student_id", as: "attendances" });
 
 
-studentsModel.associate = (models) => {
-  studentsModel.hasMany(models.attendancesModel, { foreignKey: 'student_id', as: 'attendances' });
-};
-
-studentsModel.associate({ attendancesModel });
-attendancesModel.associate({ studentsModel });
 
