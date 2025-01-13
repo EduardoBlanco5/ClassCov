@@ -27,12 +27,12 @@ export const getDashboardData = async (req, res) => {
         const totalTasks = taskProgress.length;
         const completedTasks = taskProgress.filter(task => task.qualification !== null).length;
         const averageGrade =
-            totalTasks > 0
-                ? (
-                      taskProgress.reduce((sum, task) => sum + (task.qualification || 0), 0) /
-                      completedTasks
-                  ).toFixed(2)
-                : null;
+            completedTasks > 0 
+            ? (
+                taskProgress.reduce((sum, task) => sum + (task.qualification || 0), 0) / 
+                completedTasks
+            ).toFixed(2) 
+            : 0;
 
         // Obtener asistencias
         const attendanceData = await attendancesModel.findAll({
@@ -41,7 +41,7 @@ export const getDashboardData = async (req, res) => {
         });
 
         const totalClasses = attendanceData.length;
-        const attendedClasses = attendanceData.filter(record => record.status === 'present').length;
+        const attendedClasses = attendanceData.filter(record => record.status === 'Presente').length;
         const attendanceRate =
             totalClasses > 0 ? ((attendedClasses / totalClasses) * 100).toFixed(2) : null;
 
@@ -52,11 +52,13 @@ export const getDashboardData = async (req, res) => {
                 subjectName: subject.subject.name,
                 averageGrade: subject.average_grade,
             })),
+            //Hay que cambiar un poco esto para obtener todas las tareas y separar promedios
             taskProgress: {
                 totalTasks,
                 completedTasks,
                 averageGrade,
             },
+            //Aquí dividió las clases y saco un promedio, hay que modificar el promedio de asistencias
             attendance: {
                 totalClasses,
                 attendedClasses,
