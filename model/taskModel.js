@@ -36,6 +36,7 @@ export const studentsModel = db.define("students", {
   admission: { type: DataTypes.DATE },
   status: { type: DataTypes.STRING },
   file: {type: DataTypes.STRING},
+  email: {type: DataTypes.STRING},
 });
 
 export const guardiansModel = db.define("guardians", {

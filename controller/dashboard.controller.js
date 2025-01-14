@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { studentsModel, students_subjectsModel, upTasksModel, attendancesModel, subjectsModel } from '../model/taskModel.js';
+import { studentsModel, students_subjectsModel, upTasksModel, attendancesModel, subjectsModel, students_classesModel } from '../model/taskModel.js';
 
 export const getDashboardData = async (req, res) => {
     const { student_id } = req.params; // ID del estudiante para el que se quiere el dashboard
@@ -23,16 +23,15 @@ export const getDashboardData = async (req, res) => {
             where: { student_id },
             attributes: ['qualification'],
         });
+        // Obtener el progreso de tareas entregadas
+        const overallAverage = await students_classesModel.findAll({
+            where: { student_id },
+            attributes: ['overall_average'],
+        });
 
         const totalTasks = taskProgress.length;
         const completedTasks = taskProgress.filter(task => task.qualification !== null).length;
-        const averageGrade =
-            completedTasks > 0 
-            ? (
-                taskProgress.reduce((sum, task) => sum + (task.qualification || 0), 0) / 
-                completedTasks
-            ).toFixed(2) 
-            : 0;
+        
 
         // Obtener asistencias
         const attendanceData = await attendancesModel.findAll({
@@ -56,7 +55,7 @@ export const getDashboardData = async (req, res) => {
             taskProgress: {
                 totalTasks,
                 completedTasks,
-                averageGrade,
+                overallAverage,
             },
             //Aquí dividió las clases y saco un promedio, hay que modificar el promedio de asistencias
             attendance: {
