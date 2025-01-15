@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect, useRef  } from "react";
 import { AuthContext } from "./AuthContext";
+import Dashboard from "./Dashboard";
 
 function Navbar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
@@ -340,11 +341,13 @@ function Navbar() {
                     </div>
                   )}
                 </div>
+
               </>
             )}
 
             {/*ALUMNOS*/}
             {role === "student" && (
+              <>
               <div className="relative">
               <button
                 onClick={() => toggleDropdown("clases")}
@@ -368,7 +371,20 @@ function Navbar() {
                 </div>
               )}
             </div>
+
+            <div>
+              <button className="text-white bg-blue-800 px-3 py-1 rounded-md">
+              <Link to={`/Dashboard/${id}`}> Dashboard</Link>
+              </button>
+            </div>
+
+            </>
+            
+
+            
+
             )}
+            
 
             {/*TUTORES */}
             {role === "guardian" && (
