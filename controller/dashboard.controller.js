@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import axios from 'axios';
 import { studentsModel, students_subjectsModel, upTasksModel, attendancesModel, subjectsModel, students_classesModel } from '../model/taskModel.js';
 
 export const getDashboardData = async (req, res) => {
@@ -40,9 +41,21 @@ export const getDashboardData = async (req, res) => {
         });
 
         const totalClasses = attendanceData.length;
-        const attendedClasses = attendanceData.filter(record => record.status === 'Presente').length;
+        const Present = attendanceData.filter(record => record.status === 'Presente').length;
+        const Delay = attendanceData.filter(record => record.status === 'Retardo').length;
+        const Fouled = attendanceData.filter(record => record.status === 'Falta').length;
+
         const attendanceRate =
-            totalClasses > 0 ? ((attendedClasses / totalClasses) * 100).toFixed(2) : null;
+            totalClasses > 0 ? ((Present / totalClasses) * 100).toFixed(2) : null;
+
+             // Solicitar recomendaciones al servidor Flask
+             const flaskResponse = await axios.post('http://127.0.0.1:5001/recommend', {
+                student_id,
+                subject_averages: subjectAverages.map(subject => ({
+                    subjectName: subject.subject.name,
+                    averageGrade: subject.average_grade,  // Esta clave debería ser 'averageGrade'
+                })),
+            });
 
         // Estructurar los datos para el dashboard
         const dashboardData = {
@@ -51,18 +64,19 @@ export const getDashboardData = async (req, res) => {
                 subjectName: subject.subject.name,
                 averageGrade: subject.average_grade,
             })),
-            //Hay que cambiar un poco esto para obtener todas las tareas y separar promedios
             taskProgress: {
                 totalTasks,
                 completedTasks,
-                overallAverage,
+                overallAverage: overallAverage ? overallAverage.overall_average : null,
             },
-            //Aquí dividió las clases y saco un promedio, hay que modificar el promedio de asistencias
             attendance: {
                 totalClasses,
-                attendedClasses,
+                Present,
+                Delay,
+                Fouled,
                 attendanceRate,
             },
+            recommendations: flaskResponse.data.recommendations,  // Esta parte debería funcionar bien
         };
 
         res.json(dashboardData);

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Bar, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { Bar, Pie, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement, } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
 const Dashboard = () => {
   const { id } = useParams(); // Obtener el ID del estudiante de la URL
@@ -45,7 +45,7 @@ const Dashboard = () => {
     ],
   };
 
-  // Datos para el gráfico de torta de tareas completadas
+  // Datos para el gráfico de tareas completadas
   const taskData = {
     labels: ['Tareas completadas', 'Tareas pendientes'],
     datasets: [
@@ -59,13 +59,13 @@ const Dashboard = () => {
 
   // Datos para el gráfico de barras de asistencias
   const attendanceData = {
-    labels: ['Clases totales', 'Clases asistidas'],
+    labels: ['Clases totales', 'Clases asistidas', 'Retardos', 'Faltas'],
     datasets: [
       {
-        label: 'Asistencias',
-        data: [dashboardData.attendance.totalClasses, dashboardData.attendance.attendedClasses],
-        backgroundColor: ['#FF8C00', '#4CAF50'],
-        borderColor: ['#FF8C00', '#4CAF50'],
+        label: 'Total', 
+        data: [dashboardData.attendance.totalClasses, dashboardData.attendance.Present, dashboardData.attendance.Delay, dashboardData.attendance.Fouled],
+        backgroundColor: ['#FF8C00', '#4CAF50', '#ffff33', '#ff4633'],
+        borderColor: ['#FF8C00', '#4CAF50', '#ffff33', '#ff4633'],
         borderWidth: 1,
       },
     ],
@@ -73,16 +73,40 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Dashboard de {dashboardData.studentName}</h1>
+      {loading ? (
+  <p>Cargando...</p>
+) : error ? (
+  <p>{error}</p>
+) : (
+  <>
+    <h1>Dashboard de {dashboardData.studentName}</h1>
 
-      <h2>Promedio por materia</h2>
-      <Bar data={subjectData} options={{ responsive: true }} />
+    <h2>Promedio por materia</h2>
+    <Bar data={subjectData} options={{ responsive: true }} />
 
-      <h2>Progreso de Tareas</h2>
-      <Pie data={taskData} options={{ responsive: true }} />
+    <h2>Progreso de Tareas</h2>
+    <Pie data={taskData} options={{ responsive: true }} />
 
-      <h2>Asistencias</h2>
-      <Bar data={attendanceData} options={{ responsive: true }} />
+    <h2>Asistencias</h2>
+    <Bar data={attendanceData} options={{ responsive: true }} />
+
+    <h2>Recomendaciones Educativas</h2>
+    {dashboardData.recommendations && dashboardData.recommendations.length > 0 ? (
+      dashboardData.recommendations.map((rec, index) => (
+        <div key={index}>
+          <h3>{rec.subject}</h3>
+          <ul>
+            {rec.resources.map((resource, i) => (
+              <li key={i}><a href={resource} target="_blank" rel="noopener noreferrer">{resource}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))
+    ) : (
+      <p>No hay recomendaciones disponibles.</p>
+    )}
+  </>
+)}
     </div>
   );
 };
