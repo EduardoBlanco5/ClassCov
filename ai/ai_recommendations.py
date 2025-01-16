@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 # Base de datos de recursos educativos
 RESOURCES = {
-    "Matemáticas": [
+    "Matemáticas 1": [
         "https://www.khanacademy.org/math",
         "https://www.mathsisfun.com/",
         "https://www.symbolab.com/"
