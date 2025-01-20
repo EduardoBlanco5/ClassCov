@@ -4,7 +4,7 @@ import multer from 'multer';
 import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
 import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId } from "../../controller/students.controller.js";
-import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGuardian } from "../../controller/guardians.controller.js";
+import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGuardian, uploadExcel } from "../../controller/guardians.controller.js";
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
@@ -91,6 +91,12 @@ router.get('/guardians', getAllGuardians);
 router.get('/guardian/:id', getGuardian);
 router.put('/guardian/:id', PerfilGuardian.single('file'), updateGuardian);
 router.delete('/guardian/:id', deleteGuardian);
+
+// Configurar multer para la carga de archivos
+const upload = multer({ dest: 'uploads/' });
+
+// Ruta para subir archivo Excel
+router.post('/upload-excel', upload.single('file'), uploadExcel);
 
 //Profesores
 const ImageTeacher = multer.diskStorage({

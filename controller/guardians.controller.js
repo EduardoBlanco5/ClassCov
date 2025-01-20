@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
+import xlsx from 'xlsx';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -160,3 +161,80 @@ export const deleteGuardian = async (req, res) => {
     }
     
 }
+// Subir archivo Excel
+export const uploadExcel = async (req, res) => {
+    try {
+        // Verificar si se subió un archivo
+        if (!req.file) {
+            return res.status(400).json({ message: 'No se ha subido ningún archivo' });
+        }
+
+        // Leer el archivo Excel
+        const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+        const workbook = xlsx.readFile(filePath);
+        const sheetName = workbook.SheetNames[0];  // Usar la primera hoja del Excel
+        const sheet = workbook.Sheets[sheetName];
+        const data = xlsx.utils.sheet_to_json(sheet);  // Convertir a JSON
+
+        // Recorrer los datos y guardar cada tutor en la base de datos
+        for (let tutor of data) {
+            console.log('Datos del tutor:', tutor);
+             // Verificar que el teléfono no esté vacío o undefined
+            let phoneNumber = tutor.phone;
+
+            if (!phoneNumber) {
+                throw new Error('El número de teléfono es obligatorio');
+            }
+
+              // Limpiar el número de teléfono (eliminar caracteres no numéricos)
+              phoneNumber = String(tutor.phone).replace(/[^\d]/g, ''); // Elimina todo lo que no sea un número
+             
+            if (!phoneNumber || phoneNumber.length < 10) {
+                throw new Error('El número de teléfono no es válido');
+            }
+
+            // Formatear la fecha de nacimiento
+            let dateOfBirth = tutor.date_of_birth;
+
+            // Si la fecha está en formato numérico (como en algunos archivos Excel), conviértelo
+            if (typeof dateOfBirth === 'number') {
+                // Convertir el número serial de Excel a una fecha
+                dateOfBirth = new Date((dateOfBirth - 25569) * 86400 * 1000); // Convierte a fecha
+            }
+
+            // Asegurarse de que la fecha esté en formato 'YYYY-MM-DD'
+            let day = String(dateOfBirth.getDate()).padStart(2, '0');
+            let month = String(dateOfBirth.getMonth() + 1).padStart(2, '0');
+            let year = dateOfBirth.getFullYear();
+
+            let formattedDateOfBirth = `${year}-${month}-${day}`;
+
+
+            // Encriptar la contraseña (si la columna 'password' existe en el Excel)
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(phoneNumber, salt);
+
+            const guardianData = {
+                name: tutor.name,
+                email: tutor.email,
+                phone: tutor.phone,
+                date_of_birth: formattedDateOfBirth,
+                role: 'guardian',
+                status: 'activo',
+                password: hashedPassword,
+                file: req.file ? `/${req.file.filename}` : null,  // Ruta al archivo subido
+            };
+
+            // Guardar en la base de datos
+            await guardiansModel.create(guardianData);
+        }
+
+        // Eliminar el archivo después de procesarlo
+        await fs.remove(filePath);
+
+        res.json({ message: 'Tutores importados correctamente' });
+    } catch (error) {
+        console.error('Error al procesar el archivo Excel:', error);
+        res.status(500).json({ message: 'Error al procesar el archivo' });
+    }
+};
