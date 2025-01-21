@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { AuthContext,  } from '../../components/AuthContext';
 
 const URIT = 'http://localhost:4000/tasks/';
+const URIA = 'http://localhost:4000/tasksAdmin/';
 
 function ClassTasks() {
     const [tasks, setTasks] = useState([]);
@@ -16,9 +17,11 @@ function ClassTasks() {
 
     const [teacherTasks, setTeacherTasks] = useState([]);
     
+    
 
     useEffect(() => {
         getTasksByClassId(id, studentId);
+        
 
     }, [id, studentId]);
 
@@ -27,7 +30,31 @@ function ClassTasks() {
             const teacherId = localStorage.getItem('teacher_id'); // Asegúrate de tener el ID del profesor en localStorage
             getTeacherTasks(id, teacherId);
         }
+        if (role === 'admin') {
+            getTasksByClassIdAdmin(id);
+        }
     }, [id, role]);
+
+
+    const getTasksByClassIdAdmin = async (classId) => {
+        if (!classId) {
+            console.error("classId no está definido:", { classId });
+            return;
+        }
+    
+        try {
+            // Realizar la petición al servidor
+            const res = await axios.get(`${URIA}class`, {
+                params: { class_id: classId },
+            });
+    
+            // Guardar las tareas obtenidas en el estado
+            setTasks(res.data);
+        } catch (error) {
+            console.error("Error al obtener tareas para admin:", error);
+        }
+    };
+
 
     const getTasksByClassId = async (classId, studentId) => {
         if (!classId || !studentId) {
@@ -44,6 +71,7 @@ function ClassTasks() {
             console.error("Error al obtener tareas:", error);
         }
     };
+
 
     const getTeacherTasks = async (classId, teacherId) => {
         if (!classId || !teacherId) {
@@ -134,7 +162,24 @@ function ClassTasks() {
         </div>
     </div>
 )}
-            </div>
+
+            {role === 'admin' && (
+                <div>
+                    <h3 className="font-bold text-white text-xl text-center mt-4">Tareas de la clase:</h3>
+                    <ul className="mt-5">
+                        {tasks.length > 0 ? (
+                            tasks.map(task => (
+                                <Link to={`/TaskCard/${task.id}`} key={task.id}>
+                                    <li className="text-center">{task.title}</li>
+                                </Link>
+                            ))
+                        ) : (
+                            <p className="text-center text-white">No hay tareas disponibles.</p>
+                        )}
+                    </ul>
+                </div>
+            )}
+            </div> 
         </div>
     );
 }

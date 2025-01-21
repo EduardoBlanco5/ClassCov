@@ -23,10 +23,10 @@ const CreateStudentClass = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Inscribir Estudiante a Clase</h2>
+    <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
+      <h2 className='text-white flex'>Inscribir Estudiante a Clase</h2>
       <form onSubmit={handleSubmit}>
-        <label>Student ID:</label>
+        <label className='text-white flex'>Student ID:</label>
         <input
           type="text"
           value={studentId}
@@ -34,15 +34,16 @@ const CreateStudentClass = () => {
           required
         />
         <br />
-        <label>Class ID:</label>
+        <label className='text-white flex'>Class ID:</label>
         <input
           type="text"
+          className='text-white flex'
           value={classId}
           onChange={(e) => setClassId(e.target.value)}
           required
         />
         <br />
-        <button type="submit">Inscribir</button>
+        <button type="submit" className='text-white flex bg-green-500 rounded-md p-3'>Inscribir</button>
       </form>
     </div>
   );

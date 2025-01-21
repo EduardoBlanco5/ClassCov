@@ -56,6 +56,24 @@ function CreateStudent() {
                 console.error('Error al crear el Tutor:', error);
             }
     }
+
+    const uploadExcel = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file);
+  
+      try {
+          await axios.post('http://localhost:4000/student-excel', formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              },
+          });
+          alert('Tutores importados correctamente');
+      } catch (error) {
+          console.error('Error al subir el archivo Excel:', error);
+          alert('Error al subir el archivo');
+      }
+  };
   return (
 
     <div className='flex justify-center'>
@@ -141,6 +159,24 @@ function CreateStudent() {
 
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>
+        </div>
+        <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
+        <form onSubmit={uploadExcel}>
+                <h1 className="font-bold text-white text-center text-3xl">Subir Excel de Alumnos</h1>
+                <label htmlFor="excelFile" className="text-white">
+                    Selecciona un archivo Excel:
+                </label>
+                <input
+                    type="file"
+                    id="excelFile"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    accept=".xlsx,.xls"
+                    required
+                />
+                <button className="bg-blue-600 rounded-md w-20 mx-32" type="submit">
+                    Subir Excel
+                </button>
+            </form>
         </div>
     </div>
     

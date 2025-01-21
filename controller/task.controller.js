@@ -218,3 +218,31 @@ export const getTasksByClassId = async (req, res) => {
         res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
+//Busqueda por id
+export const getTasksByClassIdAdmin = async (req, res) => {
+    const { class_id } = req.query;
+
+    console.log("Parámetros recibidos:", { class_id });
+
+    if (!class_id) {
+        return res.status(400).json({ message: "class_id es obligatorio" });
+    }
+
+    try {
+        // Obtener todas las tareas asociadas a la clase
+        const tasks = await taskModel.findAll({ where: { class_id } });
+
+        // Añadir URL completa para los archivos si existen
+        const tasksWithImages = tasks.map(task => ({
+            ...task.dataValues,  // Usar dataValues para extraer los datos
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null,
+        }));
+
+        // Devolver todas las tareas
+        res.json(tasksWithImages);
+    } catch (error) {
+        console.error("Error en el servidor:", error);
+        res.status(500).json({ message: "Error interno del servidor" });
+    }
+};
