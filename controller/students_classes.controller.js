@@ -5,6 +5,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
+import xlsx from 'xlsx';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -168,3 +170,50 @@ export const deleteStudentClass = async (req, res) => {
     }
     
 }
+
+// Subir archivo Excel
+export const uploadStudentClassExcel = async (req, res) => {
+    try {
+        // Verificar si se subió un archivo
+        if (!req.file) {
+            return res.status(400).json({ message: 'No se ha subido ningún archivo' });
+        }
+
+        // Leer el archivo Excel
+        const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+        const workbook = xlsx.readFile(filePath);
+        const sheetName = workbook.SheetNames[0];  // Usar la primera hoja del Excel
+        const sheet = workbook.Sheets[sheetName];
+        const data = xlsx.utils.sheet_to_json(sheet);  // Convertir a JSON
+
+        // Recorrer los datos y guardar cada tutor en la base de datos
+        for (let studentClass of data) {
+            console.log('Datos del studentClass:', studentClass);
+
+             // Buscar el tutor en la base de datos
+            const student = await studentsModel.findOne({ where: { email: studentClass.student_email } });
+
+            if (!student) {
+                console.error(`El correo del estudiante ${student.studentClass_email} no está registrado.`);
+                continue;
+            }
+            
+
+            const studentClassData = {
+                student_id: student.id,
+                class_id: studentClass.class_id,
+            };
+
+            // Guardar en la base de datos
+            await students_classesModel.create(studentClassData);
+        }
+
+        // Eliminar el archivo después de procesarlo
+        await fs.remove(filePath);
+
+        res.json({ message: 'Alumnos importados a la clase correctamente' });
+    } catch (error) {
+        console.error('Error al procesar el archivo Excel:', error);
+        res.status(500).json({ message: 'Error al procesar el archivo' });
+    }
+};

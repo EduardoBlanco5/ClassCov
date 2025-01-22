@@ -160,6 +160,7 @@ function CreateStudent() {
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>
         </div>
+        
         <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
         <form onSubmit={uploadExcel}>
                 <h1 className="font-bold text-white text-center text-3xl">Subir Excel de Alumnos</h1>

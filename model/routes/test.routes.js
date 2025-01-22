@@ -9,7 +9,7 @@ import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
 import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmissions, getUpTaskByStudentAndTask,  getUpTasksByTaskId, gradeUpTask} from "../../controller/upTask.controller.js"
-import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
+import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass, uploadStudentClassExcel } from "../../controller/students_classes.controller.js";
 import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
 import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
 import { getDashboardData } from "../../controller/dashboard.controller.js";
@@ -156,6 +156,12 @@ router.get('/class/:class_id/students', getStudentsByClass);
 router.get('/student/:student_id/classes', getClassesByStudent);
 router.put('/StudentClass/:id', updateStudentClass);
 router.delete('/StudentClass/:id', deleteStudentClass);
+
+// Configurar multer para la carga de archivos
+const uploadStudentClass = multer({ dest: 'uploads/' });
+
+// Ruta para subir archivo Excel
+router.post('/studentClass-excel', uploadStudentClass.single('file'), uploadStudentClassExcel);
 
 // Subir archivo
 const ImageUpTask = multer.diskStorage({

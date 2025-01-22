@@ -133,6 +133,9 @@ function App() {
           <Route path='/ProfileTeacher/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileTeacher/>}></Route>
           </Route>
+          <Route path='/ProfileAdmin/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
+            <Route index element={<ProfileAdmin/>}></Route>
+          </Route>
           <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<ProfileStudent/>}></Route>
           </Route>
