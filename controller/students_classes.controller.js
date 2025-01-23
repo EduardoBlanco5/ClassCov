@@ -28,8 +28,8 @@ const containsReservedWords = (value) => {
 // Middleware de validación para las tareas
 const validateTask = [
     body('student_id')
-        .notEmpty().withMessage('El id del estudiante es obligatorio')
-        .custom(containsReservedWords).withMessage('El título contiene palabras reservadas o caracteres no permitidos'),
+  .isNumeric().withMessage('El id del estudiante debe ser un número')
+  .notEmpty().withMessage('El id del estudiante es obligatorio'),
     body('class_id')
         .notEmpty().withMessage('El id de la clase es obligatorio')
         .custom(containsReservedWords).withMessage('La descripción contiene palabras reservadas o caracteres no permitidos'),

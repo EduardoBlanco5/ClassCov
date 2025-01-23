@@ -49,6 +49,7 @@ import SubjectCard from './administration/Subjects/SubjectCard';
 import UpdatedSubject from './administration/Subjects/UpdatedSubject';
 import ShowAttendances from './teachers/Attendances/ShowAttendances';
 import Dashboard from './components/Dashboard';
+import SubjectTask from './administration/Subjects/SubjectTask';
 
 
 
@@ -172,6 +173,9 @@ function App() {
           <Route path='/Dashboard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<Dashboard/>}></Route>
           </Route>
+          <Route path="/SubjectTask/:id" element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
+            <Route index element={<SubjectTask/>}></Route>
+          </Route>
           
           
           {/* Actualizar */}
@@ -208,7 +212,7 @@ function App() {
             <Route index element={<CreateTask />} />
           </Route>
 
-          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['teacher', 'student']} />}>
+          <Route path='/ShowTasks' element={<ProtecttedRoute allowedRoles={['teacher', 'student', 'admin']} />}>
             <Route index element={<ShowTask />} />
           </Route>
           

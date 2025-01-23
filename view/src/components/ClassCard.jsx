@@ -125,6 +125,10 @@ function ClassCard() {
     }
   return (
     <div className='justify-center'>
+        {/* Botón de Editar Clase */}
+        <Link to={`/UpdateClass/${id}`} className="absolute top-30 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+            Editar Clase
+        </Link>
         <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md text-white mx-[38%]'>
             <h1 className="font-bold text-white text-3xl text-center">{ConvertirGrado(grade)}</h1>
             <h1 className="font-bold text-white text-3xl text-center">Grupo: {salon}</h1>

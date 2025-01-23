@@ -1,6 +1,6 @@
 import {useForm} from 'react-hook-form'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const URI = 'http://localhost:4000/subject'
@@ -13,7 +13,7 @@ function CreateSubject() {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [grade, setGrade] = useState();
+    const [grade, setGrade] = useState('');
 
     const [teacher_id, setTeacher_id] = useState('')
     
@@ -26,8 +26,13 @@ function CreateSubject() {
       e.preventDefault() 
       await axios.post(URI,  {name: name, description: description, grade: grade, 
       })
-      navigate('/Home')
+      navigate('/ShowSubjects')
     }
+
+    useEffect(() => {
+      console.log(grade)
+    }, [])
+    
 
     
   return (
@@ -55,14 +60,20 @@ function CreateSubject() {
               className='w-full px-4 py-2 rounded-md my-2'
               ></input>
 
-              <label className='text-white'>Grado</label>
-              <input 
-              type='text'
-              placeholder='Primero, Segundo, Tercero,...'
-              value={grade}
-              onChange={ (e) => setGrade(e.target.value)}
-              className='w-full px-4 py-2 rounded-md my-2'
-              ></input>
+              <label className="text-white">Grado</label>
+              <select
+                value={grade}
+                onChange={(e) => setGrade(e.target.value)}
+                className="w-full px-4 py-2 rounded-md my-2"
+              >
+                <option value="" disabled>Selecciona un grado</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
         
               <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
           </form>

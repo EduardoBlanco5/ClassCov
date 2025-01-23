@@ -1,9 +1,9 @@
 import express from "express";
 import multer from 'multer';
 
-import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, getTasksByClassIdAdmin, updateTask } from "../../controller/task.controller.js";
+import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, getTasksByClassIdAdmin, getTasksBySubjectId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
-import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId, uploadStudentsExcel } from "../../controller/students.controller.js";
+import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId, uploadStudentsExcel, searchStudents } from "../../controller/students.controller.js";
 import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGuardian, uploadExcel } from "../../controller/guardians.controller.js";
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
@@ -38,6 +38,8 @@ router.get('/tasksAdmin/class', getTasksByClassIdAdmin);
 router.get('/task/:id', getTask);//R
 router.put('/task/:id', TeachersTasks.single('file'), updateTask);//U
 router.delete('/task/:id', deleteTask);//D
+router.get('/tasks/subject', getTasksBySubjectId);
+
 
 //Anuncios
 const ImageAnnouncements = multer.diskStorage({
@@ -75,6 +77,7 @@ router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes
 router.get('/student/:id', getStudent);//R
 router.put('/student/:id', PerfilStudents.single('file'), updateStudent);//U
 router.delete('/student/:id', deleteStudent);//D
+router.get('/studentsSearch', searchStudents);
 
 // Configurar multer para la carga de archivos
 const uploadStudent = multer({ dest: 'uploads/' });

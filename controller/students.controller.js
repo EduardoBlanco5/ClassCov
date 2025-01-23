@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
 import xlsx from 'xlsx';
+import { Op } from 'sequelize';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -293,5 +294,30 @@ export const uploadStudentsExcel = async (req, res) => {
     } catch (error) {
         console.error('Error al procesar el archivo Excel:', error);
         res.status(500).json({ message: 'Error al procesar el archivo' });
+    }
+};
+
+// Buscar estudiantes por nombre o correo
+export const searchStudents = async (req, res) => {
+    try {
+        const { search } = req.query; // Obtener el término de búsqueda desde los parámetros de consulta
+        const students = await studentsModel.findAll({
+            where: {
+                [Op.or]: [
+                    { name: { [Op.like]: `%${search}%` } }, // Buscar coincidencias en el nombre
+                    { email: { [Op.like]: `%${search}%` } } // Buscar coincidencias en el correo
+                ]
+            }
+        });
+
+        const studentsWithImages = students.map(student => ({
+            ...student.dataValues, // Usar dataValues para obtener los datos del modelo
+            file: student.file ? `${req.protocol}://${req.get('host')}${student.file}` : null // URL completa
+        }));
+
+        res.json(studentsWithImages);
+    } catch (error) {
+        console.error('Error al buscar estudiantes:', error);
+        res.status(500).json({ message: 'Error al buscar estudiantes' });
     }
 };

@@ -246,3 +246,29 @@ export const getTasksByClassIdAdmin = async (req, res) => {
         res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
+// Obtener tareas por subject_id
+export const getTasksBySubjectId = async (req, res) => {
+    const { subject_id } = req.query;
+
+    if (!subject_id) {
+        return res.status(400).json({ message: "El subject_id es obligatorio." });
+    }
+
+    try {
+        const tasks = await taskModel.findAll({
+            where: { subject_id },
+            attributes: ['id', 'title', 'description', 'deliveryDate', 'file'],
+        });
+
+        const tasksWithFiles = tasks.map(task => ({
+            ...task.dataValues,
+            file: task.file ? `${req.protocol}://${req.get('host')}${task.file}` : null, // Construir la URL del archivo
+        }));
+
+        res.json(tasksWithFiles);
+    } catch (error) {
+        console.error("Error al obtener tareas:", error);
+        res.status(500).json({ message: "Error interno del servidor." });
+    }
+};

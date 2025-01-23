@@ -31,6 +31,9 @@ function UpdateClass() {
         await axios.put(URI+id, {
             
             teacher_id: teacher_id,
+            grade: grade,
+            salon: salon, 
+            shift: shift,
             
         })
         navigate('/ShowClass')
@@ -97,9 +100,45 @@ function UpdateClass() {
             <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md justify-center flex '>
                 <form onSubmit={update} className="">
                     
-                    <h1 className="font-bold text-white text-3xl text-center">{ConvertirGrado(grade)}</h1>
-                    <h1 className="font-bold text-white text-3xl text-center">Grupo: {salon}</h1>
-                    <h1 className="font-bold text-white text-3xl text-center">Turno: {shift}</h1>
+                    <h1 className="font-bold text-white text-3xl text-center">Actualizar Clase</h1>
+                    
+                    <label className="text-white">Grado</label>
+                    <select
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}
+                        className="w-full px-4 py-2 rounded-md my-2"
+                    >
+                        <option value="" disabled>Selecciona un grado</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+
+                    <label className='text-white'>Grupo</label>
+                    <select
+                        value={salon}
+                        onChange={(e) => setSalon(e.target.value)}
+                        className="w-full px-4 py-2 rounded-md my-2"
+                    >
+                        <option value="" disabled>Selecciona un grupo</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        
+                    </select> 
+                    <label className='text-white'>Turno</label>
+                    <select
+                        value={shift}
+                        onChange={(e) => setShift(e.target.value)}
+                        className="w-full px-4 py-2 rounded-md my-2"
+                    >
+                        <option value="" disabled>Selecciona un turno</option>
+                        <option value="Matutino">Matutino</option>
+                        <option value="Vespertino">Vespertino</option>
+                        
+                    </select>
                     
                     <label className='text-white text-1xl font-semibold'>    Profesor</label>
                     <select

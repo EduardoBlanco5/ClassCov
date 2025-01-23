@@ -51,7 +51,7 @@ function UpdatedSubject() {
     return (
         <div className='flex justify-center'>
     
-            <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md justify-center flex '>
+            <div className='bg-zinc-800 max-w-md w-full p-32 py- rounded-md justify-center flex '>
                 <form onSubmit={update} className="">
                     
                     
@@ -74,14 +74,20 @@ function UpdatedSubject() {
                     >
                     </input>
                     
-                    <h1 className="font-bold text-white text-3xl text-center">Grado: </h1>
-                    <input 
-                    type='text'
-                    placeholder='1, 2, 3, ...'
-                    value={grade}
-                    onChange={ (e) => setGrade(e.target.value)}
-                    className='w-10 mx-56 mt-3 text-center rounded-md '
-                    ></input>
+                    <label className="text-white text-3xl font-bold px-10">Grado</label>
+                    <select
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}
+                        className='w-100 mx-40 mt-3 text-center rounded-md '
+                    >
+                        <option value="" disabled>Selecciona un grado</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
 
 
                     <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-[38%]  mt-3' type='submit'>Actualizar</button>
