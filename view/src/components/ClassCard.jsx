@@ -14,7 +14,7 @@ const URISC = 'http://localhost:4000/class/'
 
 
 function ClassCard() {
-
+    
     const [grade, setGrade] = useState('')
     const [salon, setSalon] = useState('')
     const [shift, setShift] = useState('')
@@ -30,6 +30,9 @@ function ClassCard() {
 
     const [name, setName] = useState('')
     const {id} = useParams()
+
+   // Obtener el rol del usuario desde el objeto `user` o localStorage
+   const role = localStorage.getItem('role'); 
     
     
     useEffect( () => {
@@ -125,10 +128,15 @@ function ClassCard() {
     }
   return (
     <div className='justify-center'>
-        {/* Botón de Editar Clase */}
-        <Link to={`/UpdateClass/${id}`} className="absolute top-30 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
-            Editar Clase
-        </Link>
+        {/* Mostrar el botón de "Editar Clase" solo si el usuario tiene el rol 'admin' */}
+        {role === 'admin' && (
+                <div>
+                    <Link to={`/UpdateClass/${id}`} className="absolute top-30 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+                        Editar Clase
+                    </Link>
+                </div>
+            )}
+
         <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md text-white mx-[38%]'>
             <h1 className="font-bold text-white text-3xl text-center">{ConvertirGrado(grade)}</h1>
             <h1 className="font-bold text-white text-3xl text-center">Grupo: {salon}</h1>
