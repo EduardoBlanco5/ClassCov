@@ -17,7 +17,7 @@ function CreateTeacher() {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('activo');
     const [file, setFile] = useState(null);
     const [role, setRole] = useState('teacher')
 
@@ -31,7 +31,7 @@ function CreateTeacher() {
 
       formData.append('name', name);
       formData.append('email', email);
-      formData.append('password', password);
+      formData.append('password', phone);
       formData.append('phone', phone);
       formData.append('date_of_birth', date_of_birth);
       formData.append('role', role);
@@ -84,13 +84,6 @@ function CreateTeacher() {
               className='w-full px-4 py-2 rounded-md my-2'
               ></input>
 
-              <label className='text-white'>Contraseña</label>
-              <input
-              placeholder='Contraseña'
-              value={password}
-              onChange={ (e) => setPassword(e.target.value)}
-              className='w-full px-4 py-2 rounded-md my-2'
-              ></input>
 
               <label className='text-white'>Teléfono</label>
               <input
@@ -118,15 +111,6 @@ function CreateTeacher() {
               className='w-full px-4 py-2 rounded-md my-2'
               >
               </input>
-
-              <label className='text-white'>Status</label>
-            <input
-            type='text'
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            >
-            </input>
 
               <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
               <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />

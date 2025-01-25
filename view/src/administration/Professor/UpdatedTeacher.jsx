@@ -17,6 +17,7 @@ function UpdatedTeacher() {
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
     const [file, setFile] = useState(null)
+    const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar contraseña
   
     const {id} = useParams()
     
@@ -108,14 +109,24 @@ function UpdatedTeacher() {
             className='w-22 px-1 py-1 rounded-md my-1 mx-5'
             ></input>
 
-            <label className="text-white">Contraseña</label>
-            <input 
-            type='password'
-            placeholder='password***'
-            value={password}
-            onChange={ (e) => setPassword(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-16'
-            ></input>
+          <label className="text-white">Contraseña</label>
+          <div className="flex items-center">
+            <input
+              type={showPassword ? "text" : "password"} // Cambia el tipo de entrada
+              placeholder="password***"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-32 px-1 py-1 rounded-md my-1 mx-16"
+            />
+            <label className="text-white mx-2 flex items-center">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)} // Cambia el estado
+              />
+              <span className="ml-1">Mostrar contraseña</span>
+            </label>
+          </div>
 
             <label className="text-white mx-1">Fecha de nacimiento</label>
             <input
@@ -137,23 +148,17 @@ function UpdatedTeacher() {
             >
             </input>
 
-            <label className="text-white mx-1">Puesto</label>
-            <input 
-            type='text'
-            placeholder='Profesor, Alumno, ...'
-            value={role}
-            onChange={ (e) => setStatus(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-20'
-            ></input>
-
-            <label className="text-white mx-1">Estatus</label>
-            <input 
-            type='text'
-            placeholder='Activo, Inactivo'
-            value={status}
-            onChange={ (e) => setStatus(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-10'
-            ></input>
+            <label className='text-white'>Estatus</label>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="w-full px-4 py-2 rounded-md my-2"
+              >
+                <option value="" disabled>Selecciona un Estatus</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+                
+              </select>
 
             <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
             <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
