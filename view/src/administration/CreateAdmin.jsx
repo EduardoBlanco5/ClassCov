@@ -16,9 +16,9 @@ function CreateAdmin() {
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
-    const [role, setRole] = useState('')
+    const [role, setRole] = useState('admin')
     const [file, setFile] = useState(null);
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('activo')
     const [hire_date, setHire_date] = useState('')
     const [message, setMessage] = useState('');
 
@@ -34,7 +34,7 @@ function CreateAdmin() {
     // Agregar los campos del formulario al FormData
     formData.append('name', name);
     formData.append('email', email);
-    formData.append('password', password);
+    formData.append('password', phone);
     formData.append('phone', phone);
     formData.append('date_of_birth', date_of_birth);
     formData.append('role', role);
@@ -85,14 +85,6 @@ function CreateAdmin() {
             className='w-full px-4 py-2 rounded-md my-2'
             ></input>
 
-            <label className='text-white'>Contraseña</label>
-            <input
-            placeholder='Contraseña'
-            value={password}
-            onChange={ (e) => setPassword(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            ></input>
-
             <label className='text-white'>Teléfono</label>
             <input
             type='text'
@@ -121,28 +113,10 @@ function CreateAdmin() {
               >
               </input>
 
-            <label className='text-white'>Puesto</label>
-            <input
-            type='text'
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            >
-            </input>
-
-            <label className='text-white'>Status</label>
-            <input
-            type='text'
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            >
-            </input>
-
             <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
             <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
-            <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
+            <button className='bg-green-600 rounded-md mt-5 w-20 mx-32' type='submit'>Guardar</button>
         </form>
         </div>
     </div>

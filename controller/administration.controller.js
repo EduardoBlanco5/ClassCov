@@ -126,7 +126,14 @@ export const updateAdmin = [
     
     async (req, res) => {
         try {
-            const filePath = req.file ? `/${req.file.filename}` : null;
+            // Obtener el registro existente para verificar la foto actual
+             const admin = await guardiansModel.findOne({ where: { id: req.params.id } });
+             if (!admin) {
+                 return res.status(404).json({ message: "Admin no encontrado" });
+             }
+             // Si hay un archivo nuevo, usarlo; de lo contrario, conservar el actual
+             const filePath = req.file ? `/${req.file.filename}` : admin.file;
+             
             // Encriptar la contraseña
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña

@@ -16,6 +16,7 @@ function UpdatedTeacher() {
   const [role, setRole] = useState('');
   const [status, setStatus] = useState('');
   const [file, setFile] = useState(null);
+  
   const [currentImage, setCurrentImage] = useState(null); // Imagen actual del servidor
   const [preview, setPreview] = useState(null); // Previsualización de la nueva imagen
   const [showPassword, setShowPassword] = useState(false); // Mostrar/ocultar contraseña

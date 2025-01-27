@@ -6,6 +6,7 @@ import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
 import xlsx from 'xlsx';
+import { Op } from 'sequelize';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -122,7 +123,15 @@ export const updateGuardian = [
     
     async (req, res) => {
         try {
-            const filePath = req.file ? `/${req.file.filename}` : null;
+            // Obtener el registro existente para verificar la foto actual
+                                const guardian = await guardiansModel.findOne({ where: { id: req.params.id } });
+                          
+                                if (!guardian) {
+                                  return res.status(404).json({ message: "Tutor no encontrado" });
+                                }
+                          
+                                // Si hay un archivo nuevo, usarlo; de lo contrario, conservar el actual
+                                const filePath = req.file ? `/${req.file.filename}` : guardian.file;
             // Encriptar la contraseña
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
@@ -236,5 +245,30 @@ export const uploadExcel = async (req, res) => {
     } catch (error) {
         console.error('Error al procesar el archivo Excel:', error);
         res.status(500).json({ message: 'Error al procesar el archivo' });
+    }
+};
+
+// Buscar tutores por nombre o correo
+export const searchGuardians = async (req, res) => {
+    try {
+        const { search } = req.query; // Obtener el término de búsqueda desde los parámetros de consulta
+        const guardians = await guardiansModel.findAll({
+            where: {
+                [Op.or]: [
+                    { name: { [Op.like]: `%${search}%` } }, // Buscar coincidencias en el nombre
+                    { email: { [Op.like]: `%${search}%` } } // Buscar coincidencias en el correo
+                ]
+            }
+        });
+
+        const guardiansWithImages = guardians.map(guardian => ({
+            ...guardian.dataValues, // Usar dataValues para obtener los datos del modelo
+            file: guardian.file ? `${req.protocol}://${req.get('host')}${guardian.file}` : null // URL completa
+        }));
+
+        res.json(guardiansWithImages);
+    } catch (error) {
+        console.error('Error al buscar tutores:', error);
+        res.status(500).json({ message: 'Error al buscar tutores' });
     }
 };

@@ -14,8 +14,13 @@ function UpdatedGuardian() {
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
     const [file, setFile] = useState(null)
+
+    const [currentImage, setCurrentImage] = useState(null); // Imagen actual del servidor
+    const [preview, setPreview] = useState(null); // Previsualización de la nueva imagen
+    const [showPassword, setShowPassword] = useState(false); // Mostrar/ocultar contraseña
   
     const {id} = useParams()
+    const navigate = useNavigate();
     
     const update = async (e) => {
 
@@ -28,17 +33,21 @@ function UpdatedGuardian() {
       formData.append("date_of_birth", date_of_birth);
       formData.append("role", role);
       formData.append("status", status);
-      if (file) formData.append("file", file); // Agregar la imagen
-      try {
-        await axios.put(`${URI}${id}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        navigate("/ShowGuardians");
-      } catch (error) {
-        console.error("Error updating teacher:", error);
-      }   
+      // Solo agregar el archivo si se seleccionó uno nuevo
+    if (file instanceof File) {
+      formData.append("file", file);
+    }
+
+    try {
+      await axios.put(`${URI}${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate("/ShowGuardians");
+    } catch (error) {
+      console.error("Error updating teacher:", error);
+    } 
     
       }
       
@@ -56,7 +65,24 @@ function UpdatedGuardian() {
         setRole(res.data.role)
         setStatus(res.data.status)
         setFile(res.data.file)  
+        // Si hay una imagen, establecerla correctamente
+        if (res.data.file) {
+          setCurrentImage(res.data.file);
+        } else {
+          setCurrentImage(null); // Si no tiene imagen, establecer como null
+        }
         
+      }
+
+      const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+    
+        // Actualizar la previsualización solo si se selecciona un nuevo archivo
+        if (selectedFile) {
+          const filePreview = URL.createObjectURL(selectedFile);
+          setPreview(filePreview);
+        }
       }
 
   return (
@@ -64,11 +90,15 @@ function UpdatedGuardian() {
       <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md flex'>
         <form onSubmit={update} >
         <h1 className="text-white font-bold text-3xl text-center">Tutor</h1>
-        {/* Mostrar la imagen si existe */}
-        {console.log(file)}
-                  {file && (
-                  <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-                )}
+        {/* Mostrar la imagen actual o la previsualización de la nueva */}
+        <div className="flex justify-center my-4">
+            <img
+              src={preview || currentImage || 'https://via.placeholder.com/150'}
+              alt="Previsualización"
+              className="w-32 h-32 object-cover rounded-full"
+              />
+              {console.log('imagen: ',currentImage)}
+          </div>
 
             <label className="text-white">Nombre</label>
             <input 
@@ -98,14 +128,24 @@ function UpdatedGuardian() {
             className='w-22 px-1 py-1 rounded-md my-1 mx-5'
             ></input>
 
-            <label className="text-white">Contraseña</label>
-            <input 
-            type='password'
-            placeholder='password***'
-            value={password}
-            onChange={ (e) => setPassword(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-16'
-            ></input>
+          <label className="text-white">Contraseña</label>
+          <div className="flex items-center">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="password***"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-3/4 px-2 py-2 rounded-md my-1"
+            />
+            <label className="text-white ml-2 flex items-center">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              <span className="ml-1">Mostrar</span>
+            </label>
+          </div>
 
             <label className="text-white mx-1">Fecha de nacimiento</label>
             <input
@@ -117,26 +157,26 @@ function UpdatedGuardian() {
             >
             </input>
 
-            <label className="text-white mx-1">Puesto</label>
-            <input 
-            type='text'
-            placeholder='Profesor, Alumno, ...'
-            value={role}
-            onChange={ (e) => setStatus(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-20'
-            ></input>
 
-            <label className="text-white mx-1">Estatus</label>
-            <input 
-            type='text'
-            placeholder='Activo, Inactivo'
+            <label className="text-white">Estatus</label>
+          <select
             value={status}
-            onChange={ (e) => setStatus(e.target.value)}
-            className='w-32 px-1 py-1 rounded-md my-1 mx-10'
-            ></input>
+            onChange={(e) => setStatus(e.target.value)}
+            className="w-full px-2 py-2 rounded-md my-2"
+          >
+            <option value="" disabled>
+              Selecciona un estatus
+            </option>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
 
-            <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
-            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
+          <label className="text-white">Selecciona un archivo:</label>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="w-full px-2 py-2 rounded-md my-2"
+          />
 
 
             <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-32 mt-2' type='submit'>Actualizar</button>

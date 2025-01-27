@@ -17,7 +17,7 @@ function CreateGuardian() {
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('guardian')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('activo')
     const [file, setFile] = useState(null);
 
     const onSubmit = handleSubmit((data) => {
@@ -30,7 +30,7 @@ function CreateGuardian() {
 
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('password', password);
+        formData.append('password', phone);
         formData.append('phone', phone);
         formData.append('date_of_birth', date_of_birth);
         formData.append('role', role);
@@ -97,13 +97,6 @@ function CreateGuardian() {
             className='w-full px-4 py-2 rounded-md my-2'
             ></input>
 
-            <label className='text-white'>Contraseña</label>
-            <input
-            placeholder='Contraseña'
-            value={password}
-            onChange={ (e) => setPassword(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            ></input>
 
             <label className='text-white'>Teléfono</label>
             <input
@@ -120,15 +113,6 @@ function CreateGuardian() {
             type='date'
             value={date_of_birth}
             onChange={(e) => setDate_of_birth(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            >
-            </input>
-
-            <label className='text-white'>Status</label>
-            <input
-            type='text'
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
             className='w-full px-4 py-2 rounded-md my-2'
             >
             </input>

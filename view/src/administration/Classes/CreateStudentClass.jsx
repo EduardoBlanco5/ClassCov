@@ -26,7 +26,6 @@ const CreateStudentClass = () => {
 
     fetchClasses();
     console.log(selectedStudent)
-    console.log(classId)
 
   }, []);
 

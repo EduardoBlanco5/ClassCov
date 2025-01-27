@@ -24,6 +24,9 @@ function ProfileStudent() {
     const [nameG, setNameG] = useState('') //Nombre del padre
   
     const {id} = useParams()
+
+     // Obtener el rol del usuario desde el objeto `user` o localStorage
+   const roleA = localStorage.getItem('role'); 
     
 
   
@@ -61,6 +64,17 @@ function ProfileStudent() {
   return (
     <div className='flex justify-center'>
         <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md text-white'>
+        
+          {/* Mostrar el botón de "Editar Clase" solo si el usuario tiene el rol 'admin' */}
+        {roleA === 'admin' && (
+                <div>
+                    <Link to={`/UpdatedStudent/${id}`} className="absolute top-30 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+                        Editar Alumno
+                    </Link>
+                </div>
+            )}
+
+            
           {/* Mostrar la imagen si existe */}
           {file && (
                 <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
@@ -70,9 +84,11 @@ function ProfileStudent() {
             <p>Telefono: {phone}</p>
             <p>Fecha de nacimiento: {date_of_birth}</p>
             <p>Fecha de Admisión: {admission}</p>
-            <p>Puesto: {role}</p>
             <p>Status: {status}</p>
             <h1>Tutor: {nameG}</h1>
+            <Link to={`/Dashboard/${id}`} className="absolute top-48 right-4 bg-sky-500 text-white px-4 py-2 rounded-md">
+                        Dashboard
+            </Link>
         </div>
       </div>
   )
