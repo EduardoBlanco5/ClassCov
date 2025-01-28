@@ -106,7 +106,11 @@ export const attendancesModel = db.define('attendances', {
   id: { type: DataTypes.INTEGER, primaryKey: true },
   student_id: { type: DataTypes.INTEGER },
   class_id: { type: DataTypes.INTEGER },
-  attendance_date: { type: DataTypes.DATE },
+  attendance_date: {
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+    unique: 'compositeIndex', // Evita duplicados
+},
   status: { type: DataTypes.STRING },
   notes: { type: DataTypes.STRING },
 });

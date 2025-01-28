@@ -6,6 +6,7 @@ import { AuthContext } from '../../components/AuthContext';
 
 const URI = 'http://localhost:4000/task/';
 const UP_URI = 'http://localhost:4000/UpTasks/';
+const URI_SUBJECT = 'http://localhost:4000/subject/';
 
 function GradingTask() {
     const { id } = useParams();
@@ -23,6 +24,8 @@ function GradingTask() {
     const student_id = localStorage.getItem('student_id');
     const role = user?.role || localStorage.getItem('role');
 
+    const [subject_name, setSubject_name] = useState('');
+
 
 
   
@@ -31,6 +34,18 @@ function GradingTask() {
 
         getUpTask();
     }, []);
+
+    useEffect(() => {
+        if (subject_id) {
+          getSubjectById(subject_id);
+        }
+        
+      }, [subject_id]);
+
+      const getSubjectById = async (subject_id) => {
+        const res = await axios.get(URI_SUBJECT + subject_id);
+        setSubject_name(res.data.name);
+      };
   
     //Información de la tarea dejada por el maestro
     const getTaskById = async () => {
@@ -86,6 +101,7 @@ function GradingTask() {
         <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
           <h1>Título: {title}</h1>
           <p>Descripción: {description}</p>
+          <p>Materia: {subject_name}</p>
           <p>Fecha de entrega: {deliveryDate}</p>
            {/* Mostrar la imagen si existe */}
          

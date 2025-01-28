@@ -14,6 +14,8 @@ function CreateAttendance() {
     const { id } = useParams(); // El id de la clase
     const navigate = useNavigate();
 
+    const [isAttendanceTaken, setIsAttendanceTaken] = useState(false);
+
     useEffect(() => {
         getStudentsByClassId(id);
         checkAttendanceForToday();
@@ -62,28 +64,34 @@ function CreateAttendance() {
             console.log("Respuesta de verificación de asistencia:", res.data); // Verifica lo que está devolviendo
             
             if (res.data.exists) {
-                toast.error(res.data.message); // Muestra el mensaje de error
+                toast.error(res.data.message); // Muestra el mensaje de error en el frontend
+                setIsAttendanceTaken(true);  // Asistencia ya tomada
                 return false;
             }
+            setIsAttendanceTaken(false); // No se ha tomado la asistencia
             return true;
         } catch (error) {
             console.error('Error al verificar asistencia:', error);
             toast.error('Hubo un problema al verificar la asistencia.');
+            setIsAttendanceTaken(false); // Asistencia no tomada
             return false;
         }
     };
     
     const saveAttendance = async () => {
         setLoading(true);
-        const canProceed = await checkAttendanceForToday();  // Verificación de la asistencia de hoy
-        
-        console.log("¿Se puede proceder?", canProceed); // Verifica si la asistencia se puede registrar
-        
-        if (!canProceed) {
-            toast.error('No se puede registrar la asistencia, ya fue tomada hoy.');
-            setLoading(false);
-            return;
-        }
+    console.log("Estado de loading:", loading);  // Verifica que loading sea true cuando empieza
+    
+    const canProceed = await checkAttendanceForToday();  // Verificación de la asistencia de hoy
+    
+    console.log("¿Se puede proceder?", canProceed);  // Verifica si la asistencia se puede registrar
+    
+    if (!canProceed) {
+        toast.error('No se puede registrar la asistencia, ya fue tomada hoy.');
+        setLoading(false);  // Asegúrate de deshabilitar loading
+        console.log("Estado de loading después de error:", loading);
+        return;
+    }
         
         // Continuar con la lógica de guardar...
         const attendanceData = Object.entries(attendance).map(([studentId, data]) => ({
@@ -112,6 +120,18 @@ function CreateAttendance() {
     return (
         <div className="container mx-auto p-4">
             <h2 className="text-2xl font-bold mb-4">Registrar asistencia</h2>
+                {/* Mensaje dependiendo del estado de la asistencia */}
+            <div>
+                {isAttendanceTaken ? (
+                    <div className="flex items-center bg-red-100 text-red-700 p-2 rounded">
+                        🚫 La asistencia ya fue tomada para hoy.
+                    </div>
+                ) : (
+                    <div className="flex items-center bg-green-100 text-green-700 p-2 rounded">
+                        ✅ Puedes tomar asistencia.
+                    </div>
+                )}
+            </div>
             <Link to={`/ShowAttendances/${id}`}> 
                 <button className='bg-blue-700 rounded-md mx-2 px-1 text-white'>Ver asistencias</button>
             </Link>
@@ -165,13 +185,19 @@ function CreateAttendance() {
                     ))}
                 </tbody>
             </table>
+            {/* Botón para guardar asistencia */}
             <button
-                className="bg-indigo-500 text-white px-4 py-2 mt-4 rounded hover:bg-indigo-600"
-                onClick={saveAttendance}
-                disabled={loading}
+            onClick={saveAttendance}
+            disabled={loading || isAttendanceTaken} // Deshabilitar si ya se tomó asistencia o está cargando
+            className={`w-full px-4 py-2 rounded-md text-white font-semibold ${
+                isAttendanceTaken
+                    ? 'bg-red-500 hover:bg-red-700 cursor-not-allowed'
+                    : 'bg-green-500 hover:bg-green-700'
+                }`}
             >
-                {loading ? 'Guardando...' : 'Guardar Asistencia'}
+                {isAttendanceTaken ? 'Asistencia guardada' : 'Guardar asistencia'}
             </button>
+
         </div>
     );
 }
