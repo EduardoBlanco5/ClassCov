@@ -122,14 +122,14 @@ export const updateStudent = [
     async (req, res) => {
         try {
             // Obtener el registro existente para verificar la foto actual
-                    const student = await studentsModel.findOne({ where: { id: req.params.id } });
+                    const teacher = await studentsModel.findOne({ where: { id: req.params.id } });
               
-                    if (!student) {
+                    if (!teacher) {
                       return res.status(404).json({ message: "Alumno no encontrado" });
                     }
               
                     // Si hay un archivo nuevo, usarlo; de lo contrario, conservar el actual
-                    const filePath = req.file ? `/${req.file.filename}` : student.file;
+                    const filePath = req.file ? `/${req.file.filename}` : teacher.file;
               
             // Encriptar la contraseña
             const salt = await bcrypt.genSalt(10);

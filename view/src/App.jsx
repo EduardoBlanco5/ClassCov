@@ -50,6 +50,7 @@ import UpdatedSubject from './administration/Subjects/UpdatedSubject';
 import ShowAttendances from './teachers/Attendances/ShowAttendances';
 import Dashboard from './components/Dashboard';
 import SubjectTask from './administration/Subjects/SubjectTask';
+import GuardianStudent from './administration/Guardians/GuardianStudent';
 
 
 
@@ -104,6 +105,7 @@ function App() {
           <Route path='/CreateAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
             <Route index element={<CreateAttendance/>}></Route>
           </Route>
+          
 
           {/* Ver */}
 
@@ -137,7 +139,7 @@ function App() {
           <Route path='/ProfileAdmin/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileAdmin/>}></Route>
           </Route>
-          <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+          <Route path='/ProfileStudent/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian']} />}>
             <Route index element={<ProfileStudent/>}></Route>
           </Route>
           <Route path='/ProfileGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
@@ -175,6 +177,9 @@ function App() {
           </Route>
           <Route path="/SubjectTask/:id" element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<SubjectTask/>}></Route>
+          </Route>
+          <Route path='/GuardianStudent/:id' element={<ProtecttedRoute allowedRoles={['guardian']} />}>
+            <Route index element={<GuardianStudent/>}></Route>
           </Route>
           
           

@@ -60,7 +60,6 @@ function Profile() {
         <p>Correo: <span className="text-red-700">{profile.email || 'N/A'}</span></p>
         <p>Teléfono: {profile.phone || 'N/A'}</p>
         <p>Fecha de nacimiento: {profile.date_of_birth || 'N/A'}</p>
-        <p>Puesto: {profile.role || 'N/A'}</p>
         <p>Status: {profile.status || 'N/A'}</p>
 
         {/* Mostrar solo si el perfil tiene la propiedad */}
