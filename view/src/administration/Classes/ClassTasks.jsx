@@ -16,6 +16,9 @@ function ClassTasks() {
     const studentId = localStorage.getItem('student_id'); // Recupera el ID del estudiante
 
     const [teacherTasks, setTeacherTasks] = useState([]);
+
+    const guardianId = localStorage.getItem('guardian_id');
+
     
     
 
@@ -33,7 +36,26 @@ function ClassTasks() {
         if (role === 'admin') {
             getTasksByClassIdAdmin(id);
         }
-    }, [id, role]);
+        if (role === 'guardian') {
+            getGuardianTasks(id, studentId);
+        }
+    }, [id, role, studentId]);
+
+    const getGuardianTasks = async (classId, studentId) => {
+        if (!classId || !studentId) {
+            console.error("classId o studentId no están definidos:", { classId, studentId });
+            return;
+        }
+    
+        try {
+            const res = await axios.get(`${URIT}guardianTasks`, {
+                params: { class_id: classId, student_id: studentId },
+            });
+            setTasks(res.data);
+        } catch (error) {
+            console.error("Error al obtener tareas para el tutor:", error);
+        }
+    };
 
 
     const getTasksByClassIdAdmin = async (classId) => {
@@ -180,7 +202,25 @@ function ClassTasks() {
                 </div>
             )}
             </div> 
+            {role === 'guardian' && (
+                <div>
+                    <h3 className="font-bold text-white text-xl text-center mt-4">Tareas del Estudiante:</h3>
+                    <ul className="mt-5">
+                        {tasks.length > 0 ? (
+                            tasks.map(task => (
+                                <Link to={`/TaskCard/${task.id}`} key={task.id}>
+                                    <li className="text-center">{task.title}</li>
+                                </Link>
+                            ))
+                        ) : (
+                            <p className="text-center text-white">No hay tareas disponibles.</p>
+                        )}
+                    </ul>
+                </div>
+            )}
         </div>
+
+        
     );
 }
 

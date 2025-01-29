@@ -23,6 +23,7 @@ function ShowAttendances() {
   }, [student_id]);
   
   const getStudentById = async (student_id) => {
+
     const res = await axios.get(URI_STUDENTS + student_id);
     setName(res.data.name);
   };
@@ -45,9 +46,6 @@ function ShowAttendances() {
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Asistencias por Clase</h2>
-      <Link to={`/ClassCard/${id}`}>
-        <button className="bg-blue-700 rounded-md mx-2 px-2 py-1 text-white">Regresar</button>
-      </Link>
       {Object.keys(attendances).length === 0 ? (
         <p>No hay asistencias registradas para esta clase.</p>
       ) : (

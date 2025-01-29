@@ -165,9 +165,15 @@ function ClassCard() {
             )}
 
             {/* Mostrar el botón "Asistencias" si no es estudiante */}
-            {role !== 'student' && (
+            {role == 'teacher' && (
                 <Link to={`/CreateAttendances/${id}`}> 
                     <button className='bg-green-500 rounded-md mx-2 px-1 text-white'>Asistencias</button>
+                </Link>
+            )}
+            {/* Mostrar el botón "Asistencias" si no es estudiante */}
+            {role == 'guardian' && (
+                <Link to={`/ShowAttendances/${id}`}> 
+                    <button className='bg-green-500 rounded-md mx-2 px-1 text-white'>Ver Asistencias</button>
                 </Link>
             )}
 

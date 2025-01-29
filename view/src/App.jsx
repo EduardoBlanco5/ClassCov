@@ -145,7 +145,7 @@ function App() {
           <Route path='/ProfileGuardian/:id' element={<ProtecttedRoute allowedRoles={['admin']} />}>
             <Route index element={<ProfileGuardian/>}></Route>
           </Route>
-          <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+          <Route path='/ClassCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<ClassCard/>}></Route>
           </Route>
           <Route path='/SubjectCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
@@ -154,22 +154,22 @@ function App() {
           <Route path='/AnnouncementCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<AnnouncementCard/>}></Route>
           </Route>
-          <Route path='/ClassTasks/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+          <Route path='/ClassTasks/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<ClassTasks/>}></Route>
           </Route>
-          <Route path='/ClassStudents/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student']} />}>
+          <Route path='/ClassStudents/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<ClassStudents/>}></Route>
           </Route>
           <Route path='/ClassAnnouncements/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>
             <Route index element={<ClassAnnouncements/>}></Route>
           </Route>
-          <Route path='/TaskCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'student', 'teacher']} />}>
+          <Route path='/TaskCard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'student', 'teacher', 'guardian']} />}>
             <Route index element={<TaskCard/>}></Route>
           </Route>
           <Route path='/GradingTask/:id' element={<ProtecttedRoute allowedRoles={['admin','teacher']} />}>
             <Route index element={<GradingTask/>}></Route>
           </Route>
-          <Route path='/ShowAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher']} />}>
+          <Route path='/ShowAttendances/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian']} />}>
             <Route index element={<ShowAttendances/>}></Route>
           </Route>
           <Route path='/Dashboard/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'student', 'guardian']} />}>

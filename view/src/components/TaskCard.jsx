@@ -58,20 +58,27 @@ const TaskCard = () => {
   };
 
   const checkTaskSubmission = async () => {
-      if (role !== 'student' || !student_id) return;
-
-      try {
-          const res = await axios.get('http://localhost:4000/uptask', {
-              params: { task_id: id, student_id },
-          });
-          setUploadedTask(res.data); // Si existe, almacenamos los datos
-      } catch (error) {
-          if (error.response?.status === 404) {
-              setUploadedTask(null); // No hay tarea enviada
-          } else {
-              console.error('Error al verificar tarea:', error);
-          }
+    let studentIdToCheck = student_id;
+  
+    // Si el usuario es tutor, obtenemos el id del estudiante asociado
+    if (role === 'guardian') {
+      studentIdToCheck = localStorage.getItem('student_id'); // Asegúrate de que está guardado en el localStorage
+    }
+  
+    if (!studentIdToCheck) return;
+  
+    try {
+      const res = await axios.get('http://localhost:4000/uptask', {
+        params: { task_id: id, student_id: studentIdToCheck },
+      });
+      setUploadedTask(res.data); // Si existe, almacenamos los datos
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setUploadedTask(null); // No hay tarea enviada
+      } else {
+        console.error('Error al verificar tarea:', error);
       }
+    }
   };
 
   const handleUpload = async (e) => {
@@ -175,6 +182,35 @@ const TaskCard = () => {
           </div>
         )}
       </div>
+
+            {role === 'guardian' && (
+        <div className="mt-4">
+          {uploadedTask ? (
+            <div>
+              <p className="text-green-500">El alumno ha entregado la tarea</p>
+              {uploadedTask.file.endsWith('.jpg') ||
+              uploadedTask.file.endsWith('.jpeg') ||
+              uploadedTask.file.endsWith('.png') ? (
+                <img
+                  src={uploadedTask.file}
+                  alt="Tarea subida"
+                  className="max-w-full max-h-96"
+                />
+              ) : uploadedTask.file.endsWith('.pdf') ? (
+                <iframe
+                  src={uploadedTask.file}
+                  title="Tarea subida"
+                  className="w-full h-96 border-0"
+                ></iframe>
+              ) : (
+                <p>Tipo de archivo no soportado para vista previa.</p>
+              )}
+            </div>
+          ) : (
+            <p className="text-red-500">El alumno no ha entregado la tarea</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

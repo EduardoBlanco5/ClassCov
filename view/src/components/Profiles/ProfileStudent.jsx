@@ -19,6 +19,8 @@ function ProfileStudent() {
     const [phone, setPhone] = useState('')
     const [status, setStatus] = useState('')
     const [file, setfile] = useState(null)
+
+    const [studentClass, setStudentClass] = useState([]);
     
 
     const [nameG, setNameG] = useState('') //Nombre del padre
@@ -31,7 +33,8 @@ function ProfileStudent() {
 
   
     useEffect( () => {
-      getStudentById()
+      getStudentById();
+      getStudentClass();
     },[])
 
     useEffect(() => {
@@ -39,6 +42,15 @@ function ProfileStudent() {
           getGuardianById(guardian_id);
       }
   }, [guardian_id]);
+
+  const getStudentClass = async () => {
+    try {
+        const res = await axios.get(`http://localhost:4000/student/${id}/classes`);
+        setStudentClass(res.data);
+    } catch (error) {
+        console.error('Error al obtener la clase del estudiante:', error);
+    }
+};
   
     const getStudentById = async () => {
       const res = await axios.get(URI+id)
@@ -86,6 +98,22 @@ function ProfileStudent() {
             <p>Fecha de Admisión: {admission}</p>
             <p>Status: {status}</p>
             <h1>Tutor: {nameG}</h1>
+            {roleA === 'guardian' && (
+              <div>
+                {studentClass.length > 0 ? (
+                studentClass.map((classItem) => (
+                    <p key={classItem.id}>
+                      <Link to={`/ClassCard/${classItem.id}`} >
+                      <span className='bg-green-600'>Clase:</span> { classItem.grade} {classItem.salon} <br>
+                        </br> Turno: {classItem.shift}
+                      </Link>
+                    </p>
+                )) 
+            ) : (
+                <p>No está inscrito en ninguna clase</p>
+            )}
+              </div>
+            )}
             <Link to={`/Dashboard/${id}`} className="absolute top-48 right-4 bg-sky-500 text-white px-4 py-2 rounded-md">
                         Dashboard
             </Link>
