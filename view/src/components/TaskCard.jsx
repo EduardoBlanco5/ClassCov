@@ -106,6 +106,10 @@ const TaskCard = () => {
       }
   };
 
+   // Función para verificar si el archivo es imagen o pdf
+   const isImage = (fileType) => fileType.match(/.(jpg|jpeg|png|gif)$/i);
+   const isPdf = (fileType) => fileType === 'application/pdf';
+
   return (
     <div className="flex justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
@@ -113,11 +117,38 @@ const TaskCard = () => {
         <p>Descripción: {description}</p>
         <p>Materia: {subject_name}</p>
         <p>Fecha de entrega: {deliveryDate}</p>
-         {/* Mostrar la imagen si existe */}
-       
-          {file && (
-                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-              )}
+        {/* Mostrar el archivo de la tarea si existe */}
+        {file && (
+          <>
+            {isImage(file) ? (
+              <img src={file} className="w-full object-cover my-4" alt="Tarea" />
+            ) : isPdf(file) ? (
+              <iframe
+                src={file}
+                width="100%"
+                height="400px"
+                title="Archivo PDF"
+                className="my-4"
+              />
+            ) : (
+              <div>
+                <p className="text-yellow-500">Para ver el archivo, presiona el botón</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* El botón de ver archivo siempre aparece */}
+        {file && (
+          <a
+            href={file}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+          >
+            Ver archivo
+          </a>
+        )}
   
         {role === 'student' && (
           <div className="mt-4">
@@ -152,12 +183,10 @@ const TaskCard = () => {
                                 <p className="text-green-500 font-semibold">
                                     Calificación: {uploadedTask.qualification}
                                 </p>
-                            ):(
-                              <>
+                            ):( 
                                 <p className='text-yellow-500 font-semibold'>
                                   Pendiente
                                 </p>
-                              </>
                             )}
               </div>
             ) : (
@@ -183,7 +212,8 @@ const TaskCard = () => {
         )}
       </div>
 
-            {role === 'guardian' && (
+      {/* Mostrar vista previa de la tarea subida por el alumno para el tutor */}
+      {role === 'guardian' && (
         <div className="mt-4">
           {uploadedTask ? (
             <div>
@@ -205,6 +235,15 @@ const TaskCard = () => {
               ) : (
                 <p>Tipo de archivo no soportado para vista previa.</p>
               )}
+              {/* Botón para ver tarea en nueva pestaña */}
+              <a
+                href={uploadedTask.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+              >
+                Ver tarea del alumno
+              </a>
             </div>
           ) : (
             <p className="text-red-500">El alumno no ha entregado la tarea</p>

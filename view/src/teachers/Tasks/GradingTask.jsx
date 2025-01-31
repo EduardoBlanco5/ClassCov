@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { AuthContext } from '../../components/AuthContext';
 
-
 const URI = 'http://localhost:4000/task/';
 const UP_URI = 'http://localhost:4000/UpTasks/';
 const URI_SUBJECT = 'http://localhost:4000/subject/';
@@ -17,7 +16,6 @@ function GradingTask() {
     const [subject_id, setSubject_id] = useState('');
     const [averageGrade, setAverageGrade] = useState(null);
 
-
     const [upTasks, setUpTasks] = useState([]);
     
     const { user } = useContext(AuthContext);
@@ -26,12 +24,8 @@ function GradingTask() {
 
     const [subject_name, setSubject_name] = useState('');
 
-
-
-  
     useEffect(() => {
         getTaskById();
-
         getUpTask();
     }, []);
 
@@ -39,15 +33,13 @@ function GradingTask() {
         if (subject_id) {
           getSubjectById(subject_id);
         }
-        
       }, [subject_id]);
 
-      const getSubjectById = async (subject_id) => {
+    const getSubjectById = async (subject_id) => {
         const res = await axios.get(URI_SUBJECT + subject_id);
         setSubject_name(res.data.name);
-      };
-  
-    //Información de la tarea dejada por el maestro
+    };
+
     const getTaskById = async () => {
         try {
             const res = await axios.get(URI + id);
@@ -55,8 +47,7 @@ function GradingTask() {
             setDescription(res.data.description);
             setDeliveryDate(res.data.deliveryDate);
             setFile(res.data.file);
-            setSubject_id(res.data.subject_id)
-            console.log(res.data.subject_id)
+            setSubject_id(res.data.subject_id);
         } catch (error) {
             console.error('Error al obtener la tarea:', error);
         }
@@ -64,7 +55,7 @@ function GradingTask() {
 
     const getUpTask = async () => {
         try {
-            const res = await axios.get(`${UP_URI}${id}`); // `id` viene de useParams()
+            const res = await axios.get(`${UP_URI}${id}`);
             if (Array.isArray(res.data)) {
                 setUpTasks(res.data);
             } else {
@@ -73,9 +64,7 @@ function GradingTask() {
         } catch (error) {
             console.error('Error al obtener las tareas enviadas:', error);
         }
-    }
-  
-
+    };
   
     const handleGrade = async (taskId, qualification) => {
         if (!qualification || isNaN(parseFloat(qualification))) {
@@ -86,7 +75,7 @@ function GradingTask() {
         try {
             await axios.put(`${UP_URI}grade/${taskId}`, { qualification: parseFloat(qualification) });
             alert('Calificación guardada y promedio actualizado exitosamente.');
-            getUpTask(); // Actualiza la lista de tareas
+            getUpTask();
         } catch (error) {
             console.error('Error al calificar la tarea:', error);
             alert('Hubo un error al guardar la calificación.');
@@ -94,72 +83,84 @@ function GradingTask() {
     };
   
     return (
-
-
-
       <div className="justify-stretch">
         <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
           <h1>Título: {title}</h1>
           <p>Descripción: {description}</p>
           <p>Materia: {subject_name}</p>
           <p>Fecha de entrega: {deliveryDate}</p>
-           {/* Mostrar la imagen si existe */}
-         
-            {file && (
-                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-            )}
-              
+          {file ? (
+            file.match(/.(jpg|jpeg|png|gif)$/i) ? (
+              <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
+            ) : (
+              <p className="text-yellow-500">Para mostrar el archivo, presiona el botón</p>
+            )
+          ) : null}
+          {file && (
+            <a 
+              href={file} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+            >
+              Ver Archivo
+            </a>
+          )}
         </div>
 
         <div>
         {upTasks.length > 0 ? (
             upTasks.map((UpTask) => (
                 <tr key={UpTask.id}>
-                    <header className=" w-52 bg-slate-500 hover:bg-slate-700 rounded-md my-2">
-                        <h1 className="text-2xl font-bold w-full my-2 px-4 py-2">
+                    <header className="w-52 bg-slate-500 hover:bg-slate-700 rounded-md my-2 p-4">
+                        <h1 className="text-2xl font-bold w-full my-2">
                             {UpTask.studentName || 'Sin nombre'}
                         </h1>
-                        <p className="text-black font-semibold my-1">
-                            Tarea ID: {UpTask.task_id}
-                        </p>
-                        {/* Mostrar la imagen si existe */}
-         
-                        {UpTask.file && (
+                        <p className="text-black font-semibold my-1">Tarea ID: {UpTask.task_id}</p>
+                        {UpTask.file ? (
+                            UpTask.file.match(/.(jpg|jpeg|png|gif)$/i) ? (
                                 <img src={UpTask.file} className="w-20 h-20 object-cover rounded-full my-2" />
-                            )}
-                            {/* Mostrar calificación si existe */}
-                            {UpTask.qualification ? (
-                                <p className="text-green-500 font-semibold">
-                                    Calificación: {UpTask.qualification}
-                                </p>
                             ) : (
-                                <>
-                                    <input
-                                        type="number"
-                                        placeholder="Calificación"
-                                        className="my-2 p-1 rounded"
-                                        onChange={(e) => (UpTask.qualification = e.target.value)} // Guarda temporalmente
-                                    />
-                                    <button
-                                        className="bg-green-500 text-white px-4 py-2 rounded"
-                                        onClick={() => handleGrade(UpTask.id, UpTask.qualification)}
-                                    >
-                                        Calificar
-                                    </button>
-                                </>
-                            )}
-                        </header>
-
+                                <p className="text-yellow-500">Para mostrar el trabajo, presiona el botón</p>
+                            )
+                        ) : null}
+                        {UpTask.file && (
+                            <a 
+                                href={UpTask.file} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+                            >
+                                Ver Archivo
+                            </a>
+                        )}
+                        {UpTask.qualification ? (
+                            <p className="text-green-500 font-semibold">Calificación: {UpTask.qualification}</p>
+                        ) : (
+                            <>
+                                <input
+                                    type="number"
+                                    placeholder="Calificación"
+                                    className="my-2 p-1 rounded"
+                                    onChange={(e) => (UpTask.qualification = e.target.value)}
+                                />
+                                <button
+                                    className="bg-green-500 text-white px-4 py-2 rounded"
+                                    onClick={() => handleGrade(UpTask.id, UpTask.qualification)}
+                                >
+                                    Calificar
+                                </button>
+                            </>
+                        )}
+                    </header>
                 </tr>
-                    ))
-                ) : (
-                    <p>No hay tareas enviadas para esta tarea.</p>
-                )}
+            ))
+        ) : (
+            <p>No hay tareas enviadas para esta tarea.</p>
+        )}
         </div>
       </div>
-
-
     );
   };
 
-export default GradingTask
+export default GradingTask;
