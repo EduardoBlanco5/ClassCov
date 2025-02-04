@@ -107,7 +107,7 @@ const TaskCard = () => {
   };
 
    // Función para verificar si el archivo es imagen o pdf
-   const isImage = (fileType) => fileType.match(/.(jpg|jpeg|png|gif)$/i);
+   const isImage = (fileType) => typeof fileType === 'string' && fileType.match(/.(jpg|jpeg|png|gif)$/i);
    const isPdf = (fileType) => fileType === 'application/pdf';
 
   return (
@@ -188,7 +188,17 @@ const TaskCard = () => {
                                   Pendiente
                                 </p>
                             )}
+                            {/* Botón "Ver archivo" */}
+                        <a
+                          href={uploadedTask.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+                        >
+                          Ver tarea
+                        </a>
               </div>
+              
             ) : (
               <>
                 <h3 className="text-lg font-bold">Sube tu tarea:</h3>

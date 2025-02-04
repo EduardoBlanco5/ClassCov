@@ -11,12 +11,12 @@ RESOURCES = {
         "https://www.mathsisfun.com/",
         "https://www.symbolab.com/"
     ],
-    "Español": [
+    "Español 2": [
         "https://www.aprendeblog.com/",
         "https://www.gramatica.com/",
         "https://www.rae.es/"
     ],
-    "Ciencias": [
+    "Ciencias 1": [
         "https://www.nationalgeographic.com/science/",
         "https://www.sciencebuddies.org/",
         "https://www.khanacademy.org/science"
