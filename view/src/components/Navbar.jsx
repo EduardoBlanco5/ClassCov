@@ -1,16 +1,46 @@
-import { Link, useNavigate } from "react-router-dom";
+import {Link,   useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect, useRef  } from "react";
 import { AuthContext } from "./AuthContext";
 import Dashboard from "./Dashboard";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
 
-function Navbar() {
+  Button,
+  Card, CardHeader, CardBody, CardFooter, Divider
+} from "@heroui/react";
+
+
+
+
+
+function NavBar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRef = useRef(null);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    "Admin",
+    "Clases",
+    "Profesores",
+    "Alumnos",
+    "Tutores",
+    "Administradores",
+    "Anuncios",
+    "Cerra Sesión"
+  ];
+
   const handleLogout = () => {
     logout();
+    const hidenav = document.getElementById("navBar").style.display = 'none'
     navigate("/");
   };
 
@@ -37,10 +67,19 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-lg">
-      <Link to="/Home">
-        <h1 className="text-2xl font-bold text-white">Inicio</h1>
-      </Link>
+    <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen} id="navBar" className=" bg-primary-200  flex justify-between  py-5 px-10  ">
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+          <Link to="/Home">
+            <Button variant="flat"  className="text-2xl font-bold text-white">Inicio</Button >
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+      
 
       <ul className="flex gap-x-4" ref={dropdownRef}>
         {isLoggedIn ? (
@@ -54,92 +93,73 @@ function Navbar() {
               <>
               {/* Menú Clases */}
               <div className="relative">
-                  <button
-                    onClick={() => toggleDropdown("clases")}
-                    className="text-white bg-green-500 px-3 py-1 rounded-md"
+                  <Button 
+                    variant="bordered"
+                    onPressEnd={() => toggleDropdown("clases")}
+                    className=" border-primary-500 text-primary-500 text-md hover:text-primary-300 hover:border-primary-300 hover:duration-500"
                   >
                     Clases
-                  </button>
+                  </Button>
                   {openDropdown === "clases" && (
-                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
-                      <ul className="py-1">
+                    <Card className=" absolute header right-0 mt-2 w-auto border-none border-transparent bg-white/70  " 
+                    isBlurred>
+                      <CardHeader className=" relative justify-between ">
+                          <li>
+                            <Link
+                              className="  px-4  w-full "
+                              to="/CreateClass"
+                              onPressEnd={() => setOpenDropdown(null)}
+                            >
+                              <Button 
+                              // color="secondary" 
+                              className="text-md text-primary-200 bg-transparent hover:bg-primary-900 hover:text-primary-300 hover:duration-500 "
+                              >
 
-
+                                Crear Clase
+                              </Button>
+                            </Link>
+                          </li>
+                      </CardHeader>
+                      <Divider/>
+                      <CardBody>
+                          <li>
+                            <Link
+                              className="text-black block "
+                              to="/CreateStudentClass"
+                              onClick={() => setOpenDropdown(null)}
+                            >
+                              <Button
+                              className="text-md text-primary-200 bg-transparent hover:bg-primary-900 hover:text-primary-300 hover:duration-500 "
+                              >
+                                Añadir Estudiantes 
+                              </Button>
+                            </Link>
+                          </li>
+                      </CardBody>
+                      <Divider/>
+                      <CardFooter>
                         <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/CreateClass"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Crear Clase
-                          </Link>
+                            <Link
+                              className="text-black block px-4 "
+                              to="/ShowClass"
+                              onClick={() => setOpenDropdown(null)}
+                            >
+                              <Button
+                                className="text-md text-primary-200 bg-transparent hover:bg-primary-900 hover:text-primary-300 hover:duration-500"
+                              >
+                              Ver Clases
+                              </Button>
+                            </Link>
                         </li>
-
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/CreateStudentClass"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Añadir Estudiantes 
-                          </Link>
-                        </li>
-
-
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/ShowClass"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Ver Clases
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
-
-                {/* Menú Materias */}
-              <div className="relative">
-                  <button
-                    onClick={() => toggleDropdown("materias")}
-                    className="text-white bg-sky-900 px-3 py-1 rounded-md"
-                  >
-                    Materias
-                  </button>
-                  {openDropdown === "materias" && (
-                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
-                      <ul className="py-1">
-
-
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/CreateSubject"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Crear Materia
-                          </Link>
-                        </li>
-
-
-                        <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/ShowSubjects"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Ver Materias
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+                      </CardFooter>
+                    </Card>
+                    
                   )}
                 </div>
 
                 {/* Menú Profesores */}
                 <div className="relative">
+                
                   <button
                     onClick={() => toggleDropdown("profesores")}
                     className="text-white bg-blue-500 px-3 py-1 rounded-md"
@@ -317,37 +337,61 @@ function Navbar() {
               <>
                 {/* Menú Clases */}
               <div className="relative">
-                  <button
+              <Button 
+                    variant="bordered"
+                    onPressEnd={() => toggleDropdown("clases")}
+                    className=" border-primary-500 text-primary-500 text-md hover:text-primary-300 hover:border-primary-300 hover:duration-500"
+                  >
+                    Clases
+                  </Button>
+                  {/* <button
                     onClick={() => toggleDropdown("clases")}
                     className="text-white bg-green-500 px-3 py-1 rounded-md"
                   >
                     Clases
-                  </button>
+                  </button> */}
                   {openDropdown === "clases" && (
-                    <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
-                      <ul className="py-1">
-
-
+                    <Card className=" absolute border shadow-none right-0 mt-2 w-auto  bg-white/70  " 
+                    isBlurred>
+                      
+                      <CardBody>
                         <li>
-                          <Link
-                            className="text-black block px-4 py-2"
-                            to="/ShowClass"
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            Ver Clases
-                          </Link>
+                            <Link
+                              className="text-black block px-4 "
+                              to="/ShowClass"
+                              onClick={() => setOpenDropdown(null)}
+                            >
+                              <Button
+                                className="text-md text-primary-200 bg-transparent hover:bg-primary-900 hover:text-primary-300 hover:duration-500"
+                              >
+                              Ver Clases
+                              </Button>
+                            </Link>
                         </li>
-                      </ul>
-                    </div>
+                      </CardBody>
+                    </Card>
+                    // <div className="absolute right-0 mt-2 bg-white rounded-md shadow-lg z-10 w-40">
+                    //   <ul className="py-1">
+
+
+                    //     <li>
+                    //       <Link
+                    //         className="text-black block px-4 py-2"
+                    //         to="/ShowClass"
+                    //         onClick={() => setOpenDropdown(null)}
+                    //       >
+                    //         Ver Clases
+                    //       </Link>
+                    //     </li>
+                    //   </ul>
+                    // </div>
                   )}
                 </div>
-
               </>
             )}
 
             {/*ALUMNOS*/}
             {role === "student" && (
-              <>
               <div className="relative">
               <button
                 onClick={() => toggleDropdown("clases")}
@@ -371,26 +415,13 @@ function Navbar() {
                 </div>
               )}
             </div>
-
-            <div>
-              <button className="text-white bg-blue-800 px-3 py-1 rounded-md">
-              <Link to={`/Dashboard/${id}`}> Dashboard</Link>
-              </button>
-            </div>
-
-            </>
-            
-
-            
-
             )}
-            
 
             {/*TUTORES */}
             {role === "guardian" && (
               <>
                 <li>
-                  <Link className="text-white" to={`/GuardianStudent/${id}`}>
+                  <Link className="text-white" to="/ShowStudents">
                     Ver Hijos
                   </Link>
                 </li>
@@ -419,8 +450,13 @@ function Navbar() {
           </li>
         )}
       </ul>
-    </nav>
+    </Navbar>
   );
 }
 
-export default Navbar;
+
+
+
+
+
+export default NavBar;

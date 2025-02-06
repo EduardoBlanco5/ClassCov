@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from '../../components/AuthContext'; // Asegúrate de importar el contexto correcto.
+import { Divider } from '@heroui/react'
 
 const URIA = 'http://localhost:4000/announcements/'
 function ClassAnnouncements() {
@@ -27,9 +28,11 @@ function ClassAnnouncements() {
     };
 
   return (
-    <div>
-        <div className='bg-slate-500'>
-            <h2 className="font-bold text-white text-2xl text-center mt-4">Anuncios:</h2>
+    <div className='w-full'>
+        {/* con algunos estilos */}
+        <div className='w-10/12 mx-auto'>
+            <h2 className="font-bold text-secondary-200 text-2xl text-center mt-4">Anuncios:</h2>
+            <Divider className='mt-5'/>
             <ul className="mt-5 ">
                 {announcements.map(announcement => (
                     <Link to={`/AnnouncementCard/${announcement.id}`}>

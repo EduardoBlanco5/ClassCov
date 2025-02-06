@@ -2,8 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import {Button,Input,
+  Card, CardBody, Image, Slider, Form,
+  CardHeader, Select, SelectItem,
+  Divider, Avatar} from "@heroui/react";
+
+import { FilePlus2,UserRoundPlus , Search} from 'lucide-react';
+
 const URICLASS = 'http://localhost:4000/classes';
 const URISTUDENTS = 'http://localhost:4000/studentsSearch';
+
+const classItems = [
+  
+]
 
 const CreateStudentClass = () => {
   const [students, setStudents] = useState([]);
@@ -96,74 +107,160 @@ const CreateStudentClass = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-        <h2 className="text-white flex">Inscribir Estudiante a Clase</h2>
-        <form onSubmit={handleSubmit}>
-          <label className="text-white flex">Buscar Estudiante:</label>
-          <input
-            type="text"
-            placeholder="Buscar por nombre o correo"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full px-4 py-2 rounded-md my-2"
-          />
-          {students.length > 0 && (
-            <ul className="bg-white rounded-md shadow-md max-h-40 overflow-auto">
-              {students.map((student) => (
-                <li
-                  key={student.id}
-                  className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => {
-                    setSelectedStudent(student.id);
-                    setSearchTerm(`${student.name} (${student.email})`);
-                    setStudents([]);
-                  }}
-                >
-                  {student.name} ({student.email})
-                </li>
-              ))}
-            </ul>
-          )}
+    <div className="w-[100vw] max-h-[82vh] h-auto mt-6 flex  justify-center ">
+      <Card className="max-w-[1000px] w-[600px] flex " isBlurred>
+        <div className='bg-secondary-200 justify-center flex-col  w-full px-10 py-6 rounded-md flex'>
 
-          <label className="text-white flex">Clase:</label>
-          <select
-            value={classId}
-            onChange={(e) => setClassId(e.target.value)}
-            className="w-full px-4 py-2 rounded-md my-2"
-          >
-            <option value="">Selecciona una clase</option>
-            {classes.map((clase) => (
-              <option key={clase.id} value={clase.id}>
-                {clase.grade} {clase.salon} 
-              </option>
-            ))}
-          </select>
-
-          <button type="submit" className="text-white flex bg-green-500 rounded-md p-3">
-            Inscribir
-          </button>
-        </form>
-
-        <div className="bg-zinc-800 max-w-md w-full rounded-md flex mt-4">
-          <form onSubmit={uploadExcel}>
-            <h1 className="font-bold text-white text-center text-3xl">Subir Excel de Alumnos</h1>
-            <label htmlFor="excelFile" className="text-white">
-              Selecciona un archivo Excel:
-            </label>
-            <input
-              type="file"
-              id="excelFile"
-              onChange={(e) => setFile(e.target.files[0])}
-              accept=".xlsx,.xls"
-              required
+          <Form onSubmit={handleSubmit} className=' w-full'>
+            <CardHeader className=' flex gap-3 justify-center'>
+            <UserRoundPlus className=" text-white w-12 h-12" />
+              <h2 className="text-white flex">Inscribir Estudiante a Clase</h2>
+            </CardHeader>
+            {/* <label className="text-white flex">Buscar Estudiante:</label> */}
+            <Input
+              // isClearable
+              classNames={{
+                label: "text-primary-900 dark:text-white/90 my-4 ",
+                input: [
+                  "bg-transparent", 
+                  " text-primary-900 dark:text-white/90",
+                  " placeholder:text-secondary-800/50 dark:placeholder:text-white/60",
+                ],
+                innerWrapper: "bg-transparent mt-[20px] text-primary-900",
+                inputWrapper: [
+                  "shadow-xl py-4 ",
+                  "bg-default-200/50",
+                  "dark:bg-default/60",
+                  "backdrop-blur-xl",
+                  "backdrop-saturate-200",
+                  "hover:bg-default-200/70",
+                  "dark:hover:bg-default/70",
+                  "group-data-[focus=true]:bg-default-200/50",
+                  "dark:group-data-[focus=true]:bg-default/60",
+                  "!cursor-text text-red",
+                ],
+              }}
+              label="Buscar por nombre o correo"
+              placeholder="Estudiante ..."
+              radius="lg"
+              startContent={
+                <Search className="text-primary-900/50  dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                
+              }
+              value={searchTerm}
+              onChange={handleSearchChange}
+              
             />
-            <button className="bg-blue-600 rounded-md w-20 mx-32" type="submit">
-              Subir Excel
-            </button>
-          </form>
+            {students.length > 0 && (
+              <ul className="bg-white rounded-md shadow-md max-h-40 overflow-auto">
+                {students.map((student) => (
+                  <li
+                    key={student.id}
+                    className="px-4 py-4 cursor-pointer hover:bg-gray-200"
+                    onClick={() => {
+                      setSelectedStudent(student.id);
+                      setSearchTerm(`${student.name} (${student.email})`);
+                      setStudents([]);
+                    }}
+                  >
+                    {student.name} ({student.email})
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <label className="text-white flex mt-4 ">Clase:</label>
+            <Select
+              label="Selecciona la clase"
+              value={classId}
+              onChange={(e) => setClassId(e.target.value)}
+              variant='underlined'
+              className="w-full  px-4 mb-5  text-white "
+            >
+              {classes.map((clase) => (
+                <SelectItem
+                className='data-[selectable=true]:focus:bg-primary-500 
+                  text-secondary-900 
+                  data-[hover=true]:bg-primary-100
+                  data-[hover=true]:text-primary-500 
+                  data-[pressed=true]:opacity-95
+                  data-[focus-visible=true]:ring-primary-300'
+                
+                key={clase.id} >
+                  {clase.grade + clase.salon} 
+                </SelectItem>
+              ))}
+            </Select>
+
+            <Button type="submit" 
+            className="
+            text-white mx-auto 
+            w-[200px] bg-secondary-700 
+            rounded-md p-3 duration-500
+            hover:bg-primary-100
+            hover:shadow-sm
+            hover:shadow-primary-900
+            hover:scale-110
+          ">
+              Inscribir
+            </Button>
+          </Form>
+              <Divider className=' bg-white w-full my-6'/>
+          <Card isBlurred className=" bg-slate-900/50 max-w-md w-full flex mx-auto mt-4">
+            <Form onSubmit={uploadExcel}>
+              <CardHeader>
+              <h1 className="font-bold text-white text-center text-2xl">Subir Excel de Alumnos</h1>
+              </CardHeader>
+              
+              <CardBody className=' w-11/12 mx-auto'>
+
+              <Input
+                type='file'
+                label='Selecciona el Archivo Excel'
+                id="excelFile"
+                onChange={(e) => setFile(e.target.files[0])}
+                accept=".xlsx,.xls"
+                required
+                classNames={{
+                  label: "text-primary-900 dark:text-white/90 my-4 ",
+                  input: [
+                    "bg-transparent ", 
+                    " text-primary-900 dark:text-white/90",
+                    " placeholder:text-secondary-800/50 dark:placeholder:text-white/60",
+                  ],
+                  innerWrapper: "bg-transparent mt-[20px] text-primary-900",
+                  inputWrapper: [
+                    "shadow-xl py-4 ",
+                    "bg-primary-200/90",
+                    "dark:bg-default/60",
+                    "backdrop-blur-xl",
+                    "backdrop-saturate-200",
+                    "hover:bg-primary-200/70",
+                    "dark:hover:bg-default/70",
+                    "group-data-[focus=true]:bg-primary-200/50",
+                    "dark:group-data-[focus=true]:bg-default/60",
+                    "!cursor-text ",
+                  ],
+                }}
+              />
+              </CardBody>
+              
+              <Button type="submit" 
+                className="
+                text-white mx-auto my-2
+                w-[200px] bg-secondary-700 
+                rounded-md p-3 duration-500
+                hover:bg-primary-100
+                hover:shadow-sm
+                hover:shadow-primary-900
+                hover:scale-110
+              ">
+                  Subir Excel
+            </Button>
+            </Form>
+          </Card>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

@@ -186,7 +186,7 @@ function CreateStudent() {
             </input>
 
             <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
-            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
+            <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>

@@ -2,8 +2,36 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
+import {Button,
+    Card, CardBody, Image, Slider, Form,
+    CardHeader, Select, SelectItem,
+    Divider, Avatar} from "@heroui/react";
+
+import { FilePlus2, FilePenLine } from 'lucide-react';
+
+
+
 const URI = 'http://localhost:4000/class/'
 const URIT = 'http://localhost:4000/teachers'
+
+const gradeItem = [
+    {key:"1", label:"Primero"},
+    {key:"2", label:"Segundo"},
+    {key:"3", label:"Tercero"},
+    {key:"4", label:"Cuarto"},
+    {key:"5", label:"Quinto"},
+    {key:"6", label:"Sexto"},
+]
+const groupItem = [
+{key:"A", label:"A"},
+{key:"B", label:"B"},
+
+]
+const shiftItem = [
+{key:"Matutino", label:"Matutino"},
+{key:"Vespertino", label:"Vespertino"},
+
+]
 
 function UpdateClass() {
 
@@ -12,7 +40,17 @@ function UpdateClass() {
     const [shift, setShift] = useState('')
     const [teacher_id, setTeacher_id] = useState('')
 
-    const [grado, setGrado] = useState('')
+    useEffect( () => {
+        let count = 0
+        if (count == 1){
+            window.location.reload(false);
+            count = count +1
+        }
+        
+        getClassById()
+        fetchTeachers();
+    },[])
+    
 
     const [teachers, setTeachers] = useState([]); // Lista de materias
 
@@ -20,10 +58,7 @@ function UpdateClass() {
     const {id} = useParams()
     const navigate = useNavigate()
 
-    useEffect( () => {
-        getClassById()
-        fetchTeachers();
-    },[])
+    
 
     const update = async (e) => {
         e.preventDefault()
@@ -46,12 +81,12 @@ function UpdateClass() {
     // Obtener materias desde el backend
     const fetchTeachers = async () => {
         try {
-          const response = await axios.get(URIT);
-          setTeachers(response.data);
-        } catch (error) {
-          console.error('Error al obtener materias:', error);
-        }
-      };
+            const response = await axios.get(URIT);
+            setTeachers(response.data);
+            } catch (error) {
+            console.error('Error al obtener materias:', error);
+            }
+        };
 
 
 
@@ -62,10 +97,14 @@ function UpdateClass() {
         setGrade(res.data.grade)
         setSalon(res.data.salon)
         setShift(res.data.shift)
-     
+        
+    
 
-        console.log(res.data.id)
+        console.log(res.data.id+'  '+res.data.grade+'  '+grade)
     }
+    
+    
+
 
     const ConvertirGrado = (grade) => {
         switch (grade) {
@@ -95,70 +134,175 @@ function UpdateClass() {
     }
 
     return (
-        <div className='flex justify-center'>
+        
+
+        <div className=' w-[100vw]  mt-12 flex  justify-center'>
+        <Card className=' max-w-[1000px] w-[600px] flex ' isBlurred >
+            <div className='bg-secondary-200 justify-center  w-full p-10 rounded-md flex'>
+                <Form onSubmit={update} className='w-full' >
+                <CardHeader className=' flex gap-3 justify-center'>
+                    <FilePenLine className=" text-white w-12 h-12" />
+                    <h1 className='font-bold text-white text-center text-3xl'>Clases</h1>
+                </CardHeader>
+                <Divider className=' bg-white'/>
+                    
+                    <Select
+                    label = "Seleccione el Grado"
+                    value={grade}
+                    isRequired
+                    defaultSelectedKeys={[grade] }
+                    
+                    onChange={(e) => setGrade(e.target.value)}
+                    className=' w-11/12   text-white text-md'
+                    variant="underlined"
+                    
+                    >
+                    {gradeItem.map((gItem)=>(
+                        <SelectItem className=' 
+                        
+                        data-[selectable=true]:focus:bg-primary-500 
+                        text-primary-600 
+                        data-[hover=true]:bg-primary-100
+                        data-[hover=true]:text-primary-500 
+                        data-[pressed=true]:opacity-95
+                        data-[focus-visible=true]:ring-primary-300
+                        ' 
+                        key={gItem.key}>{gItem.label}
+                        </SelectItem>
+                    ))} 
+                    </Select>
+                    
     
-            <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md justify-center flex '>
-                <form onSubmit={update} className="">
                     
-                    <h1 className="font-bold text-white text-3xl text-center">Actualizar Clase</h1>
+                    <Select
+                    label = "Seleccione el Grupo"
+                    value={salon}
+                    onChange={(e) => setSalon(e.target.value)}
+                    className=' w-full text-white text-md'
+                    variant="underlined"
                     
-                    <label className="text-white">Grado</label>
-                    <select
-                        value={grade}
-                        onChange={(e) => setGrade(e.target.value)}
-                        className="w-full px-4 py-2 rounded-md my-2"
                     >
-                        <option value="" disabled>Selecciona un grado</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-
-                    <label className='text-white'>Grupo</label>
-                    <select
-                        value={salon}
-                        onChange={(e) => setSalon(e.target.value)}
-                        className="w-full px-4 py-2 rounded-md my-2"
-                    >
-                        <option value="" disabled>Selecciona un grupo</option>
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        
-                    </select> 
-                    <label className='text-white'>Turno</label>
-                    <select
-                        value={shift}
-                        onChange={(e) => setShift(e.target.value)}
-                        className="w-full px-4 py-2 rounded-md my-2"
-                    >
-                        <option value="" disabled>Selecciona un turno</option>
-                        <option value="Matutino">Matutino</option>
-                        <option value="Vespertino">Vespertino</option>
-                        
-                    </select>
+                    {groupItem.map((gItem)=>(
+                        <SelectItem className=' 
+                        data-[selectable=true]:focus:bg-primary-500 
+                        text-primary-600 
+                        data-[hover=true]:bg-primary-100
+                        data-[hover=true]:text-primary-500 
+                        data-[pressed=true]:opacity-95
+                        data-[focus-visible=true]:ring-primary-300
+                        ' 
+                        key={gItem.key}>{gItem.label}
+                        </SelectItem>))
+                    }
                     
-                    <label className='text-white text-1xl font-semibold'>    Profesor</label>
-                    <select
-                        value={teacher_id}
-                        onChange={(e) => setTeacher_id(e.target.value)}
-                        className='w-full px-4 py-2 rounded-md my-2'
+                    </Select>
+    
+                    
+                    <Select
+                    label="Seleccione el Turno"
+                    value={shift}
+                    defaultSelectedKeys={[grade]}
+                    onChange={(e) => setShift(e.target.value)}
+                    className=' w-11/12 text-white text-md'
+                    variant="underlined"
                     >
-                        <option value=''>Selecciona un Profesor</option>
-                        {teachers.map((teacher) => (
-                        <option key={teacher.id} value={teacher.id}>
-                            {teacher.name}
-                        </option>
-                        ))}
-                    </select>
+                    {shiftItem.map((gItem)=>(
+                        <SelectItem className=' 
+                        data-[selectable=true]:focus:bg-primary-500 
+                        text-primary-600 
+                        data-[hover=true]:bg-primary-100
+                        data-[hover=true]:text-primary-500 
+                        data-[pressed=true]:opacity-95
+                        data-[focus-visible=true]:ring-primary-300
+                        ' 
+                        key={gItem.key}>{gItem.label}
+                        </SelectItem>))
+                    }
+                    
+                    </Select>
+    
+                    <Select
+                    className="w-full  py-2"
+                    value={teacher_id}
+                    onChange={(e) => setTeacher_id(e.target.value)}
+                    classNames={{
+                        label: "group-data-[filled=true]:-translate-y-5",
+                        trigger: "min-h-16",
+                        listboxWrapper: "max-h-[400px]",
+                    }}
+                    items={teachers}
+                    label="Profesor asignado"
+                    listboxProps={{
+                        itemClasses: {
+                        base: [
+                            "rounded-md",
+                            "text-primary-500",
+                            "transition-opacity",
+                            "data-[hover=true]:text-white",
+                            "data-[hover=true]:bg-primary-900",
+                            "dark:data-[hover=true]:bg-primary-50",
+                            "data-[selectable=true]:focus:bg-primary-50",
+                            "data-[pressed=true]:opacity-70",
+                            "data-[focus-visible=true]:ring-primary-500",
+                        ],
+                        },
+                    }}
+                    popoverProps={{
+                        classNames: {
+                        base: "before:bg-primary-200",
+                        content: "p-0 border-small border-divider bg-background",
+                        },
+                    }}
+                    renderValue={(teachers) => {
+                        return teachers.map((item) => (
+                        <div key={item.key} className="flex items-center gap-2">
+                            <Avatar
+                            alt={item.data.name}
+                            className="flex-shrink-0"
+                            size="sm"
+                            src={item.data.file}
+                            />
+                            <div className="flex flex-col">
+                            <span>{item.data.name}</span>
+                            <span className="text-default-500 text-tiny">({item.data.email})</span>
+                            </div>
+                        </div>
+                        ));
+                    }}
+                    variant="underlined"
+                    >
+                    {(user) => (
+                        <SelectItem key={user.id} textValue={user.name}>
+                        <div className="flex gap-2 items-center">
+                            <Avatar alt={user.name} className="flex-shrink-0" size="sm" src={user.avatar} />
+                            <div className="flex flex-col">
+                            <span className="text-small">{user.name}</span>
+                            <span className="text-tiny text-default-400">{user.email}</span>
+                            </div>
+                        </div>
+                        </SelectItem>
+                    )}
+                </Select>
+            
 
-
-                    <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-[38%]  mt-3' type='submit'>Actualizar</button>
-                </form>
+                <Button  
+                className='bg-secondary-100 
+                rounded-md 
+                w-[300px] 
+                mt-4 
+                mx-auto 
+                hover:bg-primary-100 
+                duration-500 
+                hover:text-white 
+                hover:shadow-sm
+                hover:shadow-primary-900
+                hover:scale-110
+                ' 
+                type='submit'>Actualizar</Button>
+            </Form>
             </div>
-        </div>
+        </Card>
+    </div>
     
     )
 }
