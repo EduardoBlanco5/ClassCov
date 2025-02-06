@@ -5,6 +5,7 @@ import { AuthContext } from './AuthContext';
 
 const URI = 'http://localhost:4000/task/';
 const UPLOAD_URI = 'http://localhost:4000/uploadTask';
+const URI_SUBJECT = 'http://localhost:4000/subject/';
 
 const TaskCard = () => {
   const { id } = useParams();
@@ -14,6 +15,10 @@ const TaskCard = () => {
   const [file, setFile] = useState(null);
   const [uploadedTask, setUploadedTask] = useState(null); // Para almacenar la tarea enviada
   const [message, setMessage] = useState('');
+
+  const [subject_id, setSubject_id] = useState('');
+  const [subject_name, setSubject_name] = useState('');
+
   const { user } = useContext(AuthContext);
   const student_id = localStorage.getItem('student_id');
   const role = user?.role || localStorage.getItem('role');
@@ -21,7 +26,21 @@ const TaskCard = () => {
   useEffect(() => {
       getTaskById();
       checkTaskSubmission();
+      
   }, []);
+
+  useEffect(() => {
+    if (subject_id) {
+      getSubjectById(subject_id);
+    }
+    
+  }, [subject_id]);
+  
+
+  const getSubjectById = async (subject_id) => {
+    const res = await axios.get(URI_SUBJECT + subject_id);
+    setSubject_name(res.data.name);
+  };
 
   //Información de la tarea dejada por el maestro
   const getTaskById = async () => {
@@ -31,26 +50,35 @@ const TaskCard = () => {
           setDescription(res.data.description);
           setDeliveryDate(res.data.deliveryDate);
           setFile(res.data.file);
+          setSubject_id(res.data.subject_id);
+          
       } catch (error) {
           console.error('Error al obtener la tarea:', error);
       }
   };
 
   const checkTaskSubmission = async () => {
-      if (role !== 'student' || !student_id) return;
-
-      try {
-          const res = await axios.get('http://localhost:4000/uptask', {
-              params: { task_id: id, student_id },
-          });
-          setUploadedTask(res.data); // Si existe, almacenamos los datos
-      } catch (error) {
-          if (error.response?.status === 404) {
-              setUploadedTask(null); // No hay tarea enviada
-          } else {
-              console.error('Error al verificar tarea:', error);
-          }
+    let studentIdToCheck = student_id;
+  
+    // Si el usuario es tutor, obtenemos el id del estudiante asociado
+    if (role === 'guardian') {
+      studentIdToCheck = localStorage.getItem('student_id'); // Asegúrate de que está guardado en el localStorage
+    }
+  
+    if (!studentIdToCheck) return;
+  
+    try {
+      const res = await axios.get('http://localhost:4000/uptask', {
+        params: { task_id: id, student_id: studentIdToCheck },
+      });
+      setUploadedTask(res.data); // Si existe, almacenamos los datos
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setUploadedTask(null); // No hay tarea enviada
+      } else {
+        console.error('Error al verificar tarea:', error);
       }
+    }
   };
 
   const handleUpload = async (e) => {
@@ -64,6 +92,7 @@ const TaskCard = () => {
       formData.append('file', file);
       formData.append('task_id', id);
       formData.append('student_id', student_id);
+      formData.append('subject_id', subject_id);
 
       try {
           await axios.post('http://localhost:4000/uploadTask', formData, {
@@ -77,17 +106,49 @@ const TaskCard = () => {
       }
   };
 
+   // Función para verificar si el archivo es imagen o pdf
+   const isImage = (fileType) => fileType.match(/.(jpg|jpeg|png|gif)$/i);
+   const isPdf = (fileType) => fileType === 'application/pdf';
+
   return (
     <div className="flex justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md text-white">
         <h1>Título: {title}</h1>
         <p>Descripción: {description}</p>
+        <p>Materia: {subject_name}</p>
         <p>Fecha de entrega: {deliveryDate}</p>
-         {/* Mostrar la imagen si existe */}
-       
-          {file && (
-                <img src={file} className="w-20 h-20 object-cover rounded-full my-2" />
-              )}
+        {/* Mostrar el archivo de la tarea si existe */}
+        {file && (
+          <>
+            {isImage(file) ? (
+              <img src={file} className="w-full object-cover my-4" alt="Tarea" />
+            ) : isPdf(file) ? (
+              <iframe
+                src={file}
+                width="100%"
+                height="400px"
+                title="Archivo PDF"
+                className="my-4"
+              />
+            ) : (
+              <div>
+                <p className="text-yellow-500">Para ver el archivo, presiona el botón</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* El botón de ver archivo siempre aparece */}
+        {file && (
+          <a
+            href={file}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+          >
+            Ver archivo
+          </a>
+        )}
   
         {role === 'student' && (
           <div className="mt-4">
@@ -118,6 +179,15 @@ const TaskCard = () => {
                     <p>Tipo de archivo no soportado para vista previa. Descárgalo para verlo.</p>
                   )}
                 </div>
+                {uploadedTask.qualification ? (
+                                <p className="text-green-500 font-semibold">
+                                    Calificación: {uploadedTask.qualification}
+                                </p>
+                            ):( 
+                                <p className='text-yellow-500 font-semibold'>
+                                  Pendiente
+                                </p>
+                            )}
               </div>
             ) : (
               <>
@@ -141,6 +211,45 @@ const TaskCard = () => {
           </div>
         )}
       </div>
+
+      {/* Mostrar vista previa de la tarea subida por el alumno para el tutor */}
+      {role === 'guardian' && (
+        <div className="mt-4">
+          {uploadedTask ? (
+            <div>
+              <p className="text-green-500">El alumno ha entregado la tarea</p>
+              {uploadedTask.file.endsWith('.jpg') ||
+              uploadedTask.file.endsWith('.jpeg') ||
+              uploadedTask.file.endsWith('.png') ? (
+                <img
+                  src={uploadedTask.file}
+                  alt="Tarea subida"
+                  className="max-w-full max-h-96"
+                />
+              ) : uploadedTask.file.endsWith('.pdf') ? (
+                <iframe
+                  src={uploadedTask.file}
+                  title="Tarea subida"
+                  className="w-full h-96 border-0"
+                ></iframe>
+              ) : (
+                <p>Tipo de archivo no soportado para vista previa.</p>
+              )}
+              {/* Botón para ver tarea en nueva pestaña */}
+              <a
+                href={uploadedTask.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 text-white px-4 py-2 rounded block text-center mt-2"
+              >
+                Ver tarea del alumno
+              </a>
+            </div>
+          ) : (
+            <p className="text-red-500">El alumno no ha entregado la tarea</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

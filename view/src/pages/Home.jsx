@@ -21,7 +21,9 @@ function Home() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-100px)] items-center justify-between"></div>
+    <div className="flex h-[calc(100vh-100px)] items-center justify-between ">
+      {/* hola */}
+    </div>
   );
 }
 

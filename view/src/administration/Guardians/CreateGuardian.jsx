@@ -17,7 +17,7 @@ function CreateGuardian() {
     const [phone, setPhone] = useState('')
     const [date_of_birth, setDate_of_birth] = useState('')
     const [role, setRole] = useState('guardian')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('activo')
     const [file, setFile] = useState(null);
 
     const onSubmit = handleSubmit((data) => {
@@ -30,7 +30,7 @@ function CreateGuardian() {
 
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('password', password);
+        formData.append('password', phone);
         formData.append('phone', phone);
         formData.append('date_of_birth', date_of_birth);
         formData.append('role', role);
@@ -51,6 +51,24 @@ function CreateGuardian() {
             console.error('Error al crear el Tutor:', error);
           }
     }
+
+    const uploadExcel = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file);
+  
+      try {
+          await axios.post('http://localhost:4000/guardian-excel', formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              },
+          });
+          alert('Tutores importados correctamente');
+      } catch (error) {
+          console.error('Error al subir el archivo Excel:', error);
+          alert('Error al subir el archivo');
+      }
+  };
 
     return (
 
@@ -79,13 +97,6 @@ function CreateGuardian() {
             className='w-full px-4 py-2 rounded-md my-2'
             ></input>
 
-            <label className='text-white'>Contraseña</label>
-            <input
-            placeholder='Contraseña'
-            value={password}
-            onChange={ (e) => setPassword(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            ></input>
 
             <label className='text-white'>Teléfono</label>
             <input
@@ -106,20 +117,31 @@ function CreateGuardian() {
             >
             </input>
 
-            <label className='text-white'>Status</label>
-            <input
-            type='text'
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className='w-full px-4 py-2 rounded-md my-2'
-            >
-            </input>
-
             <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
             <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} required />
 
             <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
         </form>
+
+        
+        </div>
+        <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
+        <form onSubmit={uploadExcel}>
+                <h1 className="font-bold text-white text-center text-3xl">Subir Excel de Tutores</h1>
+                <label htmlFor="excelFile" className="text-white">
+                    Selecciona un archivo Excel:
+                </label>
+                <input
+                    type="file"
+                    id="excelFile"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    accept=".xlsx,.xls"
+                    required
+                />
+                <button className="bg-blue-600 rounded-md w-20 mx-32" type="submit">
+                    Subir Excel
+                </button>
+            </form>
         </div>
     </div>
         

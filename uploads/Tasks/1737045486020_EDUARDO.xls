@@ -1,0 +1,2278 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<title>Untitled</title>
+<meta content='application/vnd.ms-excel;charset=UTF-8' http-equiv=Content-type />
+<meta name=ProgId content=Excel.Sheet />
+<meta name=Generator content="Microsoft Excel 11">
+<style type="text/css">
+<!--table
+@page{}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+  <x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+    <x:Name>Sheet1</x:Name>
+    <x:WorksheetOptions><x:Panes>
+    </x:Panes></x:WorksheetOptions>
+    </x:ExcelWorksheet></x:ExcelWorksheets>
+  </x:ExcelWorkbook>
+</xml>
+<![endif]-->
+</head>
+<body>
+<!-- SECTION: detail1 -->
+<table class="detail1">
+<tr>
+<td align="center" colspan=20 style="vnd.ms-excel.numberformat:@"><b>Attendance Details</b></td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Person ID</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Department</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Name</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Date</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Shift</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Timetable</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Attendance Status</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Check-In</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Check-out</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Late</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Early Leave</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Attended</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Absent</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Worked</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Break</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Leave Type</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>Leave</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>OT1</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>OT2</b></td>
+<td align="center" style="vnd.ms-excel.numberformat:@"><b>OT3</b></td>
+</tr>
+</table>
+<!-- SECTION: Detail2 -->
+<table class="Detail2">
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">10:25:51</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:22:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">177 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">363 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">177 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-02 10:25:51</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-02 13:22:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:177 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:21:56</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:25:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">243 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">297 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">243 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-03 09:21:56</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-03 13:25:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:243 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:18:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">232 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">308 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">232 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-04 09:26:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-04 13:18:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:232 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:19:18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:12:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">307 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-05 09:19:18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-05 13:12:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:233 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:07:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:17:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">250 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">290 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">250 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-06 09:07:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-06 13:17:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:250 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-09</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:15:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:11:22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">236 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">304 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">236 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-09 09:15:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-09 13:11:22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:236 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-10</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:05:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:10:19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">245 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">295 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">245 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-10 09:05:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-10 13:10:19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:245 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:09:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:12:18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">243 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">297 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">243 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-11 09:09:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-11 13:12:18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:243 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:22:05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:57</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">313 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-12 09:22:05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-12 13:08:57</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:227 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-13</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:09:35</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:11:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">299 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-13 09:09:35</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-13 13:11:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:241 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-16</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-17</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:18:24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:19:19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">299 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-17 09:18:24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-17 13:19:19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:241 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:27:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">222 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">318 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">222 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-18 09:27:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-18 13:08:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:222 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:10:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">224 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">316 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">224 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-19 09:26:07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-19 13:10:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:224 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-20</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:12:56</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:12:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">240 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">300 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">240 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-20 09:12:56</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-20 13:12:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:240 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:22:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:09:34</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">313 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-23 09:22:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-23 13:09:34</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:227 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:32:58</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:10:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">217 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">323 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">217 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-24 09:32:58</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-24 13:10:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:217 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-25</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:16:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:17:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">299 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">241 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-25 09:16:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-25 13:17:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:241 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-26</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:11:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:09:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">238 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">302 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">238 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-26 09:11:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-26 13:09:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:238 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:01:49</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:13:57</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">252 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">288 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">252 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-27 09:01:49</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-27 13:13:57</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:252 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-09-30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:28:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">220 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">320 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">220 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-09-30 09:28:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-09-30 13:08:31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:220 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-01</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:15:28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">307 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-03 09:15:28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-03 13:08:21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:233 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:16:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:09:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">307 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-04 09:16:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-04 13:09:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:233 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:34:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">214 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">326 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">214 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-07 09:34:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-07 13:08:03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:214 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-08</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:24:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">224 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">316 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">224 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-08 09:24:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-08 13:08:28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:224 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-09</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:37:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:10:55</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">213 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">327 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">213 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-09 09:37:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-09 13:10:55</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:213 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-10</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:22:08</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:12:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">310 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-10 09:22:08</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-10 13:12:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:230 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:08:21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:10:48</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">242 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">298 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">242 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-11 09:08:21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-11 13:10:48</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:242 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:34:35</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:08:47</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">214 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">326 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">214 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-15 09:34:35</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-15 13:08:47</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:214 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-16</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:23:32</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:20:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">303 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-16 09:23:32</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-16 13:20:27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:237 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-17</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:18:45</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:09:59</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">231 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">309 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">231 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-17 09:18:45</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-17 13:09:59</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:231 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:10:09</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:38:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">268 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">272 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">268 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-18 09:10:09</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-18 13:38:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:268 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:14:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:04:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">310 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-22 09:14:06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-22 13:04:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:230 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:23:32</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">14:43:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">320 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">220 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">320 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-23 09:23:32</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-23 14:43:23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:320 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:30:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:09:55</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">219 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">321 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">219 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-24 09:30:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-24 13:09:55</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:219 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-25</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:25:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:00:40</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">325 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-28 09:25:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-28 13:00:40</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:215 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:30:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:17:47</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">313 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">227 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-29 09:30:53</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-29 13:17:47</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:227 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:24:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:21:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">303 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-30 09:24:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-30 13:21:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:237 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-10-31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:32:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">12:59:41</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">207 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">333 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">207 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-10-31 09:32:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-10-31 12:59:41</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:207 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-01</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:27:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:41:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">254 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">286 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">254 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-04 09:27:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-04 13:41:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:254 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:11:45</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:17:05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">245 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">295 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">245 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-05 09:11:45</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-05 13:17:05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:245 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:18:39</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">307 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">233 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-06 09:26:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-06 13:18:39</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:233 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:16:17</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">310 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-07 09:26:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-07 13:16:17</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:230 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-08</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:18:59</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:03:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">225 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">316 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">225 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-08 09:18:59</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-08 13:03:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:225 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:42</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:15:33</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">229 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">311 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">229 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-11 09:26:42</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-11 13:15:33</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:229 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:01:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">325 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-12 09:26:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-12 13:01:02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:215 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-13</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:19:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:11:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">232 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">308 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">232 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-14 09:19:29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-14 13:11:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:232 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:19:24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">11:46:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">147 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">393 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">147 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-15 09:19:24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-15 11:46:14</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:147 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:28:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:33:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">244 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">296 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">244 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-19 09:28:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-19 13:33:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:244 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-20</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-21</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-25</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:29:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:17:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">228 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">312 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">228 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-25 09:29:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-25 13:17:30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:228 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-26</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:37:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:28:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">310 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-26 09:37:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-26 13:28:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:230 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-28</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:27:49</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:24:54</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">303 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">237 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-11-28 09:27:49</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-11-28 13:24:54</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:237 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-11-29</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:37:44</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:49:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">251 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">289 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">251 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-02 09:37:44</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-02 13:49:12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:251 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:26:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:16:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">310 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">230 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-03 09:26:46</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-03 13:16:38</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:230 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-05</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:11:36</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:35:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">264 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">276 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">264 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-05 09:11:36</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-05 13:35:43</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:264 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-09</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:27:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:02:22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">325 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">215 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-09 09:27:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-09 13:02:22</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:215 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-10</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:23:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:27:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">244 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">296 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">244 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-10 09:23:11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-10 13:27:15</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:244 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-11</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-12</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-13</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:13:07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">11:40:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">147 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">393 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">147 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2024-12-13 09:13:07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2024-12-13 11:40:00</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:147 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-16</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-17</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-18</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-19</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-20</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-23</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-24</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-25</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-26</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-27</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-30</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2024-12-31</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">540 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2025-01-01</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">No Shift Schedule</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2025-01-02</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">No Shift Schedule</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2025-01-03</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">No Shift Schedule</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2025-01-06</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">No Shift Schedule</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">00004193</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">New Organization</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">EDUARDO BLANCO GONZALEZ</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">2025-01-07</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Shift</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Default Timetable(00:00:00-23:59:00)</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Absence</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">09:44:36</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">13:36:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">231 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">309 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">231 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">-</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">0 min</td>
+</tr>
+<tr>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-In Time: 2025-01-07 09:44:36</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Check-Out Time: 2025-01-07 13:36:04</td>
+<td align="center" style="vnd.ms-excel.numberformat:@">Attended Duration:231 min</td>
+</tr>
+</table>
+</body>
+</html>

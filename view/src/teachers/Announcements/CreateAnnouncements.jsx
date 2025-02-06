@@ -1,7 +1,11 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, } from "react-router-dom";
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(timezone);
 
 const URI = "http://localhost:4000/announcement";
 
@@ -14,7 +18,7 @@ function CreateAnnouncements() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(''); // Inicializa con la fecha local
   const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
@@ -81,20 +85,17 @@ function CreateAnnouncements() {
             className="w-full px-4 py-2 rounded-md my-2"
           ></textarea>
 
-          <label className="text-white text-1xl font-semibold">
-            id del profesor
-          </label>
+       
 
           <label className="text-white text-1xl font-semibold">
             Fecha y hora
           </label>
           <input
-            type="datetime-local"
-            placeholder="0000-00-00"
+            type="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)} // Asegúrate de actualizar el valor de `date`
             className="px-1 py-1 rounded-md my-2 mx-3"
-          ></input>
+          />
 
 
           <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>

@@ -1,9 +1,11 @@
 import { where } from 'sequelize'
-import {announcementsModel, classModel, teachersModel} from '../model/taskModel.js'
+import {announcementsModel, classModel, teachersModel, students_classesModel, studentsModel, guardiansModel,} from '../model/taskModel.js'
 import { body, validationResult } from 'express-validator';
 import path from 'path';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
+import { sendEmail } from '../middleware/emailService.js'; // Asegúrate de importar la función de envío de correo
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -53,32 +55,70 @@ export const createAnnouncement = [
     validateTask,
     async (req, res) => {
         try {
-
             // Verificar si el teacher_id existe
             const teacherExists = await teachersModel.findByPk(req.body.teacher_id);
             if (!teacherExists) {
                 return res.status(400).json({ message: 'El profesor especificado no existe.' });
             }
 
-           const classExists = await classModel.findByPk(req.body.class_id);
-           if (!classExists) {
-               return res.status(400).json({ message: 'La clase especificada no existe.' });
-           }
+            // Verificar si la clase existe
+            const classExists = await classModel.findByPk(req.body.class_id);
+            if (!classExists) {
+                return res.status(400).json({ message: 'La clase especificada no existe.' });
+            }
 
             const filePath = req.file ? `/${req.file.filename}` : null;
             const announcementData = {
                 ...req.body,
                 file: filePath || '',
             };
-            await announcementsModel.create(announcementData);
-            res.json({ 'message': 'Anuncio creado correctamente' });
+            const announcement = await announcementsModel.create(announcementData);
+
+            // Obtener información de la clase
+            const { grade, salon } = classExists;
+
+            // Obtener los correos electrónicos de estudiantes y tutores de la clase
+            const students = await students_classesModel.findAll({
+                where: { class_id: req.body.class_id },
+                include: [
+                    {
+                        model: studentsModel,
+                        as: 'student',
+                        attributes: ['email', 'guardian_id'],
+                    },
+                ],
+            });
+
+            const guardianIds = students.map((s) => s.student.guardian_id);
+            const guardians = await guardiansModel.findAll({
+                where: { id: guardianIds },
+                attributes: ['email'],
+            });
+
+            const studentEmails = students.map((s) => s.student.email);
+            const guardianEmails = guardians.map((g) => g.email);
+
+            // Combinar los correos de estudiantes y tutores
+            const recipients = [...studentEmails, ...guardianEmails];
+
+            // Crear el asunto y el contenido del correo
+            const subject = `Nuevo Anuncio en la clase ${grade} ${salon}`;
+            const text = `Hola, se ha publicado un nuevo anuncio para la clase ${grade} ${salon}.\n\nTítulo: ${req.body.title}\nDescripción: ${req.body.content}\n\nSaludos,\n${teacherExists.name} \n\n${req.body.date}`;
+
+            // Enviar los correos electrónicos
+            const emailPromises = recipients.map((email) =>
+                sendEmail(email, subject, text, teacherExists.email, teacherExists.name) // Ahora se pasa correctamente el correo y nombre del profesor
+            );
+
+            await Promise.all(emailPromises);
+
+            res.json({ message: 'Anuncio creado y correos enviados' });
         } catch (error) {
-            console.error('Database Error:', error);
-            res.json({ message: error.message });
+            console.error('Error al crear el anuncio:', error);
+            res.status(500).json({ message: 'Error al crear el anuncio', error });
         }
     }
 ];
-
 //Mostrar todos R
 export const getAllAnnouncements = async (req, res) => {
     try {

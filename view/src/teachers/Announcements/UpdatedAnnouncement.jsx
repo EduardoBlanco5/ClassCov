@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(timezone);
 
 const URI = "http://localhost:4000/announcement/";
 
@@ -9,11 +13,17 @@ function UpdatedAnnouncement() {
   const [content, setContent] = useState("");
   const [teacher_id, setTeacher_id] = useState("");
   const [class_id, setClass_id] = useState("");
-  const [date, setDate] = useState("");
+  
   const [file, setfile] = useState(null)
+
+  const [date, setDate] = useState(''); // Inicializa con la fecha local
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value); // Actualiza el estado directamente con el valor del input
+  };
 
 
   const update = async (e) => {
@@ -22,7 +32,7 @@ function UpdatedAnnouncement() {
 
         formData.append("title", title);
         formData.append("content", content);
-        formData.append("date", date);
+        formData.append("date", date); // Convierte a UTC
         formData.append("teacher_id", teacher_id);
         formData.append("class_id", class_id);
  
@@ -41,7 +51,9 @@ function UpdatedAnnouncement() {
 
   useEffect(() => {
     getannouncementById();
+    
   }, []);
+
 
   const getannouncementById = async () => {
     const res = await axios.get(URI + id);
@@ -91,12 +103,11 @@ function UpdatedAnnouncement() {
             Fecha y hora
           </label>
           <input
-            type="datetime-local"
-            placeholder="0000-00-00"
+            type='date'
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)} // Asegúrate de actualizar el valor de `date`
             className="px-1 py-1 rounded-md my-2 mx-3"
-          ></input>
+          />
 
           <label htmlFor="file" className='text-white'>Selecciona un archivo:</label>
           <input type="file" id="file" onChange={(e) => setfile(e.target.files[0])} />
