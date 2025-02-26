@@ -1,6 +1,8 @@
+import { Checkbox, DateInput, Divider, Input, Select, SelectItem, Button } from "@heroui/react"
 import axios from "axios"
 import { useEffect, useState, useCallback } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import {parseDate,CalendarDate} from "@internationalized/date";
 
 
 const URI = 'http://localhost:4000/student/'
@@ -18,7 +20,7 @@ function UpdatedStudent() {
     const [role, setRole] = useState('')
     const [status, setStatus] = useState('')
     const [file, setFile] = useState(null)
-
+    const birthD = date_of_birth.toString()
     const [nameG, setNameG] = useState('') //Nombre del padre
     const [searchTerm, setSearchTerm] = useState('');
     const [guardians, setGuardians] = useState([]);
@@ -29,6 +31,12 @@ function UpdatedStudent() {
     const [showPassword, setShowPassword] = useState(false); // Mostrar/ocultar contraseña
   
     const {id} = useParams()
+
+  const statusS = [
+    {key:"Activo", label:"Activo"},
+    {key:"Inactivo", label:"Inactivo"}
+  ];
+
 
     const navigate =useNavigate()
 
@@ -109,6 +117,7 @@ function UpdatedStudent() {
         setPhone(res.data.phone)
         setGuardian_id(res.data.guardian_id)
         setPassword(res.data.password)
+        // birthD = new Date(res.data.date_of_birth)
         setDate_of_birth(res.data.date_of_birth)
         setRole(res.data.role)
         setStatus(res.data.status)  
@@ -140,131 +149,189 @@ function UpdatedStudent() {
       }
       
   return (
-    <div className='flex justify-center'>
-      <div className='bg-zinc-800 max-w-md w-full p-10 rounded-md flex'>
-        <form onSubmit={update} >
-        <h1 className="text-white font-bold text-3xl text-center">Alumno</h1>
+    <div className='flex justify-center items-center w-[90%] bg-primary-100/70 rounded-2xl  mx-auto mt-4 h-[82vh] overflow-scroll'>
+      <div className='bg-primary-300  w-[85%] p-10 rounded-md flex flex-col h-[87%]'>
+        <form onSubmit={update} className=" flex" >
+          <div className="w-[200px] h-[72vh] mr-5 flex flex-col items-center ">
+            <div className="flex justify-center flex-col my-4 gap-6">
+              <h1 className="text-primary-900 font-bold text-3xl text-center mb-5">Alumno</h1>
+                {/* Mostrar la imagen actual o la previsualización de la nueva */}
+              <img
+                src={preview || currentImage || 'https://via.placeholder.com/150'}
+                alt="Previsualización"
+                className="w-32 h-32 object-cover rounded-full"
+                />
+                {/* {console.log('imagen: ',currentImage)} */}
+            </div>
 
-            {/* Mostrar la imagen actual o la previsualización de la nueva */}
-          <div className="flex justify-center my-4">
-            <img
-              src={preview || currentImage || 'https://via.placeholder.com/150'}
-              alt="Previsualización"
-              className="w-32 h-32 object-cover rounded-full"
-              />
-              {console.log('imagen: ',currentImage)}
-          </div>
-
-
-            <label className="text-white">Nombre</label>
-            <input 
-            type='text' 
-            placeholder='Nombre'
-            value={name}
-            onChange={ (e) => setName(e.target.value)}
-            className='w-full px-2 py-2 rounded-md my-2'
-            autoFocus
-            ></input>
-
-            <label className="text-white">Correo</label>
-            <input 
-            type='text'
-            placeholder='ejemplo@correo.com'
-            value={email}
-            onChange={ (e) => setEmail(e.target.value)}
-            className='w-full px-2 py-2 rounded-md my-1'
-            ></input>
-
-            <label className="text-white">Telefono</label>
-            <input 
-            type='text'
-            placeholder='3312345678'
-            value={phone}
-            onChange={ (e) => setPhone(e.target.value)}
-            className='w-22 px-1 py-1 rounded-md my-1 mx-8'
-            ></input>
-
-          <label className="text-white">Contraseña</label>
-          <div className="flex items-center">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="password***"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-3/4 px-2 py-2 rounded-md my-1"
-            />
-            <label className="text-white ml-2 flex items-center">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword(!showPassword)}
-              />
-              <span className="ml-1">Mostrar</span>
-            </label>
-          </div>
-
-            <label className="text-white text-left">Tutor: {nameG} </label>
-            <br></br>
-            <label className="text-white">Buscar Tutor</label>
-          <input
-            type="text"
-            placeholder="Buscar por nombre o correo"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full px-4 py-2 rounded-md my-2"
-          />
-          {guardians.length > 0 && (
-            <ul className="bg-white rounded-md shadow-md max-h-40 overflow-auto">
-              {guardians.map((guardian) => (
-                <li
-                  key={guardian.id}
-                  className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => {
-                    setGuardian_id(guardian.id);
-                    setSearchTerm(`${guardian.name} (${guardian.email})`);
-                    setGuardians([]);
-                  }}
-                >
-                  {guardian.name} ({guardian.email})
-                </li>
-              ))}
-            </ul>
-          )} 
-
-            <label className="text-white mx-1">Fecha de nacimiento</label>
-            <input
-            type='date'
-            placeholder='0000-00-00'
-            value={date_of_birth}
-            onChange={ (e) => setDate_of_birth(e.target.value)}
-            className='px-1 py-1 rounded-md my-2 mx-5'
-            >
-            </input>
-
+            <div className="my-5">
             
+              <Input
+              label='Selecciona un archivo'
+                type="file"
+                onChange={handleFileChange}
+                className=""
+                classNames={{
+                  inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+                }}
+                
+              />
+            </div>
 
-          <label className="text-white">Estatus</label>
-          <select
+            {/* <label className="text-white">Estatus</label> */}
+            <Select
+            label="Estatus del alumno"
+            placeholder=" estatus ..."
             value={status}
+            defaultSelectedKeys={['Activo']}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full px-2 py-2 rounded-md my-2"
-          >
-            <option value="" disabled>
-              Selecciona un estatus
-            </option>
-            <option value="activo">Activo</option>
-            <option value="inactivo">Inactivo</option>
-          </select>
+            classNames={{
+              
+              trigger:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+            }}
+            >
+              {/* {console.log(status)} */}
+              {statusS.map((statu)=> (
+                <SelectItem key={statu.key}>{statu.label}</SelectItem>
+              ))}
+            </Select>
 
-          <label className="text-white">Selecciona un archivo:</label>
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="w-full px-2 py-2 rounded-md my-2"
-          />
+          </div>
+          <div className="w-[75%] mx-auto">
+            <div className="">
+              <h3 className=" mb-2">Datos personales</h3>
+              <Divider className="mb-3"/>
+                {/* <label className="text-white">Nombre</label> */}
+                <Input
+                  label='Nombre del alumno'
+                  defaultValue={name}
+                  value={name}
+                  placeholder="Nombre del alumno ..."
+                  type="text"
+                  onChange={ (e) => setName(e.target.value)}
+                  classNames={{
+                    inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70 ",
+                    
+                  }}
+                  className="text-white"
+                />
+                
+                {/* <label className="text-white">Correo</label> */}
+                <Input
+                label="Correo del alumno"
+                defaultValue={email}
+                value={email}
+                placeholder="Correo del alumno ..."
+                type="email"
+                onChange={ (e) => setEmail(e.target.value)}
+                className="my-2"
+                classNames={{
+                  inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+                }}
+                />
+                
+                <div className=" flex justify-around">
+                  <Input
+                  label="Telefono del alumno"
+                  defaultValue={phone}
+                  value={phone}
+                  placeholder="telefono del alumno ..."
+                  type="tel"
+                  onChange={ (e) => setPhone(e.target.value)}
+                  className="my-2"
+                  classNames={{
+                    inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+                  }}
+                  />
+                  <div className=" ml-5">
 
+                    <label className="text-primary-900 mx-1">Fecha de nacimiento</label>
+                    <input
+                    type='date'
+                    placeholder='0000-00-00'
+                    value={date_of_birth}
+                    onChange={ (e) => setDate_of_birth(e.target.value)}
+                    className='py-1 rounded-md my-1 px-5 bg-primary-900 text-white'
+                    >
+                  </input>
+                  </div>
+                </div>
+            </div>
+            
+            <div>
+              <h3>Datos escolares</h3>
+              <Divider className="mb-3"/>
+              
+              <div className="flex items-center mt-2">
+                <Input
+                label="Contraseña"
+                type={showPassword ? "text" : "password"}
+                placeholder="Contraseña"
+                defaultValue={password}
+                validate={password}
+                onChange={(e) => setPassword(e.target.value)}
+                classNames={{
+                  inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+                }}
+                />
+                
+                <div className="text-white ml-2 flex items-center flex-col gap-2 justify-center">
+                  <span className="ml-1 text-small">Mostrar</span>
+                    <Checkbox
+                    color="danger"
+                    size="md"
+                    name="Mostrar"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(!showPassword)}
+                    >
+                    </Checkbox>
+                  
+                  
+                </div>
+              </div>
+                <div className=" mt-4">
+                  <label className="text-primary-900 text-left">Tutor:  </label>
+                  <span>{nameG}</span>
+                </div>
+                
+                
+              <Input
+              label="Buscar Tutor"
+                type="text"
+                placeholder="Buscar por nombre o correo"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="w-full px-4 py-2 rounded-md my-2"
+                classNames={{
+                  inputWrapper:"bg-primary-900 hover:bg-primary-900/70 focus:bg-primary-900/70",
+                }}
+              />
+              {guardians.length > 0 && (
+                <ul className="bg-white rounded-md shadow-md max-h-40 overflow-auto">
+                  {guardians.map((guardian) => (
+                    <li
+                      key={guardian.id}
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                      onClick={() => {
+                        setGuardian_id(guardian.id);
+                        setSearchTerm(`${guardian.name} (${guardian.email})`);
+                        setGuardians([]);
+                      }}
+                    >
+                      {guardian.name} ({guardian.email})
+                    </li>
+                  ))}
+                </ul>
+              )} 
 
-            <button className='bg-green-600 hover:bg-green-800 rounded-md w-20 mx-32 mt-2' type='submit'>Actualizar</button>
+            </div>
+
+              <div className="w-full flex justify-end">
+                <Button color='success' variant='faded' 
+                className=' border-auxColors-350 px-10 text-auxColors-350 bg-transparent hover:bg-auxColors-350/80 hover:text-white hover:duration-500' 
+                type='submit'>Actualizar</Button>
+              </div>
+          </div>
         </form>
       </div>
     </div>

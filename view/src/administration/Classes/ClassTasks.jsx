@@ -1,8 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { AuthContext,  } from '../../components/AuthContext';
-import { Card, Divider,  CardHeader, CardBody, CardFooter, Avatar, Button } from '@heroui/react';
+import { Card, Divider,  CardHeader, CardBody, CardFooter, 
+    Button, Tabs, Tab, Table, TableBody, TableHeader, TableColumn,TableRow,TableCell 
+} from '@heroui/react';
 
 const URIT = 'http://localhost:4000/tasks/';
 const URIA = 'http://localhost:4000/tasksAdmin/';
@@ -123,13 +125,6 @@ function ClassTasks() {
         }
     };
 
-    // useEffect(() => {
-    //     if (tasks.subject_id) {
-    //         getSubjectById(tasks.subject_id);
-    //     }
-        
-    // }, [subject_id]);
-
     const getSubjectById = async (subject_id) => {
         const res = await axios.get(URI_SUBJECT + subject_id);
         setSubject_name(res.data.name);
@@ -140,32 +135,107 @@ function ClassTasks() {
     const notDeliveredTasks = tasks.filter((task) => !task.isDelivered);
     const deliveredTasks = tasks.filter((task) => task.isDelivered);
 
+    const [selected, setSelected] = useState("pendientes");
+
     return (
         <div className=' w-full'>
             <div className=" w-10/12 mx-auto ">
-                <Divider/>
                     <h2 className="font-bold text-primary-500 text-3xl text-center mt-4">Tareas:</h2>
+                    <Divider/>
                     {role === 'student' && (
                         <div>
-                            {/* Tareas no entregadas */}
-                            <h3 className="font-bold text-white text-xl text-center mt-4">Pendientes:</h3>
-                            <ul className="mt-5">
-                                {notDeliveredTasks.map((task) => (
-                                    <Link to={`/TaskCard/${task.id}`} key={task.id}>
-                                        <li className="text-center">{task.title}</li>
-                                    </Link>
-                                ))}
-                            </ul>
+                            <div className="mx-auto mt-3 flex w-10/12 max-h-[75vh]  justify-center flex-col overflow-hidden">
+                                <Tabs
+                                fullWidth
+                                aria-label="Tabs works"
+                                selectedKey={selected}
+                                size="lg"
+                                onSelectionChange={setSelected}
+                                classNames={{
+                                    tabList: "gap-6 w-full relative rounded-2xl ",
+                                    cursor: "w-full bg-primary-900",
+                                    tab: "w-[70%] px-0 h-12 text-xl font-semibold",
+                                    tabContent: "group-data-[selected=true]:text-primary-300 text-primary-300",
+                                }}
+                                color="primary"
+                                variant="light"
+                                // light  bordered
+                                className='bg-primary-100/90 rounded-2xl'
+                                >
+                                    <Tab key='pendientes' title='Pendientes'>
+                                        {/* Tareas no entregadas */}
+                                        <div className='h-full w-full  overflow-scroll'>
 
-                            {/* Tareas entregadas */}
-                            <h3 className="font-bold text-white text-xl text-center mt-4">Entregadas:</h3>
-                            <ul className="mt-5">
-                                {deliveredTasks.map((task) => (
-                                    <Link to={`/TaskCard/${task.id}`} key={task.id}>
-                                        <li className="text-center">{task.title}</li>
-                                    </Link>
-                                ))}
-                            </ul>
+                                            <Table
+                                            isHeaderSticky
+                                            aria-label="tabla alumnos"
+                                            selectionMode="single"
+                                            color='secondary'
+                                            classNames={{
+                                                wrapper:"bg-white/70 rounded " ,
+                                                th:"bg-auxColors-500/90 text-white",
+                                                td: "hover:bg-auxColors-500 hover:duration-250 rounded-lg",
+                                                base:" overflow-scroll",
+                                                
+                                            }}
+                                            >
+                                                <TableHeader>
+                                                    <TableColumn>Pendientes</TableColumn>
+                                                </TableHeader>
+                                                <TableBody>
+                                                    {notDeliveredTasks.map(task => (
+                                                        <TableRow key={task.id}>
+                                                            <TableCell>
+                                                                <Link to={`/TaskCard/${task.id}`} key={task.id}>
+                                                                    <div className="text-center ">{task.title}</div>
+                                                                </Link>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ))}
+                                                    
+                                                </TableBody>
+
+                                            </Table>
+                                        </div>
+                                        {/* <h3 className="font-bold text-white text-xl text-center mt-4">Pendientes:</h3> */}
+                                        
+                                    </Tab>
+                                    <Tab key='entregadas' title='Entregadas' >
+                                        {/* Tareas entregadas */}
+                                        <Table
+                                        aria-label="tabla alumnos"
+                                        selectionMode="single"
+                                        color='secondary'
+                                        classNames={{
+                                            wrapper:"bg-white/70 overflow-scroll " ,
+                                            th:"bg-primary-500/90 text-primary-700",
+                                            td: "hover:bg-primary-600 hover:duration-250 rounded-lg"
+                                        }}
+                                        >
+                                            <TableHeader>
+                                                <TableColumn>Entregadas</TableColumn>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {deliveredTasks.map(task => (
+                                                    <TableRow key={task.id}>
+                                                        <TableCell>
+                                                            <Link to={`/TaskCard/${task.id}`} key={task.id}>
+                                                                <div className="text-center  ">{task.title}</div>
+                                                            </Link>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+
+                                        </Table>
+                                        
+                                    </Tab>
+
+                                </Tabs>
+                            </div>
+                            
+
+                            
                         </div>
 
                     )}

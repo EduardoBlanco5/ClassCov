@@ -79,6 +79,7 @@ const CreateStudentClass = () => {
       await axios.post('http://localhost:4000/studentClass', {
         student_id: selectedStudent,
         class_id: classId,
+        overall_average:0
       });
       alert('Estudiante inscrito en la clase correctamente');
       navigate('/ShowStudentsClass');

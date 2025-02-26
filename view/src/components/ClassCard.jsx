@@ -237,7 +237,7 @@ function ClassCard() {
                 // removeWrapper
                 className='w-[60%] mx-auto text-center my-5 '
                 classNames={{
-                    wrapper : "bg-secondary-100",
+                    wrapper : "bg-white/50",
                     td: "pr-4 text-primary-900 text-xl ",
                     tr: "w-[70%] mx-auto  flex justify-center",
                 }}
@@ -272,9 +272,9 @@ function ClassCard() {
                 aria-label='Tabla de alumnos'
                 hideHeader
                 // removeWrapper
-                className='w-[60%] mx-auto text-center my-5 '
+                className='w-[80%] mx-auto text-center my-5 '
                 classNames={{
-                    wrapper : "bg-secondary-100",
+                    wrapper : "bg-white/50",
                     td: "pr-4 text-auxColors-500  text-xl ",
                     tr: "w-[70%] mx-auto  flex justify-center",
                 }}
@@ -325,7 +325,7 @@ function ClassCard() {
             // removeWrapper
             className='w-[60%] mx-auto text-center my-5 '
             classNames={{
-                wrapper : "bg-secondary-100",
+                wrapper : "bg-white/50",
                 td: "pr-4 text-secondary-200 text-xl ",
                 tr: "w-[70%] mx-auto  flex justify-center",
             }}

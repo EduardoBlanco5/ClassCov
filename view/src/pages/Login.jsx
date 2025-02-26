@@ -92,7 +92,7 @@ function Login() {
         </div>
 
         {/* Right Side - Login Form */}
-        <CardBody className="md:w-1/2 p-12 bg-secondary-100 rounded-e-lg">
+        <CardBody className="md:w-1/2 p-12 bg-white rounded-e-lg">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <h2 className="text-3xl font-bold mb-8">Iniciar Sesión</h2>
             </CardHeader>

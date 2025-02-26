@@ -4,6 +4,16 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import 'react-toastify/dist/ReactToastify.css';
+import {CircleCheckBig, CircleOff, NotepadText} from 'lucide-react'
+import { Table,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    Button,
+    Input} from '@heroui/react'
+
 
 const URI_CLASSES = 'http://localhost:4000/class';
 const URI_ATTENDANCES = 'http://localhost:4000/attendances';
@@ -119,79 +129,121 @@ function CreateAttendance() {
 
     return (
         <div className="container mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Registrar asistencia</h2>
+            <h2 className="text-2xl text-secondary-800 border-b border-secondary-800 font-bold mb-4">Registrar asistencia</h2>
                 {/* Mensaje dependiendo del estado de la asistencia */}
             <div>
                 {isAttendanceTaken ? (
-                    <div className="flex items-center bg-red-100 text-red-700 p-2 rounded">
-                        🚫 La asistencia ya fue tomada para hoy.
+                    <div className="flex items-center bg-red-700/30 text-red-700 rounded-t-lg border-b border-primary-700 p-2 mb-5">
+                        <CircleOff className="text-red-700 ml-5" />
+                        <p className='mx-4'>
+                            La asistencia ya fue tomada para hoy.
+                        </p>
                     </div>
                 ) : (
-                    <div className="flex items-center bg-green-100 text-green-700 p-2 rounded">
-                        ✅ Puedes tomar asistencia.
+                    <div className="flex items-center bg-primary-900/35 rounded-t-lg border-b border-primary-700 text-primary-700 p-2 mb-5">
+                        <CircleCheckBig  className="text-green-700 ml-5" />
+                        <p className='mx-4'>
+                            Puedes tomar asistencia.
+                        </p>
                     </div>
                 )}
             </div>
-            <Link to={`/ShowAttendances/${id}`}> 
-                <button className='bg-blue-700 rounded-md mx-2 px-1 text-white'>Ver asistencias</button>
-            </Link>
-            <table className="table-auto w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr>
-                        <th className="border border-gray-300 px-4 py-2">Nombre del Estudiante</th>
-                        <th className="border border-gray-300 px-4 py-2">Presente</th>
-                        <th className="border border-gray-300 px-4 py-2">Retardo</th>
-                        <th className="border border-gray-300 px-4 py-2">Falta</th>
-                        <th className="border border-gray-300 px-4 py-2">Notas</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className='mb-4'>
+                <Link to={`/ShowAttendances/${id}`}> 
+                    <Button variant='bordered' color='secondary' className=' mx-2 px-1 hover:bg-auxColors-500 '>Ver asistencias</Button>
+                </Link>
+            </div>
+            <Table 
+            isHeaderSticky
+            // selectionMode="single"
+            
+            classNames={{
+                td:'hover:bg-primary-50 hover:duration-500 ',
+                
+            }}
+            
+            // 'base' | 'table' | 'thead' | 'tbody' | 'tfoot' | 'emptyWrapper' 
+            // | 'loadingWrapper' | 'wrapper' | 'tr' | 'th' | 'td' | 'sortIcon', string
+            className="table-auto w-full mb-6 hover:duration-500 rounded-3xl ">
+                <TableHeader className='hover:duration-500'>
+                    <TableColumn className='bg-primary-900'>Nombre del Estudiante</TableColumn>
+                    <TableColumn className='bg-primary-900'>Presente</TableColumn>
+                    <TableColumn className='bg-primary-900'>Retardo</TableColumn>
+                    <TableColumn className='bg-primary-900'>Falta</TableColumn>
+                    <TableColumn className='bg-primary-900'>Notas</TableColumn>
+
+                </TableHeader>
+                <TableBody>
                     {students.map(student => (
-                        <tr key={student.id}>
-                            <td className="border border-gray-300 px-4 py-2">{student.name}</td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
-                                <input
-                                    type="radio"
-                                    name={`status-${student.id}`}
-                                    value="Presente"
-                                    onChange={() => handleStatusChange(student.id, 'Presente')}
+                        <TableRow key={student.id} className='hover:bg-primary-50 '>
+                            <TableCell >{student.name}</TableCell>
+                            <TableCell>
+                                <Input variant='faded' color='success' type='radio' 
+                                className=' '
+                                name={`status-${student.id}`}
+                                value="Presente"
+                                onChange={() => handleStatusChange(student.id, 'Presente')}
                                 />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
-                                <input
-                                    type="radio"
-                                    name={`status-${student.id}`}
-                                    value="Retardo"
-                                    onChange={() => handleStatusChange(student.id, 'Retardo')}
+                            </TableCell>
+                            <TableCell>
+                                <Input variant='faded' color='warning' type='radio'
+                                name={`status-${student.id}`}
+                                value="Retardo"
+                                onChange={() => handleStatusChange(student.id, 'Retardo')}
                                 />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
-                                <input
-                                    type="radio"
-                                    name={`status-${student.id}`}
-                                    value="Falta"
-                                    onChange={() => handleStatusChange(student.id, 'Falta')}
+                            </TableCell>
+                            <TableCell>
+                                <Input variant='faded' color='danger' type='radio'
+                                name={`status-${student.id}`}
+                                value="Falta"
+                                onChange={() => handleStatusChange(student.id, 'Falta')}
                                 />
-                            </td>
-                            <td className="border border-gray-300 px-4 py-2">
-                                <input
-                                    type="text"
-                                    placeholder="Notas"
-                                    className="w-full border border-gray-300 px-2 py-1"
-                                    onChange={(e) => handleNotesChange(student.id, e.target.value)}
+                            </TableCell>
+                            <TableCell>
+                                <Input
+                                className=' z-20'
+                                isClearable
+                                classNames={{
+                                label: "text-black/50 ",
+                                input: [
+                                    "bg-transparent",
+                                    "text-black/90 ",
+                                    "placeholder:text-default-700/50 ",
+                                ],
+                                innerWrapper: "bg-transparent",
+                                inputWrapper: [
+                                    "shadow-xl",
+                                    "bg-default-200/50",
+                                    "backdrop-blur-xl",
+                                    "backdrop-saturate-200",
+                                    "hover:bg-default-200/70",
+                                    "group-data-[focus=true]:bg-default-200/50",
+                                    "!cursor-text",
+                                ],
+                                }}
+                                label="Notas"
+                                placeholder="Escribe tus notas"
+                                radius="lg"
+                                startContent={
+                                <NotepadText className="text-black/50  dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                                }
+                                
+                            
+                                onChange={(e) => handleNotesChange(student.id, e.target.value)}
                                 />
-                            </td>
-                        </tr>
+                            </TableCell>
+                            
+                        </TableRow>
                     ))}
-                </tbody>
-            </table>
+                </TableBody>
+            </Table>
             {/* Botón para guardar asistencia */}
             <button
             onClick={saveAttendance}
             disabled={loading || isAttendanceTaken} // Deshabilitar si ya se tomó asistencia o está cargando
             className={`w-full px-4 py-2 rounded-md text-white font-semibold ${
                 isAttendanceTaken
-                    ? 'bg-red-500 hover:bg-red-700 cursor-not-allowed'
+                    ? 'bg-red-500 hover:bg-red-700 cursor-not-allowed '
                     : 'bg-green-500 hover:bg-green-700'
                 }`}
             >

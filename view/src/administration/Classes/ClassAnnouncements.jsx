@@ -4,7 +4,16 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from '../../components/AuthContext'; // Asegúrate de importar el contexto correcto.
-import { Divider } from '@heroui/react'
+
+import { Divider, Table,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    RadioGroup,
+    Radio, 
+    Button} from '@heroui/react'
 
 const URIA = 'http://localhost:4000/announcements/'
 function ClassAnnouncements() {
@@ -33,14 +42,44 @@ function ClassAnnouncements() {
         <div className='w-10/12 mx-auto'>
             <h2 className="font-bold text-secondary-200 text-2xl text-center mt-4">Anuncios:</h2>
             <Divider className='mt-5'/>
-            <ul className="mt-5 ">
+            <div className='flex flex-col gap-3 w-10/12 mx-auto mt-4'>
+                <Table
+                    aria-label="tabla alumnos"
+                    selectionMode="single"
+                    color='secondary'
+                    classNames={{
+                        wrapper:"bg-white/70 " ,
+                        th:"bg-primary-200/90 text-white",
+                        td: "hover:bg-primary-200 rounded-lg"
+                    }}
+                >
+                    <TableHeader>
+                    <TableColumn>Anuncios</TableColumn>
+                    </TableHeader>
+                    <TableBody>
+                        {announcements.map(announcement => (
+                            <TableRow key={announcement.id}>
+                                <TableCell>
+                                    <Link to={`/AnnouncementCard/${announcement.id}`} > 
+                                    <div className=' w-full' key={announcement.id}>
+                                    {announcement.title}
+                                    </div>
+                                    </Link>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                
+            </div>
+            {/* <ul className="mt-5 ">
                 {announcements.map(announcement => (
                     <Link to={`/AnnouncementCard/${announcement.id}`}>
                         <li key={announcement.id} className="text-center">{announcement.title}</li> 
                     </Link>
 
                 ))}
-            </ul>
+            </ul> */}
 
         </div>
 
