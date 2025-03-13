@@ -264,7 +264,7 @@ function UpdatedTeacher() {
                     </p>
                     
               </div>
-              <div className=' w-full flex flex-col items-end'>
+              <div className=' w-full flex flex-col items-end mb-2'>
                 {/* {console.log(date_of_birth)} */}
                     <DatePicker
                     name='hireDate'
