@@ -73,7 +73,7 @@ const PerfilStudents = multer({ storage: ImageStudent })
 router.post('/student', PerfilStudents.single('file'), createStudent);//C
 router.get('/students', getAllStudents);//R
 router.get('/students/class', getStudentsByClassId); // Obtener estudiantes por class_id
-router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes por guardian_id
+router.get('/students/guardian/:guardian_id', getStudentsByGuardianId);
 router.get('/student/:id', getStudent);//R
 router.put('/student/:id', PerfilStudents.single('file'), updateStudent);//U
 router.delete('/student/:id', deleteStudent);//D

@@ -186,7 +186,7 @@ export const getStudentsByClassId = async (req, res) => {
 
 //Busqueda por guardian_id
 export const getStudentsByGuardianId = async (req, res) => {
-    const guardianId = req.query.guardian_id; // Obtener class_id de la query
+    const guardianId = req.params.guardian_id; // Obtener guardian_id desde params
     try {
         const students = await studentsModel.findAll({
             where: { guardian_id: guardianId } // Filtrar estudiantes por class_id

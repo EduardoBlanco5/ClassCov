@@ -19,7 +19,7 @@ import {UserPen, Eye} from 'lucide-react'
 import {useDateFormatter} from "@react-aria/i18n";
 
 const URI = 'http://localhost:4000/guardian/'
-const URIS = 'http://localhost:4000/students/'
+const URIS = 'http://localhost:4000/students/guardian/';
 
 const columns = [
   {name:"NOMBRE" , uid: "name"},
@@ -145,10 +145,15 @@ function ProfileGuardian() {
     }
 
     
-    const getStudentsByGuardianId = async (guardianId) => {
-      const res = await axios.get(`${URIS}guardian?guardian_id=${guardianId}`);
-      setStudents(res.data); // Establecer solo los estudiantes del tutor actual
-  };
+
+  const getStudentsByGuardianId = async (guardianId) => {
+    try {
+        const res = await axios.get(`${URIS}${guardianId}`);
+        setStudents(res.data);
+    } catch (error) {
+        console.error("Error fetching students:", error);
+    }
+};
 
   return (
     <div className='flex justify-center flex-col'>

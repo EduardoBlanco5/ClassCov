@@ -51,6 +51,7 @@ import ShowAttendances from './teachers/Attendances/ShowAttendances';
 import Dashboard from './components/Dashboard';
 import SubjectTask from './administration/Subjects/SubjectTask';
 import GuardianStudent from './administration/Guardians/GuardianStudent';
+import StudentsGuardians from './components/StudentsGuardians';
 
 
 
@@ -181,6 +182,9 @@ function App() {
             </Route>
             <Route path='/GuardianStudent/:id' element={<ProtecttedRoute allowedRoles={['guardian']} />}>
               <Route index element={<GuardianStudent/>}></Route>
+            </Route>
+            <Route path='/StudentsGuardian/:id' element={<ProtecttedRoute allowedRoles={['guardian']} />}>
+              <Route index element={<StudentsGuardians/>}></Route>
             </Route>
             
             

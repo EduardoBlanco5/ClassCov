@@ -571,7 +571,7 @@ function NavBar() {
                 {role === "guardian" && (
                   <>
                     <li>
-                      <Link className="text-white" to="/ShowStudents">
+                      <Link className="text-white" to={`/StudentsGuardian/${id}`}>
                         Ver Hijos
                       </Link>
                     </li>
