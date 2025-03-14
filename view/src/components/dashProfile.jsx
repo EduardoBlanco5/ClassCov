@@ -7,7 +7,6 @@ import {Card, CardHeader, CardFooter, Image, Button, CardBody, Divider} from "@h
 import {Link} from "@heroui/react";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
-
 function dashProfile() {
     const { id } = useParams(); // Obtener el ID del estudiante de la URL
     const [dashboardData, setDashboardData] = useState(null);
@@ -27,6 +26,7 @@ function dashProfile() {
         };
 
         fetchDashboardData();
+        console.log(id)
     }, [id]);
 
     if (loading) return <p>Cargando...</p>;

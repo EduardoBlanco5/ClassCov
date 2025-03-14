@@ -407,23 +407,8 @@ function NavBar() {
                       {openDropdown === "Anuncios" && (
                         <Card className=" absolute header right-0 mt-2 w-auto border-none border-transparent bg-white/70  " 
                         isBlurred>
-                          <CardHeader className=" relative justify-between ">
-                              <li>
-                                <Link
-                                  className="  px-4  w-full "
-                                  to="/CreateAnnouncements"
-                                  onClick={() => setOpenDropdown(null)}
-                                >
-                                  <Button 
-                                  // color="secondary" 
-                                  className="text-md text-primary-200 bg-transparent hover:bg-primary-900 hover:text-primary-300 hover:duration-500 "
-                                  >
-
-                                    Crear Anuncio
-                                  </Button>
-                                </Link>
-                              </li>
-                          </CardHeader>
+                          
+                          
                           <Divider/>
                           <CardBody>
                               <li>

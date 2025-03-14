@@ -72,7 +72,7 @@ function App() {
 
             
             {/* Rutas protegidas */}
-            <Route path='/Home' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian', 'student']} />}>
+            <Route path='/Home/:id' element={<ProtecttedRoute allowedRoles={['admin', 'teacher', 'guardian', 'student']} />}>
               <Route index element={<Home />} />
             </Route>
 
