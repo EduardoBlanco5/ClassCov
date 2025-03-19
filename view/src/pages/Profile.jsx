@@ -1,8 +1,7 @@
-import { Card, CardBody, CardHeader, Divider, Button } from '@heroui/react';
+import { Card, CardBody, CardHeader, Divider } from '@heroui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams, Link } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 
 const URIT = 'http://localhost:4000/teacher/';
 const URIS = 'http://localhost:4000/student/';
@@ -16,7 +15,6 @@ function Profile() {
 
   useEffect(() => {
     getProfileById(role);
-    console.log(id)
   }, [id, role]);
 
   const getProfileById = async (role) => {
@@ -154,19 +152,7 @@ function Profile() {
                       <CardBody><p className='text-secondary-600 ml-6'> {profile.class_id}</p></CardBody>
                     </Card>
                   }
-
-                  {role === 'student' && (
-                    <Link to={`/Dashboard/${id}`} className=" ">
-                      <Button
-                        className='absolute top-48 right-4  text-white px-7 bg-[#2b6fee] hover:text-black'
-                        variant='flat'
-                        color='primary'
-                                                  >
-                        Dashboard
-                      </Button>
-                    </Link>
-
-                  )}
+                
 
                 </div>
           </div>

@@ -46,7 +46,7 @@ function Login() {
             }
             const hidenav = document.getElementById("navBar").style.display = 'block'
             
-            navigate(`Home/${id}`); // Redirige al usuario a /Home después del login
+            navigate('/Home'); // Redirige al usuario a /Home después del login
         } catch (err) {
             const notify = ()=>{ toast.error('Usuario o contraseña incorrectos')}
             console.error('Error al iniciar sesión:', err);

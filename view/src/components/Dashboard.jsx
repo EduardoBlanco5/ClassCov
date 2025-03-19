@@ -8,7 +8,7 @@ import {Link} from "@heroui/react";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
 const Dashboard = () => {
-  const id = localStorage.getItem("id"); // Obtener el ID desde localStorage en lugar de useParams
+  const { id } = useParams(); // Obtener el ID del estudiante de la URL
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

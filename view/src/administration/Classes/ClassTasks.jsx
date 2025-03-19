@@ -9,7 +9,6 @@ import { Card, Divider,  CardHeader, CardBody, CardFooter,
 const URIT = 'http://localhost:4000/tasks/';
 const URIA = 'http://localhost:4000/tasksAdmin/';
 const URI_SUBJECT = 'http://localhost:4000/subject/';
-const URISC = 'http://localhost:4000/class/'
 
 function ClassTasks() {
     const [tasks, setTasks] = useState([]);
@@ -26,13 +25,11 @@ function ClassTasks() {
 
     const [subject_id, setSubject_id] = useState('');
     const [subject_name, setSubject_name] = useState('');
-    const [students, setStudents] = useState([]); // Estado para estudiantes
     
     
     useEffect(() => {
         getTasksByClassId(id, studentId);
-        getStudentsByClassId(id);
-        console.log(id)
+        
 
     }, [id, studentId]);
 
@@ -132,12 +129,6 @@ function ClassTasks() {
         const res = await axios.get(URI_SUBJECT + subject_id);
         setSubject_name(res.data.name);
         return subject_name
-    };
-
-    const getStudentsByClassId = async (classId) => {
-        const res = await axios.get(`${URISC}${classId}/students`);
-    setStudents(res.data); // Establece solo los estudiantes de la clase actual
-    
     };
 
     // Dividir tareas en entregadas y no entregadas
@@ -259,34 +250,34 @@ function ClassTasks() {
                 </Link>
 
                 <div className="mt-5">
-                    <h3 className="font-bold text-black text-xl text-center mt-4">Tareas Asignadas:</h3>
+                    <h3 className="font-bold text-white text-xl text-center mt-4">Tareas Asignadas:</h3>
                             {teacherTasks.map((task) => (
                                 <div key={task.id} className="bg-gray-200 p-4 rounded-md shadow-md mb-4">
                                     <Link to={`/GradingTask/${task.id}`}>
                                     <h4 className="font-bold">{task.title}</h4>
                                     </Link>
                                     <p>{task.description}</p>
+                                    <h5 className="font-semibold mt-2">Entregas:</h5>
+                    
                                     {task.upTasks && task.upTasks.length > 0 ? (
                                         <ul>
                                             {task.upTasks.map((submission) => (
                                                 <li key={submission.id} className="mt-2">
-      
-                                                    <p className="text-green-500 font-bold">
-                                                        <span className='text-black'>Entregas: </span> {task.upTasks.length} 
-                                                    </p>
+                                                    <span className="font-semibold">{submission.student.name}:</span>{' '}
                                                     
+                                                
+                                                    <p className="text-green-500 font-bold">
+                                                        Entregado
+                                                    </p>
                                                 </li>
                                             ))}
                                         </ul>
-        
                                 ) : (
                                     <p>No hay entregas aún.</p>
                                 )}
-                                
-
                             </div>
                         ))}
-                </div>
+            </div>
         </div>
 )}
 
