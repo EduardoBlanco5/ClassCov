@@ -7,7 +7,8 @@ import {Card, CardHeader, CardFooter, Image, Button, CardBody, Divider} from "@h
 import {Link} from "@heroui/react";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
-function dashProfile() {
+
+function DashProfile({ iduser}) {
     const { id } = useParams(); // Obtener el ID del estudiante de la URL
     const [dashboardData, setDashboardData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ function dashProfile() {
     useEffect(() => {
         const fetchDashboardData = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/dashboard/${id}`);
+            const response = await axios.get(`http://localhost:4000/dashboard/${iduser}`);
             setDashboardData(response.data);
             setLoading(false);
         } catch (err) {
@@ -26,8 +27,7 @@ function dashProfile() {
         };
 
         fetchDashboardData();
-        console.log(id)
-    }, [id]);
+    }, [iduser]);
 
     if (loading) return <p>Cargando...</p>;
 
@@ -101,4 +101,4 @@ function dashProfile() {
     )
 }
 
-export default dashProfile
+export default DashProfile
