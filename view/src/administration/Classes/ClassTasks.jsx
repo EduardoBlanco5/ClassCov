@@ -6,9 +6,11 @@ import { Card, Divider,  CardHeader, CardBody, CardFooter,
     Button, Tabs, Tab, Table, TableBody, TableHeader, TableColumn,TableRow,TableCell 
 } from '@heroui/react';
 
+
 const URIT = 'http://localhost:4000/tasks/';
 const URIA = 'http://localhost:4000/tasksAdmin/';
 const URI_SUBJECT = 'http://localhost:4000/subject/';
+const URISC = 'http://localhost:4000/class/'
 
 function ClassTasks() {
     const [tasks, setTasks] = useState([]);
@@ -25,11 +27,13 @@ function ClassTasks() {
 
     const [subject_id, setSubject_id] = useState('');
     const [subject_name, setSubject_name] = useState('');
+    const [students, setStudents] = useState([]); // Estado para estudiantes
     
     
     useEffect(() => {
         getTasksByClassId(id, studentId);
-        
+        getStudentsByClassId(id);
+        // console.log(id)
 
     }, [id, studentId]);
 
@@ -131,6 +135,12 @@ function ClassTasks() {
         return subject_name
     };
 
+    const getStudentsByClassId = async (classId) => {
+        const res = await axios.get(`${URISC}${classId}/students`);
+    setStudents(res.data); // Establece solo los estudiantes de la clase actual
+    
+    };
+
     // Dividir tareas en entregadas y no entregadas
     const notDeliveredTasks = tasks.filter((task) => !task.isDelivered);
     const deliveredTasks = tasks.filter((task) => task.isDelivered);
@@ -140,7 +150,7 @@ function ClassTasks() {
     return (
         <div className=' w-full'>
             <div className=" w-10/12 mx-auto ">
-                    <h2 className="font-bold text-primary-500 text-3xl text-center mt-4">Tareas:</h2>
+                    <h2 className="font-bold text-primary-900 text-3xl text-center mt-4">Tareas</h2>
                     <Divider/>
                     {role === 'student' && (
                         <div>
@@ -243,41 +253,87 @@ function ClassTasks() {
                     {/* Mostrar el botón solo si el rol es "Profesor" */}
                     {role === 'teacher' && (
             <div className="text-center mt-4">
+            <div className="w-full flex justify-start">
+
                 <Link to={`/CreateTask/${id}`}>
-                    <button className="bg-green-700 rounded-md px-4 py-2 text-white">
+                    <Button
+                    variant='bordered'
+                    className=" border-primary-600 bg-primary-600/70 text-white 
+                    hover:bg-primary-600 hover:duration-500 hover:scale-110
+                    ">
                         Crear Tarea
-                    </button>
+                    </Button>
                 </Link>
+            </div>
 
                 <div className="mt-5">
-                    <h3 className="font-bold text-white text-xl text-center mt-4">Tareas Asignadas:</h3>
-                            {teacherTasks.map((task) => (
-                                <div key={task.id} className="bg-gray-200 p-4 rounded-md shadow-md mb-4">
-                                    <Link to={`/GradingTask/${task.id}`}>
-                                    <h4 className="font-bold">{task.title}</h4>
-                                    </Link>
-                                    <p>{task.description}</p>
-                                    <h5 className="font-semibold mt-2">Entregas:</h5>
-                    
-                                    {task.upTasks && task.upTasks.length > 0 ? (
-                                        <ul>
-                                            {task.upTasks.map((submission) => (
-                                                <li key={submission.id} className="mt-2">
-                                                    <span className="font-semibold">{submission.student.name}:</span>{' '}
-                                                    
-                                                
-                                                    <p className="text-green-500 font-bold">
-                                                        Entregado
-                                                    </p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                ) : (
-                                    <p>No hay entregas aún.</p>
-                                )}
-                            </div>
-                        ))}
-            </div>
+                    {/* <h3 className="font-bold text-black text-xl text-center mt-4">Tareas Asignadas:</h3> */}
+                        <div className='h-[70vh] w-full  overflow-scroll'>
+
+                            <Table
+                            isHeaderSticky='true'
+                            aria-label="tabla Tareas Asignadas"
+                            selectionMode="single"
+                            color='secondary'
+                            classNames={{
+                                wrapper:"bg-white/70 rounded " ,
+                                th:"bg-primary-900/90 text-white",
+                                td: "hover:bg-primary-900 hover:duration-250 rounded-lg",
+                                
+                                
+                            }}
+                            className="overflow-scroll"
+                            >
+                                <TableHeader>
+                                    <TableColumn>Asignadas</TableColumn>
+                                </TableHeader>
+                                <TableBody>
+                                    {teacherTasks.map(task => (
+                                        <TableRow key={task.id}>
+                                            <TableCell>
+                                                <Link to={`/GradingTask/${task.id}`} key={task.id}>
+                                                    <div className=" flex justify-between gap-5 ">
+                                                        <div className=" w-11/12 text-wrap">
+                                                            <h2 className='font-semibold capitalize text-lg text-primary-600'>
+                                                                {task.title}
+                                                            </h2>
+                                                            <p className='text-wrap'>{task.description}</p>
+                                                        </div>
+                                                        <div>
+                                                            {task.upTasks && task.upTasks.length > 0 ? (
+                                                                <ul>
+
+                                                                    <li className="mt-2">
+                                                                        
+                                                                        <p className="text-green-500 font-bold">
+                                                                            <span className='text-default-500'>Entregas: </span> 
+                                                                            <span className='text-primary-100'>
+                                                                                {task.upTasks.length} 
+                                                                            </span>
+                                                                                
+                                                                        </p>
+                                                                        
+                                                                    </li>
+                                                                </ul>
+                                
+                                                        ) : (
+                                                            <p>No hay entregas aún.</p>
+                                                        )}
+                                                        </div>
+
+                                                    </div>
+                                                </Link>
+                                                <Divider className=' mt-1 bg-auxColors-500/50'/>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                    
+                                </TableBody>
+
+                            </Table>
+                        </div>
+                            
+                </div>
         </div>
 )}
 
