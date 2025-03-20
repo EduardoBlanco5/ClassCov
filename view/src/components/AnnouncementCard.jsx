@@ -68,7 +68,19 @@ function AnnouncementCard() {
     return (
       <div className=' min-w-[50%] w-10/12 mx-auto  flex justify-center mt-5'>
         <Card className='w-full bg-transparent  max-w-[65%]'>
+        {role === "teacher" && (
+          <div className="ml-5 my-3">
 
+            <Link to={`/UpdatedAnnouncement/${id}`}>
+              <Button 
+              variant='shadow'
+              color='warning'
+              >
+                Actualizar
+              </Button>
+            </Link>
+          </div>
+          )}
           <div className='w-full p-10 rounded-md'>
               {/* Mostrar la imagen si existe */}
               
@@ -98,16 +110,7 @@ function AnnouncementCard() {
               </CardFooter>
 
           </div>
-          {role === "teacher" && (
-            <Link to={`/UpdatedAnnouncement/${id}`}>
-              <Button 
-              variant='bordered'
-              color='warning'
-              >
-                Actualizar
-              </Button>
-            </Link>
-          )}
+        
         </Card>
       </div>
 

@@ -26,7 +26,7 @@ function CreateTask() {
   const [notes, setNotes] = useState('')
   
   const [deliveryDate, setDeliveryDate] = useState(today(getLocalTimeZone()))
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState('Asignada')
   const [file, setFile] = useState(null);
 
   const [subjects, setSubjects] = useState([]); // Lista de materias
@@ -242,6 +242,7 @@ function CreateTask() {
                     htmlFor='file'
                     type='file'
                     id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
                     classNames={{
                       label: "text-white/90 group-data-[focus=true]:text-secondary-50 ",
                       mainWrapper:"",
