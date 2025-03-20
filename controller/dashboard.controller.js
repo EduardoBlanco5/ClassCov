@@ -24,20 +24,22 @@ export const getDashboardData = async (req, res) => {
             where: { student_id },
             attributes: ['qualification'],
         });
-        // Obtener el progreso de tareas entregadas
-        const overallAverage = await students_classesModel.findAll({
+
+        // Obtener la lista de promedios generales históricos del estudiante
+        const studentClasses = await students_classesModel.findAll({
             where: { student_id },
-            attributes: ['overall_average'],
+            attributes: ['overall_average', 'createdAt'], // Incluir fechas para ver tendencias
+            order: [['createdAt', 'ASC']], // Ordenamos por fecha ascendente
         });
 
-        const totalTasks = taskProgress.length;
-        const completedTasks = taskProgress.filter(task => task.qualification !== null).length;
-        
+        // Obtener el promedio general actual del estudiante
+        const currentAverage =
+            studentClasses.length > 0 ? studentClasses[studentClasses.length - 1].overall_average : null;
 
         // Obtener asistencias
         const attendanceData = await attendancesModel.findAll({
             where: { student_id },
-            attributes: ['status'], // Asegúrate de que "status" indica presente/ausente
+            attributes: ['status'], // "status" indica Presente, Retardo o Falta
         });
 
         const totalClasses = attendanceData.length;
@@ -48,14 +50,41 @@ export const getDashboardData = async (req, res) => {
         const attendanceRate =
             totalClasses > 0 ? ((Present / totalClasses) * 100).toFixed(2) : null;
 
-             // Solicitar recomendaciones al servidor Flask
-             const flaskResponse = await axios.post('http://127.0.0.1:5001/recommend', {
+        const totalTasks = taskProgress.length;
+        const completedTasks = taskProgress.filter(task => task.qualification !== null).length;
+
+        // Enviar datos históricos de promedios generales a Flask para la predicción
+        let predictedAverage = null;
+        try {
+            const flaskResponse = await axios.post('http://127.0.0.1:5001/predict_average', {
+                student_id,
+                historical_averages: studentClasses.map(record => ({
+                    overallAverage: record.overall_average,
+                    timestamp: record.created_at, // Mandamos las fechas para la regresión
+                })),
+            });
+
+            predictedAverage = flaskResponse.data.predicted_average; // Recibimos la predicción del servidor Flask
+        } catch (error) {
+            console.error('Error al obtener la predicción de Flask:', error.message);
+            predictedAverage = 'No se pudo calcular la predicción en este momento.';
+        }
+
+        // Solicitar recomendaciones al servidor Flask
+        let recommendations = [];
+        try {
+            const flaskResponse = await axios.post('http://127.0.0.1:5001/recommend', {
                 student_id,
                 subject_averages: subjectAverages.map(subject => ({
                     subjectName: subject.subject.name,
-                    averageGrade: subject.average_grade,  // Esta clave debería ser 'averageGrade'
+                    averageGrade: subject.average_grade,
                 })),
             });
+            recommendations = flaskResponse.data.recommendations;
+        } catch (error) {
+            console.error('Error al obtener recomendaciones de Flask:', error.message);
+            recommendations = ['No se pudieron obtener recomendaciones en este momento.'];
+        }
 
         // Estructurar los datos para el dashboard
         const dashboardData = {
@@ -67,7 +96,7 @@ export const getDashboardData = async (req, res) => {
             taskProgress: {
                 totalTasks,
                 completedTasks,
-                overallAverage: overallAverage ? overallAverage.overall_average : null,
+                overallAverage: currentAverage,
             },
             attendance: {
                 totalClasses,
@@ -76,7 +105,10 @@ export const getDashboardData = async (req, res) => {
                 Fouled,
                 attendanceRate,
             },
-            recommendations: flaskResponse.data.recommendations,  // Esta parte debería funcionar bien
+            predictions: {
+                predictedOverallAverage: predictedAverage,
+            },
+            recommendations,
         };
 
         res.json(dashboardData);
