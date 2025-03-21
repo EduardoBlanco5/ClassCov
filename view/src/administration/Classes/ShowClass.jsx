@@ -2,6 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+import {Card, CardBody, CardFooter, Image, Button} from "@heroui/react";
+
+
 const URIC = 'http://localhost:4000/classes';
 const URIT = 'http://localhost:4000/classes/teacher/';
 const URIS = 'http://localhost:4000/student/';//obtener clases del estudiante
@@ -11,6 +15,23 @@ function ShowClass() {
     const teacherId = localStorage.getItem('teacher_id');
     const studentId = localStorage.getItem('student_id'); // Obtener `student_id` del localStorage
     const role = localStorage.getItem("role");
+    
+
+    const images = [
+        './utils/brand.jpg',
+        './utils/cuaderno.jpg',
+        './utils/lapices.jpg'
+
+    ]
+    // Estado para manejar la imagen seleccionada
+    const [selectedImage, setSelectedImage] = useState('');
+
+    // Función para seleccionar una imagen aleatoriamente
+    const getRandomImage = () => {
+        const randomIndex = Math.floor(Math.random() * images.length); // Genera un índice aleatorio
+        setSelectedImage(images[randomIndex]); // Establece la imagen aleatoria
+        
+    };
 
     useEffect(() => {
         if (role === "teacher" && teacherId) {
@@ -66,44 +87,65 @@ function ShowClass() {
     if (salons.length === 0) {
         return (
             <Link to={'/CreateClass'}>
-                <h1>No hay clases asignadas</h1>
-                <button className='bg-blue-600 text-black font-bold rounded-md hover:bg-blue-800 px-3'>Crear Clase</button>
+                <Button className=' my-6 ml-6 bg-primary-600 
+                    text-white hover:text-black 
+                    rounded-md hover:bg-primary-900 hover:scale-110 
+                    duration-500 px-6'>Crear Clase</Button>
             </Link>
         );
     }
+    
 
     return (
-        <>
-            {role === "admin" && (
-                <Link to={'/CreateClass'}>
-                    <button className='bg-blue-600 text-black font-bold rounded-md hover:bg-blue-800 px-3'>Crear Clase</button>
-                </Link>
-            )}
+        <div className=''>
 
-            <div className="max-w-md w-full p-10 rounded-md my-2 px-4 py-2">
-                {salons.map((salon) => (
-                    <tr key={salon.id}>
-                        <Link to={`/ClassCard/${salon.id}`}>
-                            <header className="flex w-full bg-slate-500 hover:bg-slate-700 rounded-md my-2">
-                                <h1 className="text-2xl font-bold w-full my-2 px-4 py-2">
-                                    {salon.grade} {salon.salon}
-                                </h1>
-                                <div className="w-full px-4 py-2 my-2">
-                                    <p className="text-black font-semibold">{salon.shift}</p>
+            <>
+                {role === "admin" && (
+                    <Link to={'/CreateClass'}>
+                        <Button className=' my-6 ml-6 bg-primary-600 
+                        text-white hover:text-black 
+                        rounded-md hover:bg-primary-900 hover:scale-110 
+                        duration-500 px-6'>Crear Clase</Button>
+                    </Link>
+                )}
+
+                <div className="gap-2 grid auto-cols-auto sm:grid-cols-4 mt-10 mx-12">
+                    {/* {getRandomImage()} */}
+                    {salons.map((salon) => (
+                        <Card key={salon.id} className=' w-full h-full ' isPressable shadow="sm" >
+                            
+                            <CardBody className="overflow-visible p-0 h-[200px] md:h-[150px]">
+                                <Link className=' h-full' to={`/ClassCard/${salon.id}`}>
+                                
+                                    <header className={`flex flex-col r w-full h-full  bg-[url('./utils/lapices.webp')] bg-cover bg-center `} >
+                                        <h1 className=" justify-center text-2xl font-bold w-full my-2 px-4 py-2">
+                                            {salon.grade + salon.salon}
+                                        </h1>
+                                        <div className="w-full px-4 py-2 my-2 flex justify-center">
+                                            <p className="text-black font-semibold">{salon.shift}</p>
+                                        </div>
+                                    </header>
+                                
+                                </Link>
+                            </CardBody>
+                            <CardFooter className=' flex justify-end'>
+
                                     {role === "admin" && (
-                                        <Link to={`/UpdateClass/${salon.id}`}>
-                                            <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-2 rounded-md">
+                                        <Link className='' to={`/UpdateClass/${salon.id}`}>
+                                            <Button color='warning' className=" text-white px-2 py-2 ">
                                                 Actualizar
-                                            </button>
+                                            </Button>
                                         </Link>
                                     )}
-                                </div>
-                            </header>
-                        </Link>
-                    </tr>
-                ))}
-            </div>
-        </>
+                            </CardFooter>
+                            
+                        </Card>
+                        )
+                    )}
+                </div>
+                
+            </>
+        </div>
     );
 }
 
