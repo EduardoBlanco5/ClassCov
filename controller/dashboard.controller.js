@@ -56,11 +56,11 @@ export const getDashboardData = async (req, res) => {
         // Enviar datos históricos de promedios generales a Flask para la predicción
         let predictedAverage = null;
         try {
-            const flaskResponse = await axios.post('http://127.0.0.1:5001/predict_average', {
+            const flaskResponse = await axios.post('http://127.0.0.1:5001/predict', {
                 student_id,
                 historical_averages: studentClasses.map(record => ({
                     overallAverage: record.overall_average,
-                    timestamp: record.created_at, // Mandamos las fechas para la regresión
+                    timestamp: record.createdAt, // Mandamos las fechas para la regresión
                 })),
             });
 
