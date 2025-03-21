@@ -1,15 +1,21 @@
 import express from "express";
 import multer from 'multer';
 
-import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, updateTask } from "../../controller/task.controller.js";
+import { createTask, deleteTask, getAllTasks, getTask, getTasksByClassId, getTasksByClassIdAdmin, getTasksBySubjectId, updateTask } from "../../controller/task.controller.js";
 import { createAnnouncement, getAllAnnouncements, getAnnouncement, updateAnnouncement, deleteAnnouncement, getAnnouncementsByClassId } from "../../controller/announcements.controller.js";
-import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId } from "../../controller/students.controller.js";
-import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, updateGuardian } from "../../controller/guardians.controller.js";
+import { createStudent, deleteStudent, getAllStudents, getStudent, updateStudent, getStudentsByClassId, getStudentsByGuardianId, uploadStudentsExcel, searchStudents } from "../../controller/students.controller.js";
+import { createGuardian, deleteGuardian, getAllGuardians, getGuardian, searchGuardians, updateGuardian, uploadExcel } from "../../controller/guardians.controller.js";
 import { createTeacher, deleteTeacher, getAllTeachers, getTeacher, updateTeacher } from "../../controller/teachers.controller.js";
 import { createAdmin, deleteAdmin, getAdmin, getAllAdmin, updateAdmin } from "../../controller/administration.controller.js";
 import { createClass, updateClass, deleteClass, getAllClass, getClass, getClassesByTeacherId } from "../../controller/class.controller.js";
-import {createUpTask, getPendingTasksByStudent, getUpTaskByStudentAndTask} from "../../controller/upTask.controller.js"
-import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass } from "../../controller/students_classes.controller.js";
+import {createUpTask, getAllUpTasks, getPendingTasksByStudent, getTasksAndSubmissions, getUpTaskByStudentAndTask,  getUpTasksByTaskId, gradeUpTask} from "../../controller/upTask.controller.js"
+import { createStudentClass, deleteStudentClass, getAllStudentClass, getClassesByStudent, getStudentClass, getStudentsByClass, updateStudentClass, uploadStudentClassExcel } from "../../controller/students_classes.controller.js";
+import { checkAttendanceForToday, createAttendance, deleteAttendance, getAllAttendances, getAttendance, getAttendanceByDate, getAttendancesByClass, updateAttendance } from "../../controller/attendances.controller.js";
+import { createSubject, deleteSubject, getAllSubjects, getSubject, updateSubject } from "../../controller/subjects.controller.js";
+import { getDashboardData } from "../../controller/dashboard.controller.js";
+
+
+
 
 
 const router = express.Router();
@@ -28,9 +34,12 @@ const TeachersTasks = multer({ storage: ImageTasks })
 router.post('/task', TeachersTasks.single('file'), createTask);//C
 router.get('/tasks', getAllTasks);//R
 router.get('/tasks/class', getTasksByClassId);
+router.get('/tasksAdmin/class', getTasksByClassIdAdmin);
 router.get('/task/:id', getTask);//R
 router.put('/task/:id', TeachersTasks.single('file'), updateTask);//U
 router.delete('/task/:id', deleteTask);//D
+router.get('/tasks/subject', getTasksBySubjectId);
+
 
 //Anuncios
 const ImageAnnouncements = multer.diskStorage({
@@ -64,10 +73,18 @@ const PerfilStudents = multer({ storage: ImageStudent })
 router.post('/student', PerfilStudents.single('file'), createStudent);//C
 router.get('/students', getAllStudents);//R
 router.get('/students/class', getStudentsByClassId); // Obtener estudiantes por class_id
-router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes por guardian_id
+// router.get('/students/guardian', getStudentsByGuardianId); //Obtener estudiantes por guardian_id
+router.get('/students/guardian/:guardian_id', getStudentsByGuardianId);
 router.get('/student/:id', getStudent);//R
 router.put('/student/:id', PerfilStudents.single('file'), updateStudent);//U
 router.delete('/student/:id', deleteStudent);//D
+router.get('/studentsSearch', searchStudents);
+
+// Configurar multer para la carga de archivos
+const uploadStudent = multer({ dest: 'uploads/' });
+
+// Ruta para subir archivo Excel
+router.post('/student-excel', uploadStudent.single('file'), uploadStudentsExcel);
 
 //Tutores
 const ImageGuardian = multer.diskStorage({
@@ -85,6 +102,15 @@ router.get('/guardians', getAllGuardians);
 router.get('/guardian/:id', getGuardian);
 router.put('/guardian/:id', PerfilGuardian.single('file'), updateGuardian);
 router.delete('/guardian/:id', deleteGuardian);
+router.get('/guardiansSearch', searchGuardians);
+
+// Configurar multer para la carga de archivos
+const uploadTutor = multer({ dest: 'uploads/' });
+
+// Ruta para subir archivo Excel
+router.post('/guardian-excel', uploadTutor.single('file'), uploadExcel);
+
+
 
 //Profesores
 const ImageTeacher = multer.diskStorage({
@@ -138,6 +164,12 @@ router.get('/student/:student_id/classes', getClassesByStudent);
 router.put('/StudentClass/:id', updateStudentClass);
 router.delete('/StudentClass/:id', deleteStudentClass);
 
+// Configurar multer para la carga de archivos
+const uploadStudentClass = multer({ dest: 'uploads/' });
+
+// Ruta para subir archivo Excel
+router.post('/studentClass-excel', uploadStudentClass.single('file'), uploadStudentClassExcel);
+
 // Subir archivo
 const ImageUpTask = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -164,10 +196,30 @@ router.post('/uploadTask', uploadT.single('file'), (req, res, next) => {
 
 router.get('/uptask', getUpTaskByStudentAndTask);
 router.get('/tasks/pending', getPendingTasksByStudent);
+router.get('/tasks/submissions', getTasksAndSubmissions);
+router.get('/ShowUpTasks', getAllUpTasks);
+router.get('/UpTasks/:task_id', getUpTasksByTaskId);
+router.put('/UpTasks/grade/:id', gradeUpTask);
 
-//router.post('/upload/Task', uploadA.single('file'), createUpTask); 
+//Asistencias
+router.post('/attendances', createAttendance);
+router.get('/Atendances', getAllAttendances);
+router.get('/attendance/:id', getAttendance);
+router.put('/attendance/:id', updateAttendance);
+router.delete('/attendance/:id', deleteAttendance);
+router.get('/attendances/date/:date', getAttendanceByDate);
+router.get('/attendances/check/:class_id', checkAttendanceForToday);
+router.get('/attendances/class/:class_id', getAttendancesByClass);
 
 
+//Materias
+router.post('/subject', createSubject);
+router.get('/subjects', getAllSubjects);
+router.get('/subject/:id', getSubject);
+router.put('/subject/:id', updateSubject);
+router.delete('/subject/:id', deleteSubject);
+
+router.get('/dashboard/:student_id', getDashboardData);
 
 
 export default router;

@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
@@ -21,10 +23,15 @@
     "express-validator": "^7.2.0",
     "fs-extra": "^11.2.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.474.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.3",
-    "sequelize": "^6.37.3"
+    "nodemailer": "^6.9.16",
+    "openai": "^4.77.3",
+    "sequelize": "^6.37.3",
+    "socket.io": "^4.8.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
