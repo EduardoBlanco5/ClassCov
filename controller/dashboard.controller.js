@@ -49,7 +49,7 @@ export const getDashboardData = async (req, res) => {
             totalClasses > 0 ? ((Present / totalClasses) * 100).toFixed(2) : null;
 
              // Solicitar recomendaciones al servidor Flask
-             const flaskResponse = await axios.post('http://127.0.0.1:5001/recommend', {
+             const flaskResponse = await axios.post('http://127.0.0.1:5001/predict_help', {
                 student_id,
                 subject_averages: subjectAverages.map(subject => ({
                     subjectName: subject.subject.name,
