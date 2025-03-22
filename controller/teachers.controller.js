@@ -110,37 +110,49 @@ export const getTeacher = async (req, res) => {
 }
 
 //Actualizar U
-
 export const updateTeacher = [
-    
     async (req, res) => {
-        try {
-            const filePath = req.file ? `/${req.file.filename}` : null;
-            // Encriptar la contraseña
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(req.body.password, salt);  // Encriptar la contraseña
-            
-            const teacherData = {
-                ...req.body,
-                password: hashedPassword,  // Reemplazar con la contraseña encriptada
-                file: filePath 
-            };
-            const result = await teachersModel.update(teacherData, {
-                where: { id: req.params.id }
-            });
-
-
-
-            if (result[0] === 0) {
-                return res.status(404).json({ message: 'Profesor no encontrado' });
-            }
-            res.json({ "message": "Profesor Actualizado con éxito" });
-        } catch (error) {
-            console.error('Database Error:', error);
-            res.json({ message: error.message });
+      try {
+        // Obtener el registro existente para verificar la foto actual
+        const teacher = await teachersModel.findOne({ where: { id: req.params.id } });
+  
+        if (!teacher) {
+          return res.status(404).json({ message: "Profesor no encontrado" });
         }
-    }
-];
+  
+        // Si hay un archivo nuevo, usarlo; de lo contrario, conservar el actual
+        const filePath = req.file ? `/${req.file.filename}` : teacher.file;
+  
+        // Encriptar la contraseña solo si se ha proporcionado una nueva
+        let hashedPassword = teacher.password;
+        if (req.body.password) {
+          const salt = await bcrypt.genSalt(10);
+          hashedPassword = await bcrypt.hash(req.body.password, salt);
+        }
+  
+        // Construir los datos para actualizar
+        const teacherData = {
+          ...req.body,
+          password: hashedPassword, // Usar la contraseña encriptada
+          file: filePath, // Usar la foto nueva o conservar la actual
+        };
+  
+        const result = await teachersModel.update(teacherData, {
+          where: { id: req.params.id },
+        });
+  
+        if (result[0] === 0) {
+          return res.status(404).json({ message: "Profesor no encontrado" });
+        }
+  
+        res.json({ message: "Profesor actualizado con éxito" });
+      } catch (error) {
+        console.error("Database Error:", error);
+        res.status(500).json({ message: error.message });
+      }
+    },
+  ];
+
 
 // D
 export const deleteTeacher = async (req, res) => {
