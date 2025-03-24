@@ -1,6 +1,12 @@
 import { Op } from 'sequelize';
 import axios from 'axios';
-import { studentsModel, students_subjectsModel, upTasksModel, attendancesModel, subjectsModel, students_classesModel } from '../model/taskModel.js';
+import { 
+    studentsModel, students_subjectsModel, upTasksModel, attendancesModel, 
+    subjectsModel, students_classesModel 
+} from '../model/taskModel.js';
+import express from 'express';
+
+const router = express.Router();
 
 export const getDashboardData = async (req, res) => {
     const { student_id } = req.params; // ID del estudiante para el que se quiere el dashboard
@@ -24,20 +30,20 @@ export const getDashboardData = async (req, res) => {
             where: { student_id },
             attributes: ['qualification'],
         });
-        // Obtener el progreso de tareas entregadas
-        const overallAverage = await students_classesModel.findAll({
+
+        const overallAverageData = await students_classesModel.findOne({
             where: { student_id },
             attributes: ['overall_average'],
         });
 
         const totalTasks = taskProgress.length;
         const completedTasks = taskProgress.filter(task => task.qualification !== null).length;
-        
+        const overallAverage = overallAverageData ? overallAverageData.overall_average : null;
 
         // Obtener asistencias
         const attendanceData = await attendancesModel.findAll({
             where: { student_id },
-            attributes: ['status'], // Asegúrate de que "status" indica presente/ausente
+            attributes: ['status'],
         });
 
         const totalClasses = attendanceData.length;
@@ -45,29 +51,18 @@ export const getDashboardData = async (req, res) => {
         const Delay = attendanceData.filter(record => record.status === 'Retardo').length;
         const Fouled = attendanceData.filter(record => record.status === 'Falta').length;
 
-        const attendanceRate =
-            totalClasses > 0 ? ((Present / totalClasses) * 100).toFixed(2) : null;
+        const attendanceRate = totalClasses > 0 ? ((Present / totalClasses) * 100).toFixed(2) : null;
 
-             // Solicitar recomendaciones al servidor Flask
-             const flaskResponse = await axios.post('http://127.0.0.1:5001/recommend', {
-                student_id,
-                subject_averages: subjectAverages.map(subject => ({
-                    subjectName: subject.subject.name,
-                    averageGrade: subject.average_grade,  // Esta clave debería ser 'averageGrade'
-                })),
-            });
+        
 
         // Estructurar los datos para el dashboard
         const dashboardData = {
             studentName: student.name,
-            subjectAverages: subjectAverages.map(subject => ({
-                subjectName: subject.subject.name,
-                averageGrade: subject.average_grade,
-            })),
+            subjectAverages: formattedSubjects,
             taskProgress: {
                 totalTasks,
                 completedTasks,
-                overallAverage: overallAverage ? overallAverage.overall_average : null,
+                overallAverage,
             },
             attendance: {
                 totalClasses,
@@ -76,7 +71,7 @@ export const getDashboardData = async (req, res) => {
                 Fouled,
                 attendanceRate,
             },
-            recommendations: flaskResponse.data.recommendations,  // Esta parte debería funcionar bien
+            
         };
 
         res.json(dashboardData);
@@ -85,3 +80,18 @@ export const getDashboardData = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los datos del dashboard.' });
     }
 };
+
+// Nueva ruta para analizar texto con NLP
+router.post('/analyze-text', async (req, res) => {
+    try {
+        const { text } = req.body;
+        const response = await axios.post('http://127.0.0.1:5001/predict_help', { text });
+
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error en la solicitud a Flask:', error);
+        res.status(500).json({ error: 'Error al procesar el texto' });
+    }
+});
+
+export default router;
