@@ -2,8 +2,26 @@ import {useForm} from 'react-hook-form'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Button,
+  Card, CardBody, Image, Slider, Form,
+  CardHeader, Select, SelectItem,
+  Divider, Avatar,
+  Input} from "@heroui/react";
+import { FilePlus2 } from 'lucide-react';
+
+
 
 const URI = 'http://localhost:4000/subject'
+
+
+const gradeItem = [
+  {key:"1", label:"Primero"},
+  {key:"2", label:"Segundo"},
+  {key:"3", label:"Tercero"},
+  {key:"4", label:"Cuarto"},
+  {key:"5", label:"Quinto"},
+  {key:"6", label:"Sexto"},
+]
 
 function CreateSubject() {
 
@@ -36,49 +54,117 @@ function CreateSubject() {
 
     
   return (
-    <div className='flex justify-center'>
-          <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
-          <form onSubmit={create} >
-              <h1 className='font-bold text-white text-center text-3xl'>Materias</h1>
+    <div className=' w-[100vw] h-auto mt-12 flex  justify-center'>
+    <Card className=' max-w-[1000px] w-[600px] flex ' isBlurred >
+        <div className='bg-secondary-200 justify-center  w-full p-10 rounded-md flex'>
+        <Form onSubmit={create} className='w-full' >
+          <CardHeader className=' flex gap-3 justify-center'>
+            <FilePlus2 className=" text-white w-12 h-12" />
+            <h1 className='font-bold text-white text-center text-3xl'>Materias</h1>
+          </CardHeader>
+          <Divider className=' bg-white'/>
+          <CardBody>
+            <Input
+            placeholder='Español, Matemáticas, Historia,...'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className='mb-4'
+            />
 
-              <label className='text-white'>Nombre</label>
-              <input 
-              type='text' 
-              placeholder='Español, Matemáticas, Historia,...'
-              value={name}
-              onChange={ (e) => setName(e.target.value)}
-              className='w-full px-4 py-2 rounded-md my-2'
-              autoFocus
-              ></input>
+            <Input
+            type='text'
+            placeholder='Breve descripción de la materia'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            >
+            </Input>
 
-              <label className='text-white'>Descripción</label>
-              <input 
-              type='text'
-              placeholder='Breve descripción de la materia'
-              value={description}
-              onChange={ (e) => setDescription(e.target.value)}
-              className='w-full px-4 py-2 rounded-md my-2'
-              ></input>
 
-              <label className="text-white">Grado</label>
-              <select
-                value={grade}
-                onChange={(e) => setGrade(e.target.value)}
-                className="w-full px-4 py-2 rounded-md my-2"
-              >
-                <option value="" disabled>Selecciona un grado</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-              </select>
+            <Select
+              label = "Seleccione el Grado"
+              value={grade}
+              onChange={(e) => setGrade(e.target.value)}
+              className=' w-11/12   text-white text-md'
+              variant="underlined"
+            >
+              {gradeItem.map((gItem)=>(
+                <SelectItem className=' 
+                
+                data-[selectable=true]:focus:bg-primary-500 
+                text-primary-600 
+                data-[hover=true]:bg-primary-100
+                data-[hover=true]:text-primary-500 
+                data-[pressed=true]:opacity-95
+                data-[focus-visible=true]:ring-primary-300
+                ' 
+                key={gItem.key}>{gItem.label}
+                </SelectItem>
+              ))} 
+            </Select>
+            
+          </CardBody>
+
+            <Button  
+            className='bg-secondary-100 
+            rounded-md 
+            w-[300px] 
+            mt-4 
+            mx-auto 
+            hover:bg-primary-100 
+            duration-500 
+            hover:text-white 
+            hover:shadow-sm
+            hover:shadow-primary-900
+            hover:scale-110
+            ' 
+            type='submit'>Guardar</Button>
+        </Form>
+        </div>
+    </Card>
+  </div>
+    // <div className='flex justify-center'>
+    //       <div className='bg-zinc-800  max-w-md w-full p-10 rounded-md flex'>
+    //       <form onSubmit={create} >
+    //           <h1 className='font-bold text-white text-center text-3xl'>Materias</h1>
+
+    //           <label className='text-white'>Nombre</label>
+    //           <input 
+    //           type='text' 
+    //           placeholder='Español, Matemáticas, Historia,...'
+    //           value={name}
+    //           onChange={ (e) => setName(e.target.value)}
+    //           className='w-full px-4 py-2 rounded-md my-2'
+    //           autoFocus
+    //           ></input>
+
+    //           <label className='text-white'>Descripción</label>
+    //           <input 
+    //           type='text'
+    //           placeholder='Breve descripción de la materia'
+    //           value={description}
+    //           onChange={ (e) => setDescription(e.target.value)}
+    //           className='w-full px-4 py-2 rounded-md my-2'
+    //           ></input>
+
+    //           <label className="text-white">Grado</label>
+    //           <select
+    //             value={grade}
+    //             onChange={(e) => setGrade(e.target.value)}
+    //             className="w-full px-4 py-2 rounded-md my-2"
+    //           >
+    //             <option value="" disabled>Selecciona un grado</option>
+    //             <option value="1">1</option>
+    //             <option value="2">2</option>
+    //             <option value="3">3</option>
+    //             <option value="4">4</option>
+    //             <option value="5">5</option>
+    //             <option value="6">6</option>
+    //           </select>
         
-              <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
-          </form>
-          </div>
-      </div>
+    //           <button className='bg-green-600 rounded-md w-20 mx-32' type='submit'>Guardar</button>
+    //       </form>
+    //       </div>
+    //   </div>
   )
 }
 

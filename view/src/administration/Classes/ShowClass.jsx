@@ -17,21 +17,6 @@ function ShowClass() {
     const role = localStorage.getItem("role");
     
 
-    const images = [
-        './utils/brand.jpg',
-        './utils/cuaderno.jpg',
-        './utils/lapices.jpg'
-
-    ]
-    // Estado para manejar la imagen seleccionada
-    const [selectedImage, setSelectedImage] = useState('');
-
-    // Función para seleccionar una imagen aleatoriamente
-    const getRandomImage = () => {
-        const randomIndex = Math.floor(Math.random() * images.length); // Genera un índice aleatorio
-        setSelectedImage(images[randomIndex]); // Establece la imagen aleatoria
-        
-    };
 
     useEffect(() => {
         if (role === "teacher" && teacherId) {
